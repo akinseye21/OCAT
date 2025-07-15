@@ -1,0 +1,202 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/main"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/white"
+    android:padding="20dp"
+    tools:context=".Dashboard">
+
+    <ImageView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:src="@drawable/logout"
+        android:layout_marginTop="20dp"
+        android:id="@+id/logout"/>
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/logout"
+        android:id="@+id/header"
+        android:layout_marginTop="20dp">
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:layout_alignParentStart="true">
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Hello!"
+                android:textSize="20dp"
+                android:fontFamily="@font/nunitosansbold"
+                android:textColor="@color/black"/>
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Akinseye"
+                android:textSize="24dp"
+                android:fontFamily="@font/nunitosansblack"
+                android:textColor="@color/black"/>
+        </LinearLayout>
+        <de.hdodenhof.circleimageview.CircleImageView
+            android:layout_width="70dp"
+            android:layout_height="70dp"
+            android:layout_alignParentEnd="true"
+            app:civ_border_width="1dp"
+            app:civ_border_color="@color/blue"
+            android:src="@drawable/chart"/>
+    </RelativeLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:layout_marginTop="20dp"
+        android:layout_below="@+id/header">
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+            
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="241dp"
+                android:background="@drawable/button_blue"
+                android:padding="10dp"
+                android:layout_toStartOf="@+id/spacer1">
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_centerInParent="true"
+                    android:gravity="center"
+                    android:orientation="vertical">
+                    <ImageView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:src="@drawable/play"/>
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:textColor="@color/white"
+                        android:gravity="center"
+                        android:paddingTop="10dp"
+                        android:text="Start an Assessment"
+                        android:textSize="18dp"
+                        android:fontFamily="@font/nunitosansbold"/>
+                </LinearLayout>
+            </RelativeLayout>
+
+            <Space
+                android:layout_width="20dp"
+                android:layout_height="0dp"
+                android:layout_centerInParent="true"
+                android:id="@+id/spacer1"/>
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="241dp"
+                android:background="@drawable/button_light_green"
+                android:padding="10dp"
+                android:layout_toEndOf="@+id/spacer1">
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_centerInParent="true"
+                    android:gravity="center"
+                    android:orientation="vertical">
+                    <ImageView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:src="@drawable/pause"/>
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:textColor="@color/white"
+                        android:gravity="center"
+                        android:paddingTop="10dp"
+                        android:text="Continue an Assessment"
+                        android:textSize="18dp"
+                        android:fontFamily="@font/nunitosansbold"/>
+                </LinearLayout>
+            </RelativeLayout>
+
+
+        </RelativeLayout>
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="20dp">
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="241dp"
+                android:background="@drawable/button_green"
+                android:padding="10dp"
+                android:layout_toStartOf="@+id/spacer2">
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_centerInParent="true"
+                    android:gravity="center"
+                    android:orientation="vertical">
+                    <ImageView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:src="@drawable/document"/>
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:textColor="@color/white"
+                        android:gravity="center"
+                        android:paddingTop="10dp"
+                        android:text="View\nReports"
+                        android:textSize="18dp"
+                        android:fontFamily="@font/nunitosansbold"/>
+                </LinearLayout>
+            </RelativeLayout>
+
+            <Space
+                android:layout_width="20dp"
+                android:layout_height="0dp"
+                android:layout_centerInParent="true"
+                android:id="@+id/spacer2"/>
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="241dp"
+                android:background="@drawable/button_yellow"
+                android:padding="10dp"
+                android:layout_toEndOf="@+id/spacer2">
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_centerInParent="true"
+                    android:gravity="center"
+                    android:orientation="vertical">
+                    <ImageView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:src="@drawable/info"/>
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:textColor="@color/white"
+                        android:gravity="center"
+                        android:paddingTop="10dp"
+                        android:text="FAQs"
+                        android:textSize="18dp"
+                        android:fontFamily="@font/nunitosansbold"/>
+                </LinearLayout>
+            </RelativeLayout>
+
+
+        </RelativeLayout>
+
+    </LinearLayout>
+
+</RelativeLayout>
