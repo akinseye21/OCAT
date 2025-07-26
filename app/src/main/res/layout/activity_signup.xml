@@ -25,7 +25,7 @@
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Sign Up"
+            android:text="@string/sign_up"
             android:textColor="@color/black"
             android:fontFamily="@font/nunitosansbold"
             android:textSize="20dp"/>
@@ -145,7 +145,7 @@
         <Button
             android:layout_width="match_parent"
             android:layout_height="50dp"
-            android:text="Sign up"
+            android:text="@string/sign_up"
             android:textColor="@color/white"
             android:textAllCaps="false"
             android:elevation="0dp"
@@ -167,14 +167,14 @@
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Already have an account? "
+                android:text="@string/already_have_an_account"
                 android:textColor="@color/black"
                 android:textSize="13dp"
                 android:fontFamily="@font/nunitosansregular"/>
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Log in"
+                android:text="@string/log_in"
                 android:textColor="@color/blue"
                 android:textSize="15dp"
                 android:fontFamily="@font/nunitosansblack"/>

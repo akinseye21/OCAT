@@ -22,7 +22,7 @@
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Bridge the gap"
+            android:text="@string/bridge_the_gap"
             android:textColor="@color/black"
             android:fontFamily="@font/nunitosansextrabold"
             android:textSize="20dp"
@@ -32,7 +32,7 @@
         <TextView
             android:layout_width="326dp"
             android:layout_height="wrap_content"
-            android:text="Build your organisation resilience by using WACSI’s Organisation Capacity Assessment Tool (OCAT)"
+            android:text="@string/build_your_organisation_resilience"
             android:textColor="@color/black"
             android:layout_gravity="center"
             android:gravity="center"
@@ -42,7 +42,7 @@
         <Button
             android:layout_width="match_parent"
             android:layout_height="50dp"
-            android:text="Get started"
+            android:text="@string/get_started"
             android:textColor="@color/white"
             android:textAllCaps="false"
             android:fontFamily="@font/nunitosanssemibold"

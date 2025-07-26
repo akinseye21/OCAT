@@ -1,3 +1,25 @@
 <resources>
     <string name="app_name">OCAT</string>
+    <string name="start_an_assessment">Start an Assessment</string>
+    <string name="hello">Hello!</string>
+    <string name="akinseye">Akinseye</string>
+    <string name="continue_an_assessment">Continue an Assessment</string>
+    <string name="view_nreports">View\nReports</string>
+    <string name="faqs">FAQs</string>
+    <string name="select_a_category">Select a category to continue with the assessment</string>
+    <string name="organisation_profile">Organisation Profile</string>
+    <string name="organisation_name">Organisation Name</string>
+    <string name="country">Country</string>
+    <string name="thematic_area">Thematic Area</string>
+    <string name="type_of_organisation">Type of Organisation</string>
+    <string name="continu">Continue</string>
+    <string name="sign_up">Sign Up</string>
+    <string name="already_have_an_account">Already have an account?</string>
+    <string name="log_in">Log in</string>
+    <string name="enter_your_credentials">Enter your credentials to access your account</string>
+    <string name="don_t_have_an_account">Don’t have an account?</string>
+    <string name="welcome_back">Welcome back!</string>
+    <string name="bridge_the_gap">Bridge the gap</string>
+    <string name="build_your_organisation_resilience">Build your organisation resilience by using WACSI’s Organisation Capacity Assessment Tool (OCAT)</string>
+    <string name="get_started">Get started</string>
 </resources>

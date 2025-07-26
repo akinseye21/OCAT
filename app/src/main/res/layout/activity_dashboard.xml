@@ -30,14 +30,14 @@
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Hello!"
+                android:text="@string/hello"
                 android:textSize="20dp"
                 android:fontFamily="@font/nunitosansbold"
                 android:textColor="@color/black"/>
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Akinseye"
+                android:text="@string/akinseye"
                 android:textSize="24dp"
                 android:fontFamily="@font/nunitosansblack"
                 android:textColor="@color/black"/>
@@ -84,7 +84,7 @@
                         android:textColor="@color/white"
                         android:gravity="center"
                         android:paddingTop="10dp"
-                        android:text="Start an Assessment"
+                        android:text="@string/start_an_assessment"
                         android:textSize="18dp"
                         android:fontFamily="@font/nunitosansbold"/>
                 </LinearLayout>
@@ -118,7 +118,7 @@
                         android:textColor="@color/white"
                         android:gravity="center"
                         android:paddingTop="10dp"
-                        android:text="Continue an Assessment"
+                        android:text="@string/continue_an_assessment"
                         android:textSize="18dp"
                         android:fontFamily="@font/nunitosansbold"/>
                 </LinearLayout>
@@ -154,7 +154,7 @@
                         android:textColor="@color/white"
                         android:gravity="center"
                         android:paddingTop="10dp"
-                        android:text="View\nReports"
+                        android:text="@string/view_nreports"
                         android:textSize="18dp"
                         android:fontFamily="@font/nunitosansbold"/>
                 </LinearLayout>
@@ -188,7 +188,7 @@
                         android:textColor="@color/white"
                         android:gravity="center"
                         android:paddingTop="10dp"
-                        android:text="FAQs"
+                        android:text="@string/faqs"
                         android:textSize="18dp"
                         android:fontFamily="@font/nunitosansbold"/>
                 </LinearLayout>

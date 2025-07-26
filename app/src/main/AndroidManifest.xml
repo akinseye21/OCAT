@@ -15,6 +15,12 @@
         android:theme="@style/Theme.OCAT"
         tools:targetApi="31">
         <activity
+            android:name=".AssessmentPage"
+            android:exported="false" />
+        <activity
+            android:name=".StartAssessment"
+            android:exported="false" />
+        <activity
             android:name=".Dashboard"
             android:exported="false" />
         <activity
