@@ -1,0 +1,84 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical"
+    android:layout_width="350dp"
+    android:layout_height="500dp"
+    android:layout_margin="20dp"
+    android:background="@drawable/loading_bg"
+    android:padding="10dp"
+    android:layout_gravity="center">
+
+    <ImageView
+        android:layout_width="30dp"
+        android:layout_height="30dp"
+        android:id="@+id/close"
+        android:src="@drawable/close"
+        android:layout_gravity="end"
+        android:layout_marginTop="10dp"/>
+
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="left"
+                android:layout_marginTop="10dp"
+                android:layout_marginBottom="10dp"
+                android:fontFamily="@font/nunitosansblack"
+                android:gravity="center"
+                android:text="Terms of Service"
+                android:textColor="#000000"
+                android:textSize="15dp" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="left"
+                android:justificationMode="inter_word"
+                android:layout_marginTop="10dp"
+                android:text="Lorieum Ipsium dhfoid dfo  fwf whd dh hdh dh ud g  dh uh udh d hudhfo dhu   dfw h whf wh w efhw  wfhi wgfl wu l"
+                android:fontFamily="@font/nunitosansregular"
+                android:textSize="13dp"
+                android:id="@+id/tos"
+                android:textColor="@color/black"/>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="left"
+                android:layout_marginTop="30dp"
+                android:layout_marginBottom="10dp"
+                android:fontFamily="@font/nunitosansblack"
+                android:gravity="center"
+                android:text="Privacy Policy"
+                android:textColor="#000000"
+                android:textSize="15dp" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="left"
+                android:justificationMode="inter_word"
+                android:layout_marginTop="10dp"
+                android:text="Lorieum Ipsium dhfoid dfo  fwf w  dfw h whf wh w efhw  wfhi wgfl wu l"
+                android:fontFamily="@font/nunitosansregular"
+                android:textSize="13dp"
+                android:id="@+id/privacy_policy"
+                android:textColor="@color/black"/>
+
+
+        </LinearLayout>
+
+    </ScrollView>
+
+
+
+
+</LinearLayout>

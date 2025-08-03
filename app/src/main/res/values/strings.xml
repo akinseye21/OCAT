@@ -22,4 +22,12 @@
     <string name="bridge_the_gap">Bridge the gap</string>
     <string name="build_your_organisation_resilience">Build your organisation resilience by using WACSI’s Organisation Capacity Assessment Tool (OCAT)</string>
     <string name="get_started">Get started</string>
+    <string name="choose_language">Choose your language</string>
+    <string name="french">French</string>
+    <string name="english">English</string>
+    <string name="logging_in">Logging you in, please wait!</string>
+    <string name="signing_up">Signing you up, please wait!</string>
+    <string name="registering_your_organisation">Registering your organisation</string>
+    <string name="loading_categories">Loading categories...</string>
+    <string name="getting_questions">Getting questions</string>
 </resources>

@@ -68,7 +68,8 @@
                 android:inputType="textEmailAddress"
                 android:singleLine="true"
                 android:textSize="15dp"
-                android:textColor="@color/black"/>
+                android:textColor="@color/black"
+                android:id="@+id/edt_email"/>
         </RelativeLayout>
 
         <RelativeLayout
@@ -96,7 +97,8 @@
                 android:inputType="textPassword"
                 android:singleLine="true"
                 android:textSize="15dp"
-                android:textColor="@color/black"/>
+                android:textColor="@color/black"
+                android:id="@+id/edt_password"/>
         </RelativeLayout>
 
         <Button

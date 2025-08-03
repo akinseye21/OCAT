@@ -50,7 +50,7 @@ public class SplashScreen extends AppCompatActivity {
                 handler.post(new Runnable() {
                     @Override
                     public void run() {
-                        Intent intent = new Intent(SplashScreen.this, MainActivity.class);
+                        Intent intent = new Intent(SplashScreen.this, ChooseLanguage.class);
                         startActivity(intent);
                         finish(); // Close the splash activity
                     }

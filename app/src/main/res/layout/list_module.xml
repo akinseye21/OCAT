@@ -1,8 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_height="wrap_content"
+    android:clickable="false">
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -11,13 +13,14 @@
         android:background="@drawable/button_white"
         android:gravity="center_vertical"
         android:padding="10dp"
-        android:layout_marginBottom="20dp"
-        tools:ignore="MissingConstraints">
+        android:id="@+id/module"
+        android:layout_marginBottom="20dp">
 
         <ImageView
             android:layout_width="40dp"
             android:layout_height="40dp"
             android:src="@drawable/holder"
+            android:id="@+id/img"
             android:layout_marginLeft="10dp"/>
 
         <TextView
@@ -26,10 +29,11 @@
             android:text="Governance"
             android:textSize="16dp"
             android:layout_marginLeft="30dp"
+            android:id="@+id/txt"
             android:fontFamily="@font/nunitosansbold"
             android:textColor="@color/blue"/>
 
 
     </LinearLayout>
 
-</androidx.constraintlayout.widget.ConstraintLayout>
+</LinearLayout>

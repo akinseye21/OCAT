@@ -31,14 +31,17 @@
             android:layout_toRightOf="@+id/back"
             android:layout_centerVertical="true"
             android:fontFamily="@font/nunitosansblack"
-            android:textColor="@color/black"/>
+            android:textColor="@color/black"
+            android:id="@+id/category"
+            android:layout_toLeftOf="@+id/count" />
 
         <LinearLayout
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_alignParentEnd="true"
             android:layout_centerVertical="true"
-            android:orientation="horizontal">
+            android:orientation="horizontal"
+            android:id="@+id/count">
 
             <TextView
                 android:layout_width="wrap_content"
@@ -46,7 +49,8 @@
                 android:text="1"
                 android:textSize="14dp"
                 android:fontFamily="@font/nunitosansbold"
-                android:textColor="@color/red"/>
+                android:textColor="@color/red"
+                android:id="@+id/currentquestion"/>
 
             <TextView
                 android:layout_width="wrap_content"
@@ -62,7 +66,8 @@
                 android:text="20"
                 android:textSize="14dp"
                 android:fontFamily="@font/nunitosansbold"
-                android:textColor="@color/red"/>
+                android:textColor="@color/red"
+                android:id="@+id/totalquestions"/>
 
 
 
@@ -84,9 +89,12 @@
             android:textSize="20dp"
             android:layout_gravity="center"
             android:gravity="center"
+            android:layout_marginBottom="30dp"
+            android:justificationMode="inter_word"
             android:lineSpacingExtra="2dp"
             android:fontFamily="@font/nunitosansregular"
-            android:textColor="@color/black"/>
+            android:textColor="@color/black"
+            android:id="@+id/question"/>
 
         <RelativeLayout
             android:layout_width="match_parent"
@@ -94,7 +102,8 @@
             android:orientation="horizontal"
             android:padding="10dp"
             android:layout_marginTop="20dp"
-            android:background="@drawable/button_grey">
+            android:background="@drawable/button_grey"
+            android:id="@+id/btn1">
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
@@ -103,7 +112,8 @@
                 android:text="Strongly disagree"
                 android:textSize="20dp"
                 android:fontFamily="@font/nunitosansregular"
-                android:textColor="@color/black"/>
+                android:textColor="@color/black"
+                android:id="@+id/option1"/>
 
         </RelativeLayout>
         <RelativeLayout
@@ -112,7 +122,8 @@
             android:orientation="horizontal"
             android:padding="10dp"
             android:layout_marginTop="30dp"
-            android:background="@drawable/button_grey">
+            android:background="@drawable/button_grey"
+            android:id="@+id/btn2">
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
@@ -121,7 +132,8 @@
                 android:text="Strongly disagree"
                 android:textSize="20dp"
                 android:fontFamily="@font/nunitosansregular"
-                android:textColor="@color/black"/>
+                android:textColor="@color/black"
+                android:id="@+id/option2"/>
 
         </RelativeLayout>
         <RelativeLayout
@@ -130,7 +142,8 @@
             android:orientation="horizontal"
             android:padding="10dp"
             android:layout_marginTop="30dp"
-            android:background="@drawable/button_grey">
+            android:background="@drawable/button_grey"
+            android:id="@+id/btn3">
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
@@ -139,7 +152,8 @@
                 android:text="Strongly disagree"
                 android:textSize="20dp"
                 android:fontFamily="@font/nunitosansregular"
-                android:textColor="@color/black"/>
+                android:textColor="@color/black"
+                android:id="@+id/option3"/>
 
         </RelativeLayout>
         <RelativeLayout
@@ -148,7 +162,8 @@
             android:orientation="horizontal"
             android:padding="10dp"
             android:layout_marginTop="30dp"
-            android:background="@drawable/button_grey">
+            android:background="@drawable/button_grey"
+            android:id="@+id/btn4">
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
@@ -157,7 +172,8 @@
                 android:text="Strongly disagree"
                 android:textSize="20dp"
                 android:fontFamily="@font/nunitosansregular"
-                android:textColor="@color/black"/>
+                android:textColor="@color/black"
+                android:id="@+id/option4"/>
 
         </RelativeLayout>
         <RelativeLayout
@@ -166,7 +182,8 @@
             android:orientation="horizontal"
             android:padding="10dp"
             android:layout_marginTop="30dp"
-            android:background="@drawable/button_grey">
+            android:background="@drawable/button_grey"
+            android:id="@+id/btn5">
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
@@ -175,7 +192,8 @@
                 android:text="Strongly disagree"
                 android:textSize="20dp"
                 android:fontFamily="@font/nunitosansregular"
-                android:textColor="@color/black"/>
+                android:textColor="@color/black"
+                android:id="@+id/option5"/>
 
         </RelativeLayout>
 
@@ -188,7 +206,8 @@
             android:textColor="@color/white"
             android:fontFamily="@font/nunitosanssemibold"
             android:textSize="15dp"
-            android:layout_marginTop="30dp"/>
+            android:layout_marginTop="30dp"
+            android:id="@+id/btn_next"/>
 
     </LinearLayout>
 

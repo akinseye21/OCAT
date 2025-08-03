@@ -55,7 +55,8 @@
                 android:inputType="textCapWords"
                 android:singleLine="true"
                 android:textSize="15dp"
-                android:textColor="@color/black"/>
+                android:textColor="@color/black"
+                android:id="@+id/edt_fullname"/>
         </RelativeLayout>
 
         <RelativeLayout
@@ -83,7 +84,8 @@
                 android:inputType="textEmailAddress"
                 android:singleLine="true"
                 android:textSize="15dp"
-                android:textColor="@color/black"/>
+                android:textColor="@color/black"
+                android:id="@+id/edt_email"/>
         </RelativeLayout>
 
         <RelativeLayout
@@ -111,7 +113,8 @@
                 android:inputType="textPassword"
                 android:singleLine="true"
                 android:textSize="15dp"
-                android:textColor="@color/black"/>
+                android:textColor="@color/black"
+                android:id="@+id/edt_password"/>
         </RelativeLayout>
 
         <RelativeLayout
@@ -139,7 +142,77 @@
                 android:inputType="textPassword"
                 android:singleLine="true"
                 android:textSize="15dp"
-                android:textColor="@color/black"/>
+                android:textColor="@color/black"
+                android:id="@+id/edt_confirmpassword"/>
+        </RelativeLayout>
+        
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="50dp">
+            
+            <CheckBox
+                android:layout_width="25dp"
+                android:layout_height="25dp"
+                android:layout_alignParentStart="true"
+                android:layout_centerVertical="true"
+                android:id="@+id/policycheck"
+                android:buttonTint="@color/blue"
+                android:checked="false"
+                />
+
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:layout_toRightOf="@+id/policycheck"
+                android:layout_marginLeft="20dp"
+                android:layout_centerVertical="true"
+                android:id="@+id/txt_policy">
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal">
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="By signing up, you agree to our "
+                        android:textColor="@color/black"
+                        android:textSize="12dp"
+                        android:fontFamily="@font/nunitosanssemibold"/>
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Terms of Service"
+                        android:textColor="@color/blue"
+                        android:textSize="12dp"
+                        android:fontFamily="@font/nunitosansbold"/>
+
+                </LinearLayout>
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal">
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="and "
+                        android:textColor="@color/black"
+                        android:textSize="12dp"
+                        android:fontFamily="@font/nunitosanssemibold"/>
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Privacy Policy"
+                        android:textColor="@color/blue"
+                        android:textSize="12dp"
+                        android:fontFamily="@font/nunitosansbold"/>
+
+                </LinearLayout>
+
+            </LinearLayout>
+
+
         </RelativeLayout>
 
         <Button
