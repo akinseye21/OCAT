@@ -74,7 +74,7 @@ public class StartAssessment extends AppCompatActivity {
         myDialog.setCanceledOnTouchOutside(false);
         myDialog.show();
 
-        StringRequest stringRequest = new StringRequest(Request.Method.GET, "http://10.19.71.184/WACSI_OCAT/categories.php",
+        StringRequest stringRequest = new StringRequest(Request.Method.GET, "http://192.168.0.192/WACSI_OCAT/categories.php",
                 new Response.Listener<String>() {
                     @Override
                     public void onResponse(String response) {
@@ -93,7 +93,7 @@ public class StartAssessment extends AppCompatActivity {
                                 String categoryId = jsonObject.getString("id");
                                 String categoryName = jsonObject.getString("category_name");
                                 String categoryImage = jsonObject.getString("image_url");
-                                String newString = categoryImage.replace("localhost", "10.19.71.184");
+                                String newString = categoryImage.replace("localhost", "192.168.0.192");
 
                                 catId.add(categoryId);
                                 catName.add(categoryName);

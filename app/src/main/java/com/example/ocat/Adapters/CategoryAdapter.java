@@ -118,7 +118,7 @@ public class CategoryAdapter extends BaseAdapter {
         myDialog.setCanceledOnTouchOutside(false);
         myDialog.show();
 
-        StringRequest stringRequest = new StringRequest(Request.Method.POST, "http://10.19.71.184/WACSI_OCAT/cat_questions.php",
+        StringRequest stringRequest = new StringRequest(Request.Method.POST, "http://192.168.0.192/WACSI_OCAT/cat_questions.php",
                 new Response.Listener<String>() {
                     @Override
                     public void onResponse(String response) {
