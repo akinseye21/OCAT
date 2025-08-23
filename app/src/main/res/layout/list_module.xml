@@ -6,12 +6,11 @@
     android:layout_height="wrap_content"
     android:clickable="false">
 
-    <LinearLayout
+    <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="68dp"
         android:orientation="horizontal"
         android:background="@drawable/button_white"
-        android:gravity="center_vertical"
         android:padding="10dp"
         android:id="@+id/module"
         android:layout_marginBottom="20dp">
@@ -21,19 +20,30 @@
             android:layout_height="40dp"
             android:src="@drawable/holder"
             android:id="@+id/img"
-            android:layout_marginLeft="10dp"/>
+            android:layout_centerVertical="true"
+            android:layout_marginStart="10dp"/>
 
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="Governance"
-            android:textSize="16dp"
-            android:layout_marginLeft="30dp"
+            android:textSize="16sp"
+            android:layout_marginStart="30dp"
             android:id="@+id/txt"
+            android:layout_toRightOf="@+id/img"
+            android:layout_centerVertical="true"
             android:fontFamily="@font/nunitosansbold"
             android:textColor="@color/blue"/>
 
+        <ImageView
+            android:layout_width="20dp"
+            android:layout_height="20dp"
+            android:layout_alignParentEnd="true"
+            android:layout_centerVertical="true"
+            android:visibility="gone"
+            android:id="@+id/checkmark"
+            android:src="@drawable/check"/>
 
-    </LinearLayout>
+    </RelativeLayout>
 
 </LinearLayout>

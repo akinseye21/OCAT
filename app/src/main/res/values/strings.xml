@@ -30,4 +30,5 @@
     <string name="registering_your_organisation">Registering your organisation</string>
     <string name="loading_categories">Loading categories...</string>
     <string name="getting_questions">Getting questions</string>
+    <string name="view_reports">View Reports</string>
 </resources>

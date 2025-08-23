@@ -19,11 +19,7 @@ import android.widget.RelativeLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import androidx.activity.EdgeToEdge;
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.core.graphics.Insets;
-import androidx.core.view.ViewCompat;
-import androidx.core.view.WindowInsetsCompat;
 
 import com.android.volley.DefaultRetryPolicy;
 import com.android.volley.Request;
@@ -32,7 +28,6 @@ import com.android.volley.Response;
 import com.android.volley.VolleyError;
 import com.android.volley.toolbox.StringRequest;
 import com.android.volley.toolbox.Volley;
-import com.example.ocat.Adapters.CategoryAdapter;
 
 import org.json.JSONArray;
 import org.json.JSONObject;
@@ -52,6 +47,7 @@ public class AssessmentPage extends AppCompatActivity {
     TextView btn_next;
 
     String que_cat;
+    String selectedId;
     ArrayList<String> arr_questionId, arr_questionCategory, arr_questionText;
 
     ArrayList<String> arr_option;
@@ -76,6 +72,7 @@ public class AssessmentPage extends AppCompatActivity {
         arr_questionId = i.getStringArrayListExtra("arr_questionId");
         arr_questionCategory = i.getStringArrayListExtra("arr_questionCategory");
         arr_questionText = i.getStringArrayListExtra("arr_questionText");
+        selectedId = i.getStringExtra("categoryId");
 
 
         arr_option = new ArrayList<>();
@@ -115,7 +112,7 @@ public class AssessmentPage extends AppCompatActivity {
 
                         //save the assessment in SQLite Database
                         //close the dialog
-                        myDialog.dismiss();
+                        saveProgress(myDialog);
 
                     }
                 });
@@ -348,6 +345,10 @@ public class AssessmentPage extends AppCompatActivity {
 
     }
 
+    private void saveProgress(Dialog myDialog) {
+        //save the progress to SQLite Database
+    }
+
     private void getOptions() {
 
         Dialog myDialog = new Dialog(AssessmentPage.this);
@@ -358,7 +359,7 @@ public class AssessmentPage extends AppCompatActivity {
         myDialog.setCanceledOnTouchOutside(false);
         myDialog.show();
 
-        StringRequest stringRequest = new StringRequest(Request.Method.GET, "http://192.168.0.192/WACSI_OCAT/options.php",
+        StringRequest stringRequest = new StringRequest(Request.Method.GET, "http://10.144.181.184/WACSI_OCAT/options.php",
                 new Response.Listener<String>() {
                     @Override
                     public void onResponse(String response) {
@@ -451,7 +452,7 @@ public class AssessmentPage extends AppCompatActivity {
         myDialog.setCanceledOnTouchOutside(false);
         myDialog.show();
 
-        StringRequest stringRequest = new StringRequest(Request.Method.POST, "http://192.168.0.192/WACSI_OCAT/save_governance.php",
+        StringRequest stringRequest = new StringRequest(Request.Method.POST, "http://10.144.181.184/WACSI_OCAT/save_governance.php",
                 new Response.Listener<String>() {
                     @Override
                     public void onResponse(String response) {
@@ -465,7 +466,10 @@ public class AssessmentPage extends AppCompatActivity {
 
                             if (status.equals("success")){
                                 Toast.makeText(AssessmentPage.this, message, Toast.LENGTH_SHORT).show();
-                                startActivity(new Intent(AssessmentPage.this, StartAssessment.class));
+                                Intent i = new Intent(AssessmentPage.this, Completion.class);
+                                i.putExtra("category", arr_questionCategory.get(0));
+                                i.putExtra("categoryId", selectedId);
+                                startActivity(i);
                             }else {
                                 Toast.makeText(AssessmentPage.this, message, Toast.LENGTH_SHORT).show();
                             }
@@ -545,7 +549,7 @@ public class AssessmentPage extends AppCompatActivity {
         myDialog.setCanceledOnTouchOutside(false);
         myDialog.show();
 
-        StringRequest stringRequest = new StringRequest(Request.Method.POST, "http://192.168.0.192/WACSI_OCAT/save_hr.php",
+        StringRequest stringRequest = new StringRequest(Request.Method.POST, "http://10.144.181.184/WACSI_OCAT/save_hr.php",
                 new Response.Listener<String>() {
                     @Override
                     public void onResponse(String response) {
@@ -559,7 +563,10 @@ public class AssessmentPage extends AppCompatActivity {
 
                             if (status.equals("success")){
                                 Toast.makeText(AssessmentPage.this, message, Toast.LENGTH_SHORT).show();
-                                startActivity(new Intent(AssessmentPage.this, StartAssessment.class));
+                                Intent i = new Intent(AssessmentPage.this, Completion.class);
+                                i.putExtra("category", arr_questionCategory.get(0));
+                                i.putExtra("categoryId", selectedId);
+                                startActivity(i);
                             }else {
                                 Toast.makeText(AssessmentPage.this, message, Toast.LENGTH_SHORT).show();
                             }
@@ -632,7 +639,7 @@ public class AssessmentPage extends AppCompatActivity {
         myDialog.setCanceledOnTouchOutside(false);
         myDialog.show();
 
-        StringRequest stringRequest = new StringRequest(Request.Method.POST, "http://192.168.0.192/WACSI_OCAT/save_finance.php",
+        StringRequest stringRequest = new StringRequest(Request.Method.POST, "http://10.144.181.184/WACSI_OCAT/save_finance.php",
                 new Response.Listener<String>() {
                     @Override
                     public void onResponse(String response) {
@@ -646,7 +653,10 @@ public class AssessmentPage extends AppCompatActivity {
 
                             if (status.equals("success")){
                                 Toast.makeText(AssessmentPage.this, message, Toast.LENGTH_SHORT).show();
-                                startActivity(new Intent(AssessmentPage.this, StartAssessment.class));
+                                Intent i = new Intent(AssessmentPage.this, Completion.class);
+                                i.putExtra("category", arr_questionCategory.get(0));
+                                i.putExtra("categoryId", selectedId);
+                                startActivity(i);
                             }else {
                                 Toast.makeText(AssessmentPage.this, message, Toast.LENGTH_SHORT).show();
                             }
@@ -715,7 +725,7 @@ public class AssessmentPage extends AppCompatActivity {
         myDialog.setCanceledOnTouchOutside(false);
         myDialog.show();
 
-        StringRequest stringRequest = new StringRequest(Request.Method.POST, "http://192.168.0.192/WACSI_OCAT/save_working_practice.php",
+        StringRequest stringRequest = new StringRequest(Request.Method.POST, "http://10.144.181.184/WACSI_OCAT/save_working_practice.php",
                 new Response.Listener<String>() {
                     @Override
                     public void onResponse(String response) {
@@ -729,7 +739,10 @@ public class AssessmentPage extends AppCompatActivity {
 
                             if (status.equals("success")){
                                 Toast.makeText(AssessmentPage.this, message, Toast.LENGTH_SHORT).show();
-                                startActivity(new Intent(AssessmentPage.this, StartAssessment.class));
+                                Intent i = new Intent(AssessmentPage.this, Completion.class);
+                                i.putExtra("category", arr_questionCategory.get(0));
+                                i.putExtra("categoryId", selectedId);
+                                startActivity(i);
                             }else {
                                 Toast.makeText(AssessmentPage.this, message, Toast.LENGTH_SHORT).show();
                             }
@@ -809,7 +822,7 @@ public class AssessmentPage extends AppCompatActivity {
         myDialog.setCanceledOnTouchOutside(false);
         myDialog.show();
 
-        StringRequest stringRequest = new StringRequest(Request.Method.POST, "http://192.168.0.192/WACSI_OCAT/save_community_engagement.php",
+        StringRequest stringRequest = new StringRequest(Request.Method.POST, "http://10.144.181.184/WACSI_OCAT/save_community_engagement.php",
                 new Response.Listener<String>() {
                     @Override
                     public void onResponse(String response) {
@@ -823,7 +836,10 @@ public class AssessmentPage extends AppCompatActivity {
 
                             if (status.equals("success")){
                                 Toast.makeText(AssessmentPage.this, message, Toast.LENGTH_SHORT).show();
-                                startActivity(new Intent(AssessmentPage.this, StartAssessment.class));
+                                Intent i = new Intent(AssessmentPage.this, Completion.class);
+                                i.putExtra("category", arr_questionCategory.get(0));
+                                i.putExtra("categoryId", selectedId);
+                                startActivity(i);
                             }else {
                                 Toast.makeText(AssessmentPage.this, message, Toast.LENGTH_SHORT).show();
                             }
@@ -894,7 +910,7 @@ public class AssessmentPage extends AppCompatActivity {
         myDialog.setCanceledOnTouchOutside(false);
         myDialog.show();
 
-        StringRequest stringRequest = new StringRequest(Request.Method.POST, "http://192.168.0.192/WACSI_OCAT/save_partnership.php",
+        StringRequest stringRequest = new StringRequest(Request.Method.POST, "http://10.144.181.184/WACSI_OCAT/save_partnership.php",
                 new Response.Listener<String>() {
                     @Override
                     public void onResponse(String response) {
@@ -908,7 +924,10 @@ public class AssessmentPage extends AppCompatActivity {
 
                             if (status.equals("success")){
                                 Toast.makeText(AssessmentPage.this, message, Toast.LENGTH_SHORT).show();
-                                startActivity(new Intent(AssessmentPage.this, StartAssessment.class));
+                                Intent i = new Intent(AssessmentPage.this, Completion.class);
+                                i.putExtra("category", arr_questionCategory.get(0));
+                                i.putExtra("categoryId", selectedId);
+                                startActivity(i);
                             }else {
                                 Toast.makeText(AssessmentPage.this, message, Toast.LENGTH_SHORT).show();
                             }
@@ -985,7 +1004,7 @@ public class AssessmentPage extends AppCompatActivity {
         myDialog.setCanceledOnTouchOutside(false);
         myDialog.show();
 
-        StringRequest stringRequest = new StringRequest(Request.Method.POST, "http://192.168.0.192/WACSI_OCAT/save_technology.php",
+        StringRequest stringRequest = new StringRequest(Request.Method.POST, "http://10.144.181.184/WACSI_OCAT/save_technology.php",
                 new Response.Listener<String>() {
                     @Override
                     public void onResponse(String response) {
@@ -999,7 +1018,10 @@ public class AssessmentPage extends AppCompatActivity {
 
                             if (status.equals("success")){
                                 Toast.makeText(AssessmentPage.this, message, Toast.LENGTH_SHORT).show();
-                                startActivity(new Intent(AssessmentPage.this, StartAssessment.class));
+                                Intent i = new Intent(AssessmentPage.this, Completion.class);
+                                i.putExtra("category", arr_questionCategory.get(0));
+                                i.putExtra("categoryId", selectedId);
+                                startActivity(i);
                             }else {
                                 Toast.makeText(AssessmentPage.this, message, Toast.LENGTH_SHORT).show();
                             }
@@ -1078,7 +1100,7 @@ public class AssessmentPage extends AppCompatActivity {
         myDialog.setCanceledOnTouchOutside(false);
         myDialog.show();
 
-        StringRequest stringRequest = new StringRequest(Request.Method.POST, "http://192.168.0.192/WACSI_OCAT/save_sustainability.php",
+        StringRequest stringRequest = new StringRequest(Request.Method.POST, "http://10.144.181.184/WACSI_OCAT/save_sustainability.php",
                 new Response.Listener<String>() {
                     @Override
                     public void onResponse(String response) {
@@ -1092,7 +1114,10 @@ public class AssessmentPage extends AppCompatActivity {
 
                             if (status.equals("success")){
                                 Toast.makeText(AssessmentPage.this, message, Toast.LENGTH_SHORT).show();
-                                startActivity(new Intent(AssessmentPage.this, StartAssessment.class));
+                                Intent i = new Intent(AssessmentPage.this, Completion.class);
+                                i.putExtra("category", arr_questionCategory.get(0));
+                                i.putExtra("categoryId", selectedId);
+                                startActivity(i);
                             }else {
                                 Toast.makeText(AssessmentPage.this, message, Toast.LENGTH_SHORT).show();
                             }

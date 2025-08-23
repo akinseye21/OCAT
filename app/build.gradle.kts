@@ -47,5 +47,6 @@ dependencies {
     implementation(libs.glide)
 //    implementation(libs.glide.svg)
 //    annotationProcessor(libs.compiler)
+    implementation(libs.mpandroidchart)
 
 }

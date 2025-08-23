@@ -15,6 +15,7 @@ import android.view.ViewGroup;
 import android.widget.BaseAdapter;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
+import android.widget.RelativeLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -27,7 +28,9 @@ import com.android.volley.toolbox.StringRequest;
 import com.android.volley.toolbox.Volley;
 import com.bumptech.glide.Glide;
 import com.example.ocat.AssessmentPage;
+import com.example.ocat.Completion;
 import com.example.ocat.Dashboard;
+import com.example.ocat.GraphPage;
 import com.example.ocat.Login;
 import com.example.ocat.R;
 
@@ -36,6 +39,7 @@ import org.json.JSONObject;
 
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.Iterator;
 import java.util.Map;
 
 public class CategoryAdapter extends BaseAdapter {
@@ -77,9 +81,14 @@ public class CategoryAdapter extends BaseAdapter {
             convertView = inflaInflater.inflate(R.layout.list_module, parent, false);
         }
 
-        LinearLayout lin_module = convertView.findViewById(R.id.module);
+        //get the user id from shared preference
+        SharedPreferences sharedPreferences = context.getSharedPreferences("Login Pref", Context.MODE_PRIVATE);
+        String got_user_id = sharedPreferences.getString("id", null);
+
+        RelativeLayout lin_module = convertView.findViewById(R.id.module);
         TextView txt_categoryName = convertView.findViewById(R.id.txt);
         ImageView img_categoryImage = convertView.findViewById(R.id.img);
+        ImageView img_checkmark = convertView.findViewById(R.id.checkmark);
 
         txt_categoryName.setText(categoryName.get(position));
         Glide.with(context)
@@ -92,12 +101,85 @@ public class CategoryAdapter extends BaseAdapter {
                 String selected_id = categoryId.get(position);
                 String selected_category = categoryName.get(position);
 
-                //send to the question DB
-                getQuestions(selected_id, selected_category);
+                //check DB if the user has already saved an instant
+                getDBRecord(selected_id, got_user_id, selected_category);
             }
         });
 
         return convertView;
+    }
+
+    private void getDBRecord(String selectedId, String gotUserId, String selectedCategory) {
+        Dialog myDialog = new Dialog(context);
+        myDialog.setContentView(R.layout.custom_popup_loading);
+        TextView text = myDialog.findViewById(R.id.text);
+        text.setText("Checking... Please wait");
+        myDialog.getWindow().setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));
+        myDialog.setCanceledOnTouchOutside(false);
+        myDialog.show();
+
+        StringRequest stringRequest = new StringRequest(Request.Method.POST, "http://10.144.181.184/WACSI_OCAT/get_report.php",
+                new Response.Listener<String>() {
+                    @Override
+                    public void onResponse(String response) {
+                        myDialog.dismiss();
+                        System.out.println("Report response: " + response);
+
+                        try {
+                            JSONObject json = new JSONObject(response);
+                            String status = json.getString("status");
+                            String message = json.getString("message");
+
+                            JSONArray jsonArray = new JSONArray(message);
+                            int len = jsonArray.length();
+                            if (len>0){
+                                //there is already a record instance saved
+                                Toast.makeText(context, "User has already saved a response for this category", Toast.LENGTH_LONG).show();
+                            }else{
+                                //no record instance saved
+                                //send to the question DB
+                                getQuestions(selectedId, selectedCategory);
+                            }
+
+
+
+                        }catch(Exception e) {
+                            Toast.makeText(context, "Report loading failed", Toast.LENGTH_SHORT).show();
+                        }
+
+                    }
+                },
+                new Response.ErrorListener() {
+                    @Override
+                    public void onErrorResponse(VolleyError volleyError) {
+                        myDialog.dismiss();
+                        if(volleyError == null){
+                            return;
+                        }
+                        Log.e(TAG, volleyError.toString());
+                        System.out.println("Network Error "+volleyError);
+                        Toast.makeText(context, "Network Error!", Toast.LENGTH_SHORT).show();
+                    }
+                }){
+            @Override
+            protected Map<String, String> getParams(){
+                Map<String, String> params = new HashMap<>();
+                params.put("category_id", selectedId);
+                params.put("user_id", gotUserId);
+                return params;
+            }
+        };
+
+        RequestQueue requestQueue = Volley.newRequestQueue(context);
+        DefaultRetryPolicy retryPolicy = new DefaultRetryPolicy(0, -1, DefaultRetryPolicy.DEFAULT_BACKOFF_MULT);
+        stringRequest.setRetryPolicy(retryPolicy);
+        requestQueue.add(stringRequest);
+        requestQueue.addRequestFinishedListener(new RequestQueue.RequestFinishedListener<Object>() {
+            @Override
+            public void onRequestFinished(Request<Object> request) {
+                requestQueue.getCache().clear();
+            }
+        });
     }
 
     private void getQuestions(String selectedId, String selectedCategory) {
@@ -118,7 +200,7 @@ public class CategoryAdapter extends BaseAdapter {
         myDialog.setCanceledOnTouchOutside(false);
         myDialog.show();
 
-        StringRequest stringRequest = new StringRequest(Request.Method.POST, "http://192.168.0.192/WACSI_OCAT/cat_questions.php",
+        StringRequest stringRequest = new StringRequest(Request.Method.POST, "http://10.144.181.184/WACSI_OCAT/cat_questions.php",
                 new Response.Listener<String>() {
                     @Override
                     public void onResponse(String response) {
@@ -149,6 +231,7 @@ public class CategoryAdapter extends BaseAdapter {
                             i.putStringArrayListExtra("arr_questionCategory", arr_questionCategory);
                             i.putStringArrayListExtra("arr_questionText", arr_questionText);
                             i.putExtra("category", selectedCategory);
+                            i.putExtra("categoryId", selectedId);
                             context.startActivity(i);
 
                         }catch(Exception e) {
