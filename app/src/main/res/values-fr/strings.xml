@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">OCAT</string>
+    <string name="start_an_assessment">Lancer une évaluation</string>
+    <string name="hello">Bonjour !</string>
+    <string name="akinseye">Akinseye</string>
+    <string name="continue_an_assessment">Poursuivre une évaluation</string>
+    <string name="view_nreports">Afficher\nRapports</string>
+    <string name="faqs">FAQ</string>
+    <string name="select_a_category">Sélectionnez une catégorie pour poursuivre l\'évaluation.</string>
+    <string name="organisation_profile">Profil de l\'organisation</string>
+    <string name="organisation_name">Nom de l\'organisation</string>
+    <string name="country">Pays</string>
+    <string name="thematic_area">Domaine thématique</string>
+    <string name="type_of_organisation">Type d\'organisation</string>
+    <string name="continu">Continuer</string>
+    <string name="sign_up">Inscrivez-vous</string>
+    <string name="already_have_an_account">Vous avez déjà un compte?</string>
+    <string name="log_in">Se connecter</string>
+    <string name="enter_your_credentials">Entrez vos identifiants pour accéder à votre compte</string>
+    <string name="don_t_have_an_account">Vous n\'avez pas de compte ?</string>
+    <string name="welcome_back">Bon retour parmi nous !</string>
+    <string name="bridge_the_gap">Combler le fossé</string>
+    <string name="build_your_organisation_resilience">Renforcez la résilience de votre organisation en utilisant l\'outil d\'évaluation des capacités organisationnelles (OCAT) de WACSI</string>
+    <string name="get_started">Commencez</string>
+    <string name="choose_language">Choisissez votre langue</string>
+    <string name="french">Français</string>
+    <string name="english">Anglais</string>
+    <string name="logging_in">Connexion en cours, veuillez patienter !</string>
+    <string name="signing_up">Enregistrement en cours, veuillez patienter !</string>
+    <string name="registering_your_organisation">Enregistrer votre organisation</string>
+    <string name="loading_categories">Chargement des catégories...</string>
+    <string name="getting_questions">Obtenir des questions</string>
+    <string name="view_reports">Afficher les rapports</string>
+    <string name="email_address">Adresse électronique</string>
+    <string name="password">Mot de passe</string>
+    <string name="login_successful">Connexion réussie</string>
+</resources>

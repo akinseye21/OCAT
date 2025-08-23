@@ -61,6 +61,7 @@ public class Signup extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_signup);
         this.getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN, WindowManager.LayoutParams.FLAG_FULLSCREEN);
+        ChooseLanguage.loadLanguage(this);
 
         back = findViewById(R.id.back);
         back.setOnClickListener(new View.OnClickListener() {

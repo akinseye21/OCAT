@@ -75,140 +75,145 @@
 
     </RelativeLayout>
 
-    <LinearLayout
+    <ScrollView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:orientation="vertical"
         android:layout_marginTop="30dp"
         android:layout_below="@+id/top">
-
-        <TextView
-            android:layout_width="wrap_content"
+        <LinearLayout
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="The organisation has a functioning board or governing structure (this governing structure will be referred to as the board throughout this assessment)"
-            android:textSize="20dp"
-            android:layout_gravity="center"
-            android:gravity="center"
-            android:layout_marginBottom="30dp"
-            android:justificationMode="inter_word"
-            android:lineSpacingExtra="2dp"
-            android:fontFamily="@font/nunitosansregular"
-            android:textColor="@color/black"
-            android:id="@+id/question"/>
+            android:orientation="vertical">
 
-        <RelativeLayout
-            android:layout_width="match_parent"
-            android:layout_height="50dp"
-            android:orientation="horizontal"
-            android:padding="10dp"
-            android:layout_marginTop="20dp"
-            android:background="@drawable/button_grey"
-            android:id="@+id/btn1">
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_centerVertical="true"
-                android:paddingLeft="20dp"
-                android:text="Strongly disagree"
+                android:text="The organisation has a functioning board or governing structure (this governing structure will be referred to as the board throughout this assessment)"
                 android:textSize="20dp"
+                android:layout_gravity="center"
+                android:gravity="center"
+                android:layout_marginBottom="30dp"
+                android:justificationMode="inter_word"
+                android:lineSpacingExtra="2dp"
                 android:fontFamily="@font/nunitosansregular"
                 android:textColor="@color/black"
-                android:id="@+id/option1"/>
+                android:id="@+id/question"/>
 
-        </RelativeLayout>
-        <RelativeLayout
-            android:layout_width="match_parent"
-            android:layout_height="50dp"
-            android:orientation="horizontal"
-            android:padding="10dp"
-            android:layout_marginTop="30dp"
-            android:background="@drawable/button_grey"
-            android:id="@+id/btn2">
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_centerVertical="true"
-                android:paddingLeft="20dp"
-                android:text="Strongly disagree"
-                android:textSize="20dp"
-                android:fontFamily="@font/nunitosansregular"
-                android:textColor="@color/black"
-                android:id="@+id/option2"/>
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="50dp"
+                android:orientation="horizontal"
+                android:padding="10dp"
+                android:layout_marginTop="20dp"
+                android:background="@drawable/button_grey"
+                android:id="@+id/btn1">
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_centerVertical="true"
+                    android:paddingLeft="20dp"
+                    android:text="Strongly disagree"
+                    android:textSize="20dp"
+                    android:fontFamily="@font/nunitosansregular"
+                    android:textColor="@color/black"
+                    android:id="@+id/option1"/>
 
-        </RelativeLayout>
-        <RelativeLayout
-            android:layout_width="match_parent"
-            android:layout_height="50dp"
-            android:orientation="horizontal"
-            android:padding="10dp"
-            android:layout_marginTop="30dp"
-            android:background="@drawable/button_grey"
-            android:id="@+id/btn3">
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_centerVertical="true"
-                android:paddingLeft="20dp"
-                android:text="Strongly disagree"
-                android:textSize="20dp"
-                android:fontFamily="@font/nunitosansregular"
-                android:textColor="@color/black"
-                android:id="@+id/option3"/>
+            </RelativeLayout>
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="50dp"
+                android:orientation="horizontal"
+                android:padding="10dp"
+                android:layout_marginTop="30dp"
+                android:background="@drawable/button_grey"
+                android:id="@+id/btn2">
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_centerVertical="true"
+                    android:paddingLeft="20dp"
+                    android:text="Strongly disagree"
+                    android:textSize="20dp"
+                    android:fontFamily="@font/nunitosansregular"
+                    android:textColor="@color/black"
+                    android:id="@+id/option2"/>
 
-        </RelativeLayout>
-        <RelativeLayout
-            android:layout_width="match_parent"
-            android:layout_height="50dp"
-            android:orientation="horizontal"
-            android:padding="10dp"
-            android:layout_marginTop="30dp"
-            android:background="@drawable/button_grey"
-            android:id="@+id/btn4">
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_centerVertical="true"
-                android:paddingLeft="20dp"
-                android:text="Strongly disagree"
-                android:textSize="20dp"
-                android:fontFamily="@font/nunitosansregular"
-                android:textColor="@color/black"
-                android:id="@+id/option4"/>
+            </RelativeLayout>
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="50dp"
+                android:orientation="horizontal"
+                android:padding="10dp"
+                android:layout_marginTop="30dp"
+                android:background="@drawable/button_grey"
+                android:id="@+id/btn3">
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_centerVertical="true"
+                    android:paddingLeft="20dp"
+                    android:text="Strongly disagree"
+                    android:textSize="20dp"
+                    android:fontFamily="@font/nunitosansregular"
+                    android:textColor="@color/black"
+                    android:id="@+id/option3"/>
 
-        </RelativeLayout>
-        <RelativeLayout
-            android:layout_width="match_parent"
-            android:layout_height="50dp"
-            android:orientation="horizontal"
-            android:padding="10dp"
-            android:layout_marginTop="30dp"
-            android:background="@drawable/button_grey"
-            android:id="@+id/btn5">
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_centerVertical="true"
-                android:paddingLeft="20dp"
-                android:text="Strongly disagree"
-                android:textSize="20dp"
-                android:fontFamily="@font/nunitosansregular"
-                android:textColor="@color/black"
-                android:id="@+id/option5"/>
+            </RelativeLayout>
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="50dp"
+                android:orientation="horizontal"
+                android:padding="10dp"
+                android:layout_marginTop="30dp"
+                android:background="@drawable/button_grey"
+                android:id="@+id/btn4">
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_centerVertical="true"
+                    android:paddingLeft="20dp"
+                    android:text="Strongly disagree"
+                    android:textSize="20dp"
+                    android:fontFamily="@font/nunitosansregular"
+                    android:textColor="@color/black"
+                    android:id="@+id/option4"/>
 
-        </RelativeLayout>
+            </RelativeLayout>
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="50dp"
+                android:orientation="horizontal"
+                android:padding="10dp"
+                android:layout_marginTop="30dp"
+                android:background="@drawable/button_grey"
+                android:id="@+id/btn5">
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_centerVertical="true"
+                    android:paddingLeft="20dp"
+                    android:text="Strongly disagree"
+                    android:textSize="20dp"
+                    android:fontFamily="@font/nunitosansregular"
+                    android:textColor="@color/black"
+                    android:id="@+id/option5"/>
 
-        <Button
-            android:layout_width="match_parent"
-            android:layout_height="50dp"
-            android:background="@drawable/button_blue"
-            android:text="Next"
-            android:textAllCaps="false"
-            android:textColor="@color/white"
-            android:fontFamily="@font/nunitosanssemibold"
-            android:textSize="15dp"
-            android:layout_marginTop="30dp"
-            android:id="@+id/btn_next"/>
+            </RelativeLayout>
 
-    </LinearLayout>
+            <Button
+                android:layout_width="match_parent"
+                android:layout_height="50dp"
+                android:background="@drawable/button_blue"
+                android:text="Next"
+                android:textAllCaps="false"
+                android:textColor="@color/white"
+                android:fontFamily="@font/nunitosanssemibold"
+                android:textSize="15dp"
+                android:layout_marginTop="30dp"
+                android:id="@+id/btn_next"/>
+
+        </LinearLayout>
+    </ScrollView>
+
 
 </RelativeLayout>

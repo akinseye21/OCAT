@@ -16,245 +16,250 @@
         android:layout_marginTop="20dp"
         android:id="@+id/back"/>
 
-    <LinearLayout
+    <ScrollView
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:orientation="vertical"
+        android:layout_height="wrap_content"
         android:layout_below="@+id/back"
         android:layout_marginTop="20dp">
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="@string/sign_up"
-            android:textColor="@color/black"
-            android:fontFamily="@font/nunitosansbold"
-            android:textSize="20dp"/>
-
-        <RelativeLayout
+        <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="50dp"
-            android:background="@drawable/edt_white"
-            android:layout_marginTop="30dp">
-            <ImageView
+            android:layout_height="match_parent"
+            android:orientation="vertical"
+            >
+            <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:src="@drawable/usertag"
-                android:layout_centerVertical="true"
-                android:id="@+id/user"
-                android:layout_marginLeft="10dp"
-                android:layout_marginRight="20dp"/>
-            <EditText
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:layout_toRightOf="@+id/user"
-                android:layout_marginRight="10dp"
-                android:background="@android:color/transparent"
-                android:hint="Full name"
-                android:textColorHint="@color/grey2"
-                android:fontFamily="@font/nunitosanssemibold"
-                android:inputType="textCapWords"
-                android:singleLine="true"
-                android:textSize="15dp"
+                android:text="@string/sign_up"
                 android:textColor="@color/black"
-                android:id="@+id/edt_fullname"/>
-        </RelativeLayout>
+                android:fontFamily="@font/nunitosansbold"
+                android:textSize="20dp"/>
 
-        <RelativeLayout
-            android:layout_width="match_parent"
-            android:layout_height="50dp"
-            android:layout_marginTop="20dp"
-            android:background="@drawable/edt_white">
-            <ImageView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:src="@drawable/sms"
-                android:layout_centerVertical="true"
-                android:id="@+id/sms"
-                android:layout_marginLeft="10dp"
-                android:layout_marginRight="20dp"/>
-            <EditText
+            <RelativeLayout
                 android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:layout_toRightOf="@+id/sms"
-                android:layout_marginRight="10dp"
-                android:background="@android:color/transparent"
-                android:hint="Email address"
-                android:textColorHint="@color/grey2"
-                android:fontFamily="@font/nunitosanssemibold"
-                android:inputType="textEmailAddress"
-                android:singleLine="true"
-                android:textSize="15dp"
-                android:textColor="@color/black"
-                android:id="@+id/edt_email"/>
-        </RelativeLayout>
+                android:layout_height="50dp"
+                android:background="@drawable/edt_white"
+                android:layout_marginTop="30dp">
+                <ImageView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:src="@drawable/usertag"
+                    android:layout_centerVertical="true"
+                    android:id="@+id/user"
+                    android:layout_marginLeft="10dp"
+                    android:layout_marginRight="20dp"/>
+                <EditText
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_toRightOf="@+id/user"
+                    android:layout_marginRight="10dp"
+                    android:background="@android:color/transparent"
+                    android:hint="Full name"
+                    android:textColorHint="@color/grey2"
+                    android:fontFamily="@font/nunitosanssemibold"
+                    android:inputType="textCapWords"
+                    android:singleLine="true"
+                    android:textSize="15dp"
+                    android:textColor="@color/black"
+                    android:id="@+id/edt_fullname"/>
+            </RelativeLayout>
 
-        <RelativeLayout
-            android:layout_width="match_parent"
-            android:layout_height="50dp"
-            android:layout_marginTop="20dp"
-            android:background="@drawable/edt_white">
-            <ImageView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:src="@drawable/key"
-                android:layout_centerVertical="true"
-                android:id="@+id/key"
-                android:layout_marginLeft="10dp"
-                android:layout_marginRight="20dp"/>
-            <EditText
+            <RelativeLayout
                 android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:layout_toRightOf="@+id/key"
-                android:layout_marginRight="10dp"
-                android:background="@android:color/transparent"
-                android:hint="Password"
-                android:textColorHint="@color/grey2"
-                android:fontFamily="@font/nunitosanssemibold"
-                android:inputType="textPassword"
-                android:singleLine="true"
-                android:textSize="15dp"
-                android:textColor="@color/black"
-                android:id="@+id/edt_password"/>
-        </RelativeLayout>
+                android:layout_height="50dp"
+                android:layout_marginTop="20dp"
+                android:background="@drawable/edt_white">
+                <ImageView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:src="@drawable/sms"
+                    android:layout_centerVertical="true"
+                    android:id="@+id/sms"
+                    android:layout_marginLeft="10dp"
+                    android:layout_marginRight="20dp"/>
+                <EditText
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_toRightOf="@+id/sms"
+                    android:layout_marginRight="10dp"
+                    android:background="@android:color/transparent"
+                    android:hint="Email address"
+                    android:textColorHint="@color/grey2"
+                    android:fontFamily="@font/nunitosanssemibold"
+                    android:inputType="textEmailAddress"
+                    android:singleLine="true"
+                    android:textSize="15dp"
+                    android:textColor="@color/black"
+                    android:id="@+id/edt_email"/>
+            </RelativeLayout>
 
-        <RelativeLayout
-            android:layout_width="match_parent"
-            android:layout_height="50dp"
-            android:layout_marginTop="20dp"
-            android:background="@drawable/edt_white">
-            <ImageView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:src="@drawable/key"
-                android:layout_centerVertical="true"
-                android:id="@+id/key2"
-                android:layout_marginLeft="10dp"
-                android:layout_marginRight="20dp"/>
-            <EditText
+            <RelativeLayout
                 android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:layout_toRightOf="@+id/key2"
-                android:layout_marginRight="10dp"
-                android:background="@android:color/transparent"
-                android:hint="Confirm password"
-                android:textColorHint="@color/grey2"
+                android:layout_height="50dp"
+                android:layout_marginTop="20dp"
+                android:background="@drawable/edt_white">
+                <ImageView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:src="@drawable/key"
+                    android:layout_centerVertical="true"
+                    android:id="@+id/key"
+                    android:layout_marginLeft="10dp"
+                    android:layout_marginRight="20dp"/>
+                <EditText
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_toRightOf="@+id/key"
+                    android:layout_marginRight="10dp"
+                    android:background="@android:color/transparent"
+                    android:hint="Password"
+                    android:textColorHint="@color/grey2"
+                    android:fontFamily="@font/nunitosanssemibold"
+                    android:inputType="textPassword"
+                    android:singleLine="true"
+                    android:textSize="15dp"
+                    android:textColor="@color/black"
+                    android:id="@+id/edt_password"/>
+            </RelativeLayout>
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="50dp"
+                android:layout_marginTop="20dp"
+                android:background="@drawable/edt_white">
+                <ImageView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:src="@drawable/key"
+                    android:layout_centerVertical="true"
+                    android:id="@+id/key2"
+                    android:layout_marginLeft="10dp"
+                    android:layout_marginRight="20dp"/>
+                <EditText
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_toRightOf="@+id/key2"
+                    android:layout_marginRight="10dp"
+                    android:background="@android:color/transparent"
+                    android:hint="Confirm password"
+                    android:textColorHint="@color/grey2"
+                    android:fontFamily="@font/nunitosanssemibold"
+                    android:inputType="textPassword"
+                    android:singleLine="true"
+                    android:textSize="15dp"
+                    android:textColor="@color/black"
+                    android:id="@+id/edt_confirmpassword"/>
+            </RelativeLayout>
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="50dp">
+
+                <CheckBox
+                    android:layout_width="25dp"
+                    android:layout_height="25dp"
+                    android:layout_alignParentStart="true"
+                    android:layout_centerVertical="true"
+                    android:id="@+id/policycheck"
+                    android:buttonTint="@color/blue"
+                    android:checked="false"
+                    />
+
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical"
+                    android:layout_toRightOf="@+id/policycheck"
+                    android:layout_marginLeft="20dp"
+                    android:layout_centerVertical="true"
+                    android:id="@+id/txt_policy">
+                    <LinearLayout
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal">
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="By signing up, you agree to our "
+                            android:textColor="@color/black"
+                            android:textSize="12dp"
+                            android:fontFamily="@font/nunitosanssemibold"/>
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="Terms of Service"
+                            android:textColor="@color/blue"
+                            android:textSize="12dp"
+                            android:fontFamily="@font/nunitosansbold"/>
+
+                    </LinearLayout>
+                    <LinearLayout
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal">
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="and "
+                            android:textColor="@color/black"
+                            android:textSize="12dp"
+                            android:fontFamily="@font/nunitosanssemibold"/>
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="Privacy Policy"
+                            android:textColor="@color/blue"
+                            android:textSize="12dp"
+                            android:fontFamily="@font/nunitosansbold"/>
+
+                    </LinearLayout>
+
+                </LinearLayout>
+
+
+            </RelativeLayout>
+
+            <Button
+                android:layout_width="match_parent"
+                android:layout_height="50dp"
+                android:text="@string/sign_up"
+                android:textColor="@color/white"
+                android:textAllCaps="false"
+                android:elevation="0dp"
+                android:shadowColor="@color/white"
                 android:fontFamily="@font/nunitosanssemibold"
-                android:inputType="textPassword"
-                android:singleLine="true"
                 android:textSize="15dp"
-                android:textColor="@color/black"
-                android:id="@+id/edt_confirmpassword"/>
-        </RelativeLayout>
-        
-        <RelativeLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="50dp">
-            
-            <CheckBox
-                android:layout_width="25dp"
-                android:layout_height="25dp"
-                android:layout_alignParentStart="true"
-                android:layout_centerVertical="true"
-                android:id="@+id/policycheck"
-                android:buttonTint="@color/blue"
-                android:checked="false"
-                />
+                android:id="@+id/signup"
+                android:layout_marginTop="20dp"
+                android:background="@drawable/button_blue"
+                android:stateListAnimator="@null"/>
 
             <LinearLayout
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:orientation="vertical"
-                android:layout_toRightOf="@+id/policycheck"
-                android:layout_marginLeft="20dp"
-                android:layout_centerVertical="true"
-                android:id="@+id/txt_policy">
-                <LinearLayout
+                android:layout_gravity="center_horizontal"
+                android:layout_marginTop="20dp"
+                android:id="@+id/txtlogin"
+                android:orientation="horizontal">
+                <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:orientation="horizontal">
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="By signing up, you agree to our "
-                        android:textColor="@color/black"
-                        android:textSize="12dp"
-                        android:fontFamily="@font/nunitosanssemibold"/>
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="Terms of Service"
-                        android:textColor="@color/blue"
-                        android:textSize="12dp"
-                        android:fontFamily="@font/nunitosansbold"/>
-
-                </LinearLayout>
-                <LinearLayout
+                    android:text="@string/already_have_an_account"
+                    android:textColor="@color/black"
+                    android:textSize="13dp"
+                    android:fontFamily="@font/nunitosansregular"/>
+                <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:orientation="horizontal">
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="and "
-                        android:textColor="@color/black"
-                        android:textSize="12dp"
-                        android:fontFamily="@font/nunitosanssemibold"/>
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="Privacy Policy"
-                        android:textColor="@color/blue"
-                        android:textSize="12dp"
-                        android:fontFamily="@font/nunitosansbold"/>
-
-                </LinearLayout>
+                    android:text="@string/log_in"
+                    android:textColor="@color/blue"
+                    android:textSize="15dp"
+                    android:fontFamily="@font/nunitosansblack"/>
 
             </LinearLayout>
 
 
-        </RelativeLayout>
-
-        <Button
-            android:layout_width="match_parent"
-            android:layout_height="50dp"
-            android:text="@string/sign_up"
-            android:textColor="@color/white"
-            android:textAllCaps="false"
-            android:elevation="0dp"
-            android:shadowColor="@color/white"
-            android:fontFamily="@font/nunitosanssemibold"
-            android:textSize="15dp"
-            android:id="@+id/signup"
-            android:layout_marginTop="20dp"
-            android:background="@drawable/button_blue"
-            android:stateListAnimator="@null"/>
-
-        <LinearLayout
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_gravity="center_horizontal"
-            android:layout_marginTop="20dp"
-            android:id="@+id/txtlogin"
-            android:orientation="horizontal">
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="@string/already_have_an_account"
-                android:textColor="@color/black"
-                android:textSize="13dp"
-                android:fontFamily="@font/nunitosansregular"/>
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="@string/log_in"
-                android:textColor="@color/blue"
-                android:textSize="15dp"
-                android:fontFamily="@font/nunitosansblack"/>
-
         </LinearLayout>
-
-
-    </LinearLayout>
+    </ScrollView>
 
 </RelativeLayout>

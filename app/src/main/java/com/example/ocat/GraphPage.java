@@ -56,6 +56,7 @@ public class GraphPage extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_graph_page);
         this.getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN, WindowManager.LayoutParams.FLAG_FULLSCREEN);
+        ChooseLanguage.loadLanguage(this);
 
         Intent i = getIntent();
         values = i.getStringArrayListExtra("values");

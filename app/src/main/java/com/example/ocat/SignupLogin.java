@@ -21,6 +21,7 @@ public class SignupLogin extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_signup_login);
         this.getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN, WindowManager.LayoutParams.FLAG_FULLSCREEN);
+        ChooseLanguage.loadLanguage(this);
 
         login = findViewById(R.id.login);
         signup = findViewById(R.id.signup);

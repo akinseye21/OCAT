@@ -52,156 +52,162 @@
             android:src="@drawable/chart"/>
     </RelativeLayout>
 
-    <LinearLayout
+    <ScrollView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:orientation="vertical"
         android:layout_marginTop="20dp"
         android:layout_below="@+id/header">
-
-        <RelativeLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content">
-            
-            <RelativeLayout
-                android:layout_width="match_parent"
-                android:layout_height="241dp"
-                android:background="@drawable/button_blue"
-                android:padding="10dp"
-                android:id="@+id/startassessment"
-                android:layout_toStartOf="@+id/spacer1">
-                <LinearLayout
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_centerInParent="true"
-                    android:gravity="center"
-                    android:orientation="vertical">
-                    <ImageView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:src="@drawable/play"/>
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:textColor="@color/white"
-                        android:gravity="center"
-                        android:paddingTop="10dp"
-                        android:text="@string/start_an_assessment"
-                        android:textSize="18dp"
-                        android:fontFamily="@font/nunitosansbold"/>
-                </LinearLayout>
-            </RelativeLayout>
-
-            <Space
-                android:layout_width="20dp"
-                android:layout_height="0dp"
-                android:layout_centerInParent="true"
-                android:id="@+id/spacer1"/>
-
-            <RelativeLayout
-                android:layout_width="match_parent"
-                android:layout_height="241dp"
-                android:background="@drawable/button_light_green"
-                android:padding="10dp"
-                android:id="@+id/continueassessment"
-                android:layout_toEndOf="@+id/spacer1">
-                <LinearLayout
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_centerInParent="true"
-                    android:gravity="center"
-                    android:orientation="vertical">
-                    <ImageView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:src="@drawable/pause"/>
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:textColor="@color/white"
-                        android:gravity="center"
-                        android:paddingTop="10dp"
-                        android:text="@string/continue_an_assessment"
-                        android:textSize="18dp"
-                        android:fontFamily="@font/nunitosansbold"/>
-                </LinearLayout>
-            </RelativeLayout>
-
-
-        </RelativeLayout>
-
-        <RelativeLayout
+        <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="20dp">
+            android:orientation="vertical"
+            >
 
             <RelativeLayout
                 android:layout_width="match_parent"
-                android:layout_height="241dp"
-                android:background="@drawable/button_green"
-                android:padding="10dp"
-                android:id="@+id/viewreport"
-                android:layout_toStartOf="@+id/spacer2">
-                <LinearLayout
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_centerInParent="true"
-                    android:gravity="center"
-                    android:orientation="vertical">
-                    <ImageView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:src="@drawable/document"/>
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:textColor="@color/white"
-                        android:gravity="center"
-                        android:paddingTop="10dp"
-                        android:text="@string/view_nreports"
-                        android:textSize="18dp"
-                        android:fontFamily="@font/nunitosansbold"/>
-                </LinearLayout>
-            </RelativeLayout>
+                android:layout_height="wrap_content">
 
-            <Space
-                android:layout_width="20dp"
-                android:layout_height="0dp"
-                android:layout_centerInParent="true"
-                android:id="@+id/spacer2"/>
+                <RelativeLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="241dp"
+                    android:background="@drawable/button_blue"
+                    android:padding="10dp"
+                    android:id="@+id/startassessment"
+                    android:layout_toStartOf="@+id/spacer1">
+                    <LinearLayout
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_centerInParent="true"
+                        android:gravity="center"
+                        android:orientation="vertical">
+                        <ImageView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:src="@drawable/play"/>
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:textColor="@color/white"
+                            android:gravity="center"
+                            android:paddingTop="10dp"
+                            android:text="@string/start_an_assessment"
+                            android:textSize="18dp"
+                            android:fontFamily="@font/nunitosansbold"/>
+                    </LinearLayout>
+                </RelativeLayout>
+
+                <Space
+                    android:layout_width="20dp"
+                    android:layout_height="0dp"
+                    android:layout_centerInParent="true"
+                    android:id="@+id/spacer1"/>
+
+                <RelativeLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="241dp"
+                    android:background="@drawable/button_light_green"
+                    android:padding="10dp"
+                    android:id="@+id/continueassessment"
+                    android:layout_toEndOf="@+id/spacer1">
+                    <LinearLayout
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_centerInParent="true"
+                        android:gravity="center"
+                        android:orientation="vertical">
+                        <ImageView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:src="@drawable/pause"/>
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:textColor="@color/white"
+                            android:gravity="center"
+                            android:paddingTop="10dp"
+                            android:text="@string/continue_an_assessment"
+                            android:textSize="18dp"
+                            android:fontFamily="@font/nunitosansbold"/>
+                    </LinearLayout>
+                </RelativeLayout>
+
+
+            </RelativeLayout>
 
             <RelativeLayout
                 android:layout_width="match_parent"
-                android:layout_height="241dp"
-                android:background="@drawable/button_yellow"
-                android:padding="10dp"
-                android:id="@+id/faq"
-                android:layout_toEndOf="@+id/spacer2">
-                <LinearLayout
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_centerInParent="true"
-                    android:gravity="center"
-                    android:orientation="vertical">
-                    <ImageView
+                android:layout_height="wrap_content"
+                android:layout_marginTop="20dp">
+
+                <RelativeLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="241dp"
+                    android:background="@drawable/button_green"
+                    android:padding="10dp"
+                    android:id="@+id/viewreport"
+                    android:layout_toStartOf="@+id/spacer2">
+                    <LinearLayout
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:src="@drawable/info"/>
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:textColor="@color/white"
+                        android:layout_centerInParent="true"
                         android:gravity="center"
-                        android:paddingTop="10dp"
-                        android:text="@string/faqs"
-                        android:textSize="18dp"
-                        android:fontFamily="@font/nunitosansbold"/>
-                </LinearLayout>
+                        android:orientation="vertical">
+                        <ImageView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:src="@drawable/document"/>
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:textColor="@color/white"
+                            android:gravity="center"
+                            android:paddingTop="10dp"
+                            android:text="@string/view_nreports"
+                            android:textSize="18dp"
+                            android:fontFamily="@font/nunitosansbold"/>
+                    </LinearLayout>
+                </RelativeLayout>
+
+                <Space
+                    android:layout_width="20dp"
+                    android:layout_height="0dp"
+                    android:layout_centerInParent="true"
+                    android:id="@+id/spacer2"/>
+
+                <RelativeLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="241dp"
+                    android:background="@drawable/button_yellow"
+                    android:padding="10dp"
+                    android:id="@+id/faq"
+                    android:layout_toEndOf="@+id/spacer2">
+                    <LinearLayout
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_centerInParent="true"
+                        android:gravity="center"
+                        android:orientation="vertical">
+                        <ImageView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:src="@drawable/info"/>
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:textColor="@color/white"
+                            android:gravity="center"
+                            android:paddingTop="10dp"
+                            android:text="@string/faqs"
+                            android:textSize="18dp"
+                            android:fontFamily="@font/nunitosansbold"/>
+                    </LinearLayout>
+                </RelativeLayout>
+
+
             </RelativeLayout>
 
+        </LinearLayout>
+    </ScrollView>
 
-        </RelativeLayout>
-
-    </LinearLayout>
 
 </RelativeLayout>

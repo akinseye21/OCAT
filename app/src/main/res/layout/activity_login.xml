@@ -16,131 +16,136 @@
         android:layout_marginTop="20dp"
         android:id="@+id/back"/>
 
-    <LinearLayout
+    <ScrollView
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:orientation="vertical"
+        android:layout_height="wrap_content"
         android:layout_below="@+id/back"
         android:layout_marginTop="20dp">
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="@string/log_in"
-            android:textColor="@color/black"
-            android:fontFamily="@font/nunitosansbold"
-            android:textSize="20dp"/>
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="@string/enter_your_credentials"
-            android:textColor="@color/grey"
-            android:fontFamily="@font/nunitosanssemibold"
-            android:textSize="13dp"
-            android:layout_marginTop="10dp"/>
-        <ImageView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:src="@drawable/securityuser"
-            android:layout_gravity="center_horizontal"
-            android:layout_marginTop="20dp"
-            android:layout_marginBottom="20dp"/>
-        <RelativeLayout
-            android:layout_width="match_parent"
-            android:layout_height="50dp"
-            android:background="@drawable/edt_white">
-            <ImageView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:src="@drawable/sms"
-                android:layout_centerVertical="true"
-                android:id="@+id/sms"
-                android:layout_marginLeft="10dp"
-                android:layout_marginRight="20dp"/>
-            <EditText
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:layout_toRightOf="@+id/sms"
-                android:layout_marginRight="10dp"
-                android:background="@android:color/transparent"
-                android:hint="Email address"
-                android:textColorHint="@color/grey2"
-                android:fontFamily="@font/nunitosanssemibold"
-                android:inputType="textEmailAddress"
-                android:singleLine="true"
-                android:textSize="15dp"
-                android:textColor="@color/black"
-                android:id="@+id/edt_email"/>
-        </RelativeLayout>
-
-        <RelativeLayout
-            android:layout_width="match_parent"
-            android:layout_height="50dp"
-            android:layout_marginTop="20dp"
-            android:background="@drawable/edt_white">
-            <ImageView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:src="@drawable/key"
-                android:layout_centerVertical="true"
-                android:id="@+id/key"
-                android:layout_marginLeft="10dp"
-                android:layout_marginRight="20dp"/>
-            <EditText
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:layout_toRightOf="@+id/key"
-                android:layout_marginRight="10dp"
-                android:background="@android:color/transparent"
-                android:hint="Password"
-                android:textColorHint="@color/grey2"
-                android:fontFamily="@font/nunitosanssemibold"
-                android:inputType="textPassword"
-                android:singleLine="true"
-                android:textSize="15dp"
-                android:textColor="@color/black"
-                android:id="@+id/edt_password"/>
-        </RelativeLayout>
-
-        <Button
-            android:layout_width="match_parent"
-            android:layout_height="50dp"
-            android:text="@string/log_in"
-            android:textColor="@color/white"
-            android:textAllCaps="false"
-            android:elevation="0dp"
-            android:shadowColor="@color/white"
-            android:fontFamily="@font/nunitosanssemibold"
-            android:textSize="15dp"
-            android:id="@+id/login"
-            android:layout_marginTop="20dp"
-            android:background="@drawable/button_blue"
-            android:stateListAnimator="@null"/>
-
         <LinearLayout
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_gravity="center_horizontal"
-            android:layout_marginTop="20dp"
-            android:id="@+id/txtsignup"
-            android:orientation="horizontal">
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical"
+            >
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="@string/don_t_have_an_account"
+                android:text="@string/log_in"
                 android:textColor="@color/black"
-                android:textSize="13dp"
-                android:fontFamily="@font/nunitosansregular"/>
+                android:fontFamily="@font/nunitosansbold"
+                android:textSize="20dp"/>
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="@string/sign_up"
-                android:textColor="@color/blue"
+                android:text="@string/enter_your_credentials"
+                android:textColor="@color/grey"
+                android:fontFamily="@font/nunitosanssemibold"
+                android:textSize="13dp"
+                android:layout_marginTop="10dp"/>
+            <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:src="@drawable/securityuser"
+                android:layout_gravity="center_horizontal"
+                android:layout_marginTop="20dp"
+                android:layout_marginBottom="20dp"/>
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="50dp"
+                android:background="@drawable/edt_white">
+                <ImageView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:src="@drawable/sms"
+                    android:layout_centerVertical="true"
+                    android:id="@+id/sms"
+                    android:layout_marginLeft="10dp"
+                    android:layout_marginRight="20dp"/>
+                <EditText
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_toRightOf="@+id/sms"
+                    android:layout_marginRight="10dp"
+                    android:background="@android:color/transparent"
+                    android:hint="@string/email_address"
+                    android:textColorHint="@color/grey2"
+                    android:fontFamily="@font/nunitosanssemibold"
+                    android:inputType="textEmailAddress"
+                    android:singleLine="true"
+                    android:textSize="15dp"
+                    android:textColor="@color/black"
+                    android:id="@+id/edt_email"/>
+            </RelativeLayout>
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="50dp"
+                android:layout_marginTop="20dp"
+                android:background="@drawable/edt_white">
+                <ImageView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:src="@drawable/key"
+                    android:layout_centerVertical="true"
+                    android:id="@+id/key"
+                    android:layout_marginLeft="10dp"
+                    android:layout_marginRight="20dp"/>
+                <EditText
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_toRightOf="@+id/key"
+                    android:layout_marginRight="10dp"
+                    android:background="@android:color/transparent"
+                    android:hint="@string/password"
+                    android:textColorHint="@color/grey2"
+                    android:fontFamily="@font/nunitosanssemibold"
+                    android:inputType="textPassword"
+                    android:singleLine="true"
+                    android:textSize="15dp"
+                    android:textColor="@color/black"
+                    android:id="@+id/edt_password"/>
+            </RelativeLayout>
+
+            <Button
+                android:layout_width="match_parent"
+                android:layout_height="50dp"
+                android:text="@string/log_in"
+                android:textColor="@color/white"
+                android:textAllCaps="false"
+                android:elevation="0dp"
+                android:shadowColor="@color/white"
+                android:fontFamily="@font/nunitosanssemibold"
                 android:textSize="15dp"
-                android:fontFamily="@font/nunitosansblack"/>
+                android:id="@+id/login"
+                android:layout_marginTop="20dp"
+                android:background="@drawable/button_blue"
+                android:stateListAnimator="@null"/>
+
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_horizontal"
+                android:layout_marginTop="20dp"
+                android:id="@+id/txtsignup"
+                android:orientation="horizontal">
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/don_t_have_an_account"
+                    android:textColor="@color/black"
+                    android:textSize="13dp"
+                    android:fontFamily="@font/nunitosansregular"/>
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/sign_up"
+                    android:textColor="@color/blue"
+                    android:textSize="15dp"
+                    android:fontFamily="@font/nunitosansblack"/>
+
+            </LinearLayout>
+
 
         </LinearLayout>
-
-
-    </LinearLayout>
+    </ScrollView>
 
 </RelativeLayout>

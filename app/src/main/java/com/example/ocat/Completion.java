@@ -51,6 +51,7 @@ public class Completion extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_completion);
         this.getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN, WindowManager.LayoutParams.FLAG_FULLSCREEN);
+        ChooseLanguage.loadLanguage(this);
 
         //get the user id from shared preference
         SharedPreferences sharedPreferences = getSharedPreferences("Login Pref", Context.MODE_PRIVATE);

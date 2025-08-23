@@ -31,4 +31,7 @@
     <string name="loading_categories">Loading categories...</string>
     <string name="getting_questions">Getting questions</string>
     <string name="view_reports">View Reports</string>
+    <string name="email_address">Email address</string>
+    <string name="password">Password</string>
+    <string name="login_successful">Login successful</string>
 </resources>

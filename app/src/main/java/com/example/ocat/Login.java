@@ -55,6 +55,7 @@ public class Login extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
         this.getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN, WindowManager.LayoutParams.FLAG_FULLSCREEN);
+        ChooseLanguage.loadLanguage(this);
 
         back = findViewById(R.id.back);
         back.setOnClickListener(new View.OnClickListener() {
@@ -180,7 +181,7 @@ public class Login extends AppCompatActivity {
                                 // Commit the changes
                                 editor.apply();
 
-                                Toast.makeText(Login.this, "Login successful", Toast.LENGTH_SHORT).show();
+                                Toast.makeText(Login.this, getString(R.string.login_successful), Toast.LENGTH_SHORT).show();
                                 Intent i = new Intent(Login.this, Dashboard.class);
                                 startActivity(i);
                             }else{

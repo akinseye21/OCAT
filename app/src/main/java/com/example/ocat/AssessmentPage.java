@@ -66,6 +66,7 @@ public class AssessmentPage extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_assessment_page);
         this.getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN, WindowManager.LayoutParams.FLAG_FULLSCREEN);
+        ChooseLanguage.loadLanguage(this);
 
         Intent i = getIntent();
         que_cat = i.getStringExtra("category");
@@ -1175,5 +1176,6 @@ public class AssessmentPage extends AppCompatActivity {
             }
         });
     }
+
 
 }

@@ -9,59 +9,64 @@
     android:padding="20dp"
     tools:context=".SignupLogin">
 
-    <LinearLayout
+    <ScrollView
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:layout_centerInParent="true"
-        android:gravity="center"
-        android:orientation="vertical">
-
-        <ImageView
-            android:layout_width="225dp"
-            android:layout_height="225dp"
-            android:src="@drawable/chart"/>
-
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="@string/welcome_back"
-            android:textColor="@color/black"
-            android:fontFamily="@font/nunitosansextrabold"
-            android:textSize="20dp"
-            android:layout_marginTop="90dp"/>
-
-        <Button
+        android:layout_height="wrap_content"
+        android:layout_centerInParent="true">
+        <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="50dp"
-            android:text="@string/log_in"
-            android:textColor="@color/blue"
-            android:textAllCaps="false"
-            android:elevation="0dp"
-            android:shadowColor="@color/white"
-            android:fontFamily="@font/nunitosanssemibold"
-            android:textSize="15dp"
-            android:id="@+id/login"
-            android:layout_marginTop="20dp"
-            android:background="@drawable/button_white"
-            android:stateListAnimator="@null"/>
+            android:layout_height="match_parent"
+            android:gravity="center"
+            android:orientation="vertical">
 
-        <Button
-            android:layout_width="match_parent"
-            android:layout_height="50dp"
-            android:text="@string/sign_up"
-            android:textColor="@color/white"
-            android:textAllCaps="false"
-            android:elevation="0dp"
-            android:shadowColor="@color/white"
-            android:fontFamily="@font/nunitosanssemibold"
-            android:textSize="15dp"
-            android:id="@+id/signup"
-            android:layout_marginTop="20dp"
-            android:background="@drawable/button_blue"
-            android:stateListAnimator="@null"/>
+            <ImageView
+                android:layout_width="225dp"
+                android:layout_height="225dp"
+                android:src="@drawable/chart"/>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/welcome_back"
+                android:textColor="@color/black"
+                android:fontFamily="@font/nunitosansextrabold"
+                android:textSize="20dp"
+                android:layout_marginTop="90dp"/>
+
+            <Button
+                android:layout_width="match_parent"
+                android:layout_height="50dp"
+                android:text="@string/log_in"
+                android:textColor="@color/blue"
+                android:textAllCaps="false"
+                android:elevation="0dp"
+                android:shadowColor="@color/white"
+                android:fontFamily="@font/nunitosanssemibold"
+                android:textSize="15dp"
+                android:id="@+id/login"
+                android:layout_marginTop="20dp"
+                android:background="@drawable/button_white"
+                android:stateListAnimator="@null"/>
+
+            <Button
+                android:layout_width="match_parent"
+                android:layout_height="50dp"
+                android:text="@string/sign_up"
+                android:textColor="@color/white"
+                android:textAllCaps="false"
+                android:elevation="0dp"
+                android:shadowColor="@color/white"
+                android:fontFamily="@font/nunitosanssemibold"
+                android:textSize="15dp"
+                android:id="@+id/signup"
+                android:layout_marginTop="20dp"
+                android:background="@drawable/button_blue"
+                android:stateListAnimator="@null"/>
 
 
 
-    </LinearLayout>
+        </LinearLayout>
+    </ScrollView>
+
 
 </RelativeLayout>
