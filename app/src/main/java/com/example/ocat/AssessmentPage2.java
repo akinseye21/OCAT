@@ -2,7 +2,6 @@ package com.example.ocat;
 
 import static androidx.constraintlayout.helper.widget.MotionEffect.TAG;
 
-import android.annotation.SuppressLint;
 import android.app.Dialog;
 import android.content.Context;
 import android.content.Intent;
@@ -20,7 +19,11 @@ import android.widget.RelativeLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import androidx.activity.EdgeToEdge;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.core.graphics.Insets;
+import androidx.core.view.ViewCompat;
+import androidx.core.view.WindowInsetsCompat;
 
 import com.android.volley.DefaultRetryPolicy;
 import com.android.volley.Request;
@@ -29,7 +32,6 @@ import com.android.volley.Response;
 import com.android.volley.VolleyError;
 import com.android.volley.toolbox.StringRequest;
 import com.android.volley.toolbox.Volley;
-import com.example.ocat.Adapters.ContinueAdapter;
 
 import org.json.JSONArray;
 import org.json.JSONObject;
@@ -38,7 +40,7 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
 
-public class AssessmentPage extends AppCompatActivity {
+public class AssessmentPage2 extends AppCompatActivity {
 
     ImageView back;
     TextView txt_category;
@@ -47,122 +49,54 @@ public class AssessmentPage extends AppCompatActivity {
     RelativeLayout btn1, btn2, btn3, btn4, btn5;
     TextView option1, option2, option3, option4, option5;
     TextView btn_next;
+    String category_id, category_name;
+    ArrayList<String> category_question, answered_question;
+    Drawable selectedDrawable, unselectedDrawable;
+    String uID;
 
-    String que_cat;
-    String selectedId;
-    ArrayList<String> arr_questionId, arr_questionCategory, arr_questionText;
-
-    ArrayList<String> arr_option;
-    ArrayList<Integer> arr_point;
-    int j;
     Integer selected_point = 0;
     String selected_answer = "";
 
-    ArrayList<String> arr_finalAnswer;
-    ArrayList<Integer> arr_finalPoint;
+    ArrayList<String> arr_option = new ArrayList<>();
+    ArrayList<Integer> arr_point = new ArrayList<>();
 
-    Drawable selectedDrawable, unselectedDrawable;
-    String uID;
+    MyDatabaseHelper myDB;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_assessment_page);
+        setContentView(R.layout.activity_assessment_page2);
         this.getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN, WindowManager.LayoutParams.FLAG_FULLSCREEN);
         ChooseLanguage.loadLanguage(this);
 
-        Intent i = getIntent();
-        que_cat = i.getStringExtra("category");
-        arr_questionId = i.getStringArrayListExtra("arr_questionId");
-        arr_questionCategory = i.getStringArrayListExtra("arr_questionCategory");
-        arr_questionText = i.getStringArrayListExtra("arr_questionText");
-        selectedId = i.getStringExtra("categoryId");
+        Intent intent = getIntent();
+        category_id = intent.getStringExtra("category_id");
+        category_name = intent.getStringExtra("category_name");
+        category_question = intent.getStringArrayListExtra("category_question");
+        answered_question = intent.getStringArrayListExtra("answered_question");
 
         //get the user id from shared preference
         SharedPreferences sharedPreferences_db = getSharedPreferences("Login Pref", Context.MODE_PRIVATE);
         uID = sharedPreferences_db.getString("id", null);
 
-
-        arr_option = new ArrayList<>();
-        arr_point = new ArrayList<>();
-        arr_option.clear();
-        arr_point.clear();
-
-        arr_finalAnswer = new ArrayList<>();
-        arr_finalPoint = new ArrayList<>();
-        arr_finalAnswer.clear();
-        arr_finalPoint.clear();
-
+        myDB = new MyDatabaseHelper(this);
 
         //get all options
         getOptions();
-
 
         back = findViewById(R.id.back);
         back.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                //ask to pause the assessment using a dialog
-                Dialog myDialog = new Dialog(AssessmentPage.this);
-                myDialog.setContentView(R.layout.custom_popup_quit);
-                ImageView close = myDialog.findViewById(R.id.close);
-                close.setOnClickListener(new View.OnClickListener() {
-                    @Override
-                    public void onClick(View v) {
-                        myDialog.dismiss();
-                    }
-                });
-                Button btn_yes = myDialog.findViewById(R.id.btn_yes);
-                Button btn_no = myDialog.findViewById(R.id.btn_no);
-                btn_yes.setOnClickListener(new View.OnClickListener() {
-                    @Override
-                    public void onClick(View v) {
 
-                        //save the assessment in SQLite Database
-                        //close the dialog
-                        saveProgress(myDialog);
-
-                    }
-                });
-                btn_no.setOnClickListener(new View.OnClickListener() {
-                    @Override
-                    public void onClick(View v) {
-                        //close current dialog
-                        myDialog.dismiss();
-                        //show another dialog to quit
-                        Dialog myDialog2 = new Dialog(AssessmentPage.this);
-                        myDialog2.setContentView(R.layout.custom_popup_quit2);
-                        Button btn_yes_quit = myDialog2.findViewById(R.id.btn_yes_quit);
-                        Button btn_no_quit = myDialog2.findViewById(R.id.btn_no_quit);
-                        btn_yes_quit.setOnClickListener(new View.OnClickListener() {
-                            @Override
-                            public void onClick(View v) {
-                                Intent i = new Intent(AssessmentPage.this, StartAssessment.class);
-                                startActivity(i);
-                            }
-                        });
-                        btn_no_quit.setOnClickListener(new View.OnClickListener() {
-                            @Override
-                            public void onClick(View v) {
-                                myDialog2.dismiss();
-                            }
-                        });
-                        myDialog2.getWindow().setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));
-                        myDialog2.setCanceledOnTouchOutside(false);
-                        myDialog2.show();
-                    }
-                });
-                myDialog.getWindow().setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));
-                myDialog.setCanceledOnTouchOutside(false);
-                myDialog.show();
             }
         });
         txt_category = findViewById(R.id.category);
-        txt_category.setText(que_cat);
+        txt_category.setText(category_name);
 
         currentquestion = findViewById(R.id.currentquestion);
         totalquestions = findViewById(R.id.totalquestions);
-        totalquestions.setText(String.valueOf(arr_questionText.size()));
+        totalquestions.setText(String.valueOf(category_question.size()));
 
         question = findViewById(R.id.question);
         btn1 = findViewById(R.id.btn1);
@@ -291,57 +225,55 @@ public class AssessmentPage extends AppCompatActivity {
             public void onClick(View v) {
 
                 if (selected_point == 0){
-                    Toast.makeText(AssessmentPage.this, R.string.please_select_an_option, Toast.LENGTH_SHORT).show();
+                    Toast.makeText(AssessmentPage2.this, "Please select an option", Toast.LENGTH_SHORT).show();
                 }else{
                     // the selected point, add to an array of points
-                    arr_finalPoint.add(selected_point);
+                    answered_question.add(String.valueOf(selected_point));
                     selected_point = 0;
-                    System.out.println("Array final point = "+arr_finalPoint);
-                    // the selected answer, add to an array of answers
-                    arr_finalAnswer.add(selected_answer);
-                    selected_answer = "";
-                    System.out.println("Array final answer = "+arr_finalAnswer);
+                    System.out.println("Array final point = "+answered_question);
+                    
                     //clear any highlighted button
                     btn1.setBackground(unselectedDrawable);
                     btn2.setBackground(unselectedDrawable);
                     btn3.setBackground(unselectedDrawable);
                     btn4.setBackground(unselectedDrawable);
                     btn5.setBackground(unselectedDrawable);
+                    
                     // increase current question number
                     int currentQuestionIncrease = Integer.parseInt(currentquestion.getText().toString()) + 1;
                     currentquestion.setText(String.valueOf(currentQuestionIncrease));
                     // set the next question
                     int currentQuestionText = Integer.parseInt(currentquestion.getText().toString()) - 1;
-                    question.setText(arr_questionText.get(currentQuestionText));
+                    question.setText(category_question.get(currentQuestionText));
                     //change the button next to submit for the final question
                     if (currentquestion.getText().toString().equals(totalquestions.getText().toString())){
-                        btn_next.setText("Submit");
+                        btn_next.setText(R.string.submit);
                         btn_next.setOnClickListener(new View.OnClickListener() {
                             @Override
                             public void onClick(View v) {
 
-                                arr_finalPoint.add(selected_point);
-                                arr_finalAnswer.add(selected_answer);
+                                answered_question.add(String.valueOf(selected_point));
+//                                arr_finalAnswer.add(selected_answer);
 
-                                System.out.println("Array final final point = "+arr_finalPoint);
-                                System.out.println("Array final final answer = "+arr_finalAnswer);
+                                System.out.println("Array final final point = "+answered_question);
+//                                System.out.println("Array final final answer = "+arr_finalAnswer);
 
                                 //check the category of questions
-                                if (arr_questionCategory.get(0).equals("Governance")){
+                                if (category_name.equals("Governance and Leadership")){
                                     saveGovernance();
-                                }else if (arr_questionCategory.get(0).equals("HR")){
+                                }else if (category_name.equals("Human Resources")){
                                     saveHR();
-                                }else if (arr_questionCategory.get(0).equals("Finance")){
+                                }else if (category_name.equals("Finance")){
                                     saveFinance();
-                                }else if (arr_questionCategory.get(0).equals("Working Practice")){
+                                }else if (category_name.equals("Working Practice")){
                                     saveWorkingPractice();
-                                }else if (arr_questionCategory.get(0).equals("Community Engagement")){
+                                }else if (category_name.equals("Community Engagement")){
                                     saveCommunityEngagement();
-                                }else if (arr_questionCategory.get(0).equals("Partnership")){
+                                }else if (category_name.equals("Partnerships")){
                                     savePartnership();
-                                }else if (arr_questionCategory.get(0).equals("Technology")){
+                                }else if (category_name.equals("Information Technology")){
                                     saveTechnology();
-                                }else if (arr_questionCategory.get(0).equals("Sustainability")){
+                                }else if (category_name.equals("Sustainability")){
                                     saveSustainability();
                                 }
                             }
@@ -350,21 +282,11 @@ public class AssessmentPage extends AppCompatActivity {
                 }
             }
         });
-
-    }
-
-    private void saveProgress(Dialog myDialog) {
-        //save the progress to SQLite Database
-        MyDatabaseHelper myDB = new MyDatabaseHelper(AssessmentPage.this);
-        myDB.addTable(uID, selectedId, que_cat, arr_questionText.toString(), arr_finalPoint.toString());
-
-        myDialog.dismiss();
-        startActivity(new Intent(AssessmentPage.this, Dashboard.class));
     }
 
     public void getOptions() {
 
-        Dialog myDialog = new Dialog(AssessmentPage.this);
+        Dialog myDialog = new Dialog(AssessmentPage2.this);
         myDialog.setContentView(R.layout.custom_popup_loading);
         TextView text = myDialog.findViewById(R.id.text);
         text.setText(R.string.get_ready);
@@ -401,7 +323,7 @@ public class AssessmentPage extends AppCompatActivity {
                             setValues();
 
                         }catch(Exception e) {
-                            Toast.makeText(AssessmentPage.this, R.string.options_loading_failed, Toast.LENGTH_SHORT).show();
+                            Toast.makeText(AssessmentPage2.this, "Options loading failed", Toast.LENGTH_SHORT).show();
                         }
 
                     }
@@ -415,7 +337,7 @@ public class AssessmentPage extends AppCompatActivity {
                         }
                         Log.e(TAG, volleyError.toString());
                         System.out.println("Network Error "+volleyError);
-                        Toast.makeText(AssessmentPage.this, R.string.network_error, Toast.LENGTH_SHORT).show();
+                        Toast.makeText(AssessmentPage2.this, R.string.network_error, Toast.LENGTH_SHORT).show();
                     }
                 }){
             @Override
@@ -440,16 +362,16 @@ public class AssessmentPage extends AppCompatActivity {
 
     private void setValues() {
 
-        for (j=0; j<arr_questionId.size(); j++){
-            //set the question and options
-            question.setText(arr_questionText.get(0));
-            option1.setText(arr_option.get(0));
-            option2.setText(arr_option.get(1));
-            option3.setText(arr_option.get(2));
-            option4.setText(arr_option.get(3));
-            option5.setText(arr_option.get(4));
+        int start_point = answered_question.size();
 
-        }
+        //set the question and options
+        currentquestion.setText(String.valueOf(start_point+1));
+        question.setText(category_question.get(start_point));
+        option1.setText(arr_option.get(0));
+        option2.setText(arr_option.get(1));
+        option3.setText(arr_option.get(2));
+        option4.setText(arr_option.get(3));
+        option5.setText(arr_option.get(4));
     }
 
     private void saveGovernance() {
@@ -458,10 +380,10 @@ public class AssessmentPage extends AppCompatActivity {
         SharedPreferences sharedPreferences = getSharedPreferences("Login Pref", Context.MODE_PRIVATE);
         String got_user_id = sharedPreferences.getString("id", null);
 
-        Dialog myDialog = new Dialog(AssessmentPage.this);
+        Dialog myDialog = new Dialog(AssessmentPage2.this);
         myDialog.setContentView(R.layout.custom_popup_loading);
         TextView text = myDialog.findViewById(R.id.text);
-        text.setText(R.string.saving_your_responses);
+        text.setText("Saving your responses");
         myDialog.getWindow().setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));
         myDialog.setCanceledOnTouchOutside(false);
         myDialog.show();
@@ -479,17 +401,20 @@ public class AssessmentPage extends AppCompatActivity {
                             String message = json.getString("message");
 
                             if (status.equals("success")){
-                                Toast.makeText(AssessmentPage.this, message, Toast.LENGTH_SHORT).show();
-                                Intent i = new Intent(AssessmentPage.this, Completion.class);
-                                i.putExtra("category", arr_questionCategory.get(0));
-                                i.putExtra("categoryId", selectedId);
+
+                                myDB.deleteRow(category_id);
+
+                                Toast.makeText(AssessmentPage2.this, message, Toast.LENGTH_SHORT).show();
+                                Intent i = new Intent(AssessmentPage2.this, Completion.class);
+                                i.putExtra("category", category_name);
+                                i.putExtra("categoryId", category_id);
                                 startActivity(i);
                             }else {
-                                Toast.makeText(AssessmentPage.this, message, Toast.LENGTH_SHORT).show();
+                                Toast.makeText(AssessmentPage2.this, message, Toast.LENGTH_SHORT).show();
                             }
 
                         }catch(Exception e) {
-                            Toast.makeText(AssessmentPage.this, R.string.failed_to_save, Toast.LENGTH_SHORT).show();
+                            Toast.makeText(AssessmentPage2.this, "Failed to save", Toast.LENGTH_SHORT).show();
                         }
 
                     }
@@ -503,35 +428,35 @@ public class AssessmentPage extends AppCompatActivity {
                         }
                         Log.e(TAG, volleyError.toString());
                         System.out.println("Network Error "+volleyError);
-                        Toast.makeText(AssessmentPage.this, R.string.network_error, Toast.LENGTH_SHORT).show();
+                        Toast.makeText(AssessmentPage2.this, "Network Error!", Toast.LENGTH_SHORT).show();
                     }
                 }){
             @Override
             protected Map<String, String> getParams(){
                 Map<String, String> params = new HashMap<>();
                 params.put("user_id", got_user_id);
-                params.put("q1", String.valueOf(arr_finalPoint.get(0)));
-                params.put("q2", String.valueOf(arr_finalPoint.get(1)));
-                params.put("q3", String.valueOf(arr_finalPoint.get(2)));
-                params.put("q4", String.valueOf(arr_finalPoint.get(3)));
-                params.put("q5", String.valueOf(arr_finalPoint.get(4)));
-                params.put("q6", String.valueOf(arr_finalPoint.get(5)));
-                params.put("q7", String.valueOf(arr_finalPoint.get(6)));
-                params.put("q8", String.valueOf(arr_finalPoint.get(7)));
-                params.put("q9", String.valueOf(arr_finalPoint.get(8)));
-                params.put("q10", String.valueOf(arr_finalPoint.get(9)));
-                params.put("q11", String.valueOf(arr_finalPoint.get(10)));
-                params.put("q12", String.valueOf(arr_finalPoint.get(11)));
-                params.put("q13", String.valueOf(arr_finalPoint.get(12)));
-                params.put("q14", String.valueOf(arr_finalPoint.get(13)));
-                params.put("q15", String.valueOf(arr_finalPoint.get(14)));
-                params.put("q16", String.valueOf(arr_finalPoint.get(15)));
-                params.put("q17", String.valueOf(arr_finalPoint.get(16)));
-                params.put("q18", String.valueOf(arr_finalPoint.get(17)));
-                params.put("q19", String.valueOf(arr_finalPoint.get(18)));
-                params.put("q20", String.valueOf(arr_finalPoint.get(19)));
-                params.put("q21", String.valueOf(arr_finalPoint.get(20)));
-                params.put("q22", String.valueOf(arr_finalPoint.get(21)));
+                params.put("q1", String.valueOf(answered_question.get(0)));
+                params.put("q2", String.valueOf(answered_question.get(1)));
+                params.put("q3", String.valueOf(answered_question.get(2)));
+                params.put("q4", String.valueOf(answered_question.get(3)));
+                params.put("q5", String.valueOf(answered_question.get(4)));
+                params.put("q6", String.valueOf(answered_question.get(5)));
+                params.put("q7", String.valueOf(answered_question.get(6)));
+                params.put("q8", String.valueOf(answered_question.get(7)));
+                params.put("q9", String.valueOf(answered_question.get(8)));
+                params.put("q10", String.valueOf(answered_question.get(9)));
+                params.put("q11", String.valueOf(answered_question.get(10)));
+                params.put("q12", String.valueOf(answered_question.get(11)));
+                params.put("q13", String.valueOf(answered_question.get(12)));
+                params.put("q14", String.valueOf(answered_question.get(13)));
+                params.put("q15", String.valueOf(answered_question.get(14)));
+                params.put("q16", String.valueOf(answered_question.get(15)));
+                params.put("q17", String.valueOf(answered_question.get(16)));
+                params.put("q18", String.valueOf(answered_question.get(17)));
+                params.put("q19", String.valueOf(answered_question.get(18)));
+                params.put("q20", String.valueOf(answered_question.get(19)));
+                params.put("q21", String.valueOf(answered_question.get(20)));
+                params.put("q22", String.valueOf(answered_question.get(21)));
                 params.put("que_status", "completed");
                 return params;
             }
@@ -548,17 +473,17 @@ public class AssessmentPage extends AppCompatActivity {
             }
         });
     }
-
+    
     private void saveHR() {
 
         //get the user id from shared preference
         SharedPreferences sharedPreferences = getSharedPreferences("Login Pref", Context.MODE_PRIVATE);
         String got_user_id = sharedPreferences.getString("id", null);
 
-        Dialog myDialog = new Dialog(AssessmentPage.this);
+        Dialog myDialog = new Dialog(AssessmentPage2.this);
         myDialog.setContentView(R.layout.custom_popup_loading);
         TextView text = myDialog.findViewById(R.id.text);
-        text.setText(R.string.saving_your_responses);
+        text.setText("Saving your responses");
         myDialog.getWindow().setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));
         myDialog.setCanceledOnTouchOutside(false);
         myDialog.show();
@@ -576,18 +501,21 @@ public class AssessmentPage extends AppCompatActivity {
                             String message = json.getString("message");
 
                             if (status.equals("success")){
-                                Toast.makeText(AssessmentPage.this, message, Toast.LENGTH_SHORT).show();
-                                Intent i = new Intent(AssessmentPage.this, Completion.class);
-                                i.putExtra("category", arr_questionCategory.get(0));
-                                i.putExtra("categoryId", selectedId);
+
+                                myDB.deleteRow(category_id);
+
+                                Toast.makeText(AssessmentPage2.this, message, Toast.LENGTH_SHORT).show();
+                                Intent i = new Intent(AssessmentPage2.this, Completion.class);
+                                i.putExtra("category", category_name);
+                                i.putExtra("categoryId", category_id);
                                 startActivity(i);
                             }else {
-                                Toast.makeText(AssessmentPage.this, message, Toast.LENGTH_SHORT).show();
+                                Toast.makeText(AssessmentPage2.this, message, Toast.LENGTH_SHORT).show();
                             }
 
 
                         }catch(Exception e) {
-                            Toast.makeText(AssessmentPage.this, R.string.failed_to_save, Toast.LENGTH_SHORT).show();
+                            Toast.makeText(AssessmentPage2.this, "Failed to save", Toast.LENGTH_SHORT).show();
                         }
 
                     }
@@ -601,27 +529,27 @@ public class AssessmentPage extends AppCompatActivity {
                         }
                         Log.e(TAG, volleyError.toString());
                         System.out.println("Network Error "+volleyError.getMessage());
-                        Toast.makeText(AssessmentPage.this, R.string.network_error, Toast.LENGTH_SHORT).show();
+                        Toast.makeText(AssessmentPage2.this, "Network Error!", Toast.LENGTH_SHORT).show();
                     }
                 }){
             @Override
             protected Map<String, String> getParams(){
                 Map<String, String> params = new HashMap<>();
                 params.put("user_id", got_user_id);
-                params.put("q1", String.valueOf(arr_finalPoint.get(0)));
-                params.put("q2", String.valueOf(arr_finalPoint.get(1)));
-                params.put("q3", String.valueOf(arr_finalPoint.get(2)));
-                params.put("q4", String.valueOf(arr_finalPoint.get(3)));
-                params.put("q5", String.valueOf(arr_finalPoint.get(4)));
-                params.put("q6", String.valueOf(arr_finalPoint.get(5)));
-                params.put("q7", String.valueOf(arr_finalPoint.get(6)));
-                params.put("q8", String.valueOf(arr_finalPoint.get(7)));
-                params.put("q9", String.valueOf(arr_finalPoint.get(8)));
-                params.put("q10", String.valueOf(arr_finalPoint.get(9)));
-                params.put("q11", String.valueOf(arr_finalPoint.get(10)));
-                params.put("q12", String.valueOf(arr_finalPoint.get(11)));
-                params.put("q13", String.valueOf(arr_finalPoint.get(12)));
-                params.put("q14", String.valueOf(arr_finalPoint.get(13)));
+                params.put("q1", String.valueOf(answered_question.get(0)));
+                params.put("q2", String.valueOf(answered_question.get(1)));
+                params.put("q3", String.valueOf(answered_question.get(2)));
+                params.put("q4", String.valueOf(answered_question.get(3)));
+                params.put("q5", String.valueOf(answered_question.get(4)));
+                params.put("q6", String.valueOf(answered_question.get(5)));
+                params.put("q7", String.valueOf(answered_question.get(6)));
+                params.put("q8", String.valueOf(answered_question.get(7)));
+                params.put("q9", String.valueOf(answered_question.get(8)));
+                params.put("q10", String.valueOf(answered_question.get(9)));
+                params.put("q11", String.valueOf(answered_question.get(10)));
+                params.put("q12", String.valueOf(answered_question.get(11)));
+                params.put("q13", String.valueOf(answered_question.get(12)));
+                params.put("q14", String.valueOf(answered_question.get(13)));
                 params.put("que_status", "completed");
                 return params;
             }
@@ -645,10 +573,10 @@ public class AssessmentPage extends AppCompatActivity {
         SharedPreferences sharedPreferences = getSharedPreferences("Login Pref", Context.MODE_PRIVATE);
         String got_user_id = sharedPreferences.getString("id", null);
 
-        Dialog myDialog = new Dialog(AssessmentPage.this);
+        Dialog myDialog = new Dialog(AssessmentPage2.this);
         myDialog.setContentView(R.layout.custom_popup_loading);
         TextView text = myDialog.findViewById(R.id.text);
-        text.setText(R.string.saving_your_responses);
+        text.setText("Saving your responses");
         myDialog.getWindow().setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));
         myDialog.setCanceledOnTouchOutside(false);
         myDialog.show();
@@ -666,18 +594,21 @@ public class AssessmentPage extends AppCompatActivity {
                             String message = json.getString("message");
 
                             if (status.equals("success")){
-                                Toast.makeText(AssessmentPage.this, message, Toast.LENGTH_SHORT).show();
-                                Intent i = new Intent(AssessmentPage.this, Completion.class);
-                                i.putExtra("category", arr_questionCategory.get(0));
-                                i.putExtra("categoryId", selectedId);
+
+                                myDB.deleteRow(category_id);
+
+                                Toast.makeText(AssessmentPage2.this, message, Toast.LENGTH_SHORT).show();
+                                Intent i = new Intent(AssessmentPage2.this, Completion.class);
+                                i.putExtra("category", category_name);
+                                i.putExtra("categoryId", category_id);
                                 startActivity(i);
                             }else {
-                                Toast.makeText(AssessmentPage.this, message, Toast.LENGTH_SHORT).show();
+                                Toast.makeText(AssessmentPage2.this, message, Toast.LENGTH_SHORT).show();
                             }
 
 
                         }catch(Exception e) {
-                            Toast.makeText(AssessmentPage.this, R.string.failed_to_save, Toast.LENGTH_SHORT).show();
+                            Toast.makeText(AssessmentPage2.this, "Failed to save", Toast.LENGTH_SHORT).show();
                         }
 
                     }
@@ -691,23 +622,23 @@ public class AssessmentPage extends AppCompatActivity {
                         }
                         Log.e(TAG, volleyError.toString());
                         System.out.println("Network Error "+volleyError.getMessage());
-                        Toast.makeText(AssessmentPage.this, R.string.network_error, Toast.LENGTH_SHORT).show();
+                        Toast.makeText(AssessmentPage2.this, "Network Error!", Toast.LENGTH_SHORT).show();
                     }
                 }){
             @Override
             protected Map<String, String> getParams(){
                 Map<String, String> params = new HashMap<>();
                 params.put("user_id", got_user_id);
-                params.put("q1", String.valueOf(arr_finalPoint.get(0)));
-                params.put("q2", String.valueOf(arr_finalPoint.get(1)));
-                params.put("q3", String.valueOf(arr_finalPoint.get(2)));
-                params.put("q4", String.valueOf(arr_finalPoint.get(3)));
-                params.put("q5", String.valueOf(arr_finalPoint.get(4)));
-                params.put("q6", String.valueOf(arr_finalPoint.get(5)));
-                params.put("q7", String.valueOf(arr_finalPoint.get(6)));
-                params.put("q8", String.valueOf(arr_finalPoint.get(7)));
-                params.put("q9", String.valueOf(arr_finalPoint.get(8)));
-                params.put("q10", String.valueOf(arr_finalPoint.get(9)));
+                params.put("q1", String.valueOf(answered_question.get(0)));
+                params.put("q2", String.valueOf(answered_question.get(1)));
+                params.put("q3", String.valueOf(answered_question.get(2)));
+                params.put("q4", String.valueOf(answered_question.get(3)));
+                params.put("q5", String.valueOf(answered_question.get(4)));
+                params.put("q6", String.valueOf(answered_question.get(5)));
+                params.put("q7", String.valueOf(answered_question.get(6)));
+                params.put("q8", String.valueOf(answered_question.get(7)));
+                params.put("q9", String.valueOf(answered_question.get(8)));
+                params.put("q10", String.valueOf(answered_question.get(9)));
                 params.put("que_status", "completed");
                 return params;
             }
@@ -731,10 +662,10 @@ public class AssessmentPage extends AppCompatActivity {
         SharedPreferences sharedPreferences = getSharedPreferences("Login Pref", Context.MODE_PRIVATE);
         String got_user_id = sharedPreferences.getString("id", null);
 
-        Dialog myDialog = new Dialog(AssessmentPage.this);
+        Dialog myDialog = new Dialog(AssessmentPage2.this);
         myDialog.setContentView(R.layout.custom_popup_loading);
         TextView text = myDialog.findViewById(R.id.text);
-        text.setText(R.string.saving_your_responses);
+        text.setText("Saving your responses");
         myDialog.getWindow().setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));
         myDialog.setCanceledOnTouchOutside(false);
         myDialog.show();
@@ -752,18 +683,21 @@ public class AssessmentPage extends AppCompatActivity {
                             String message = json.getString("message");
 
                             if (status.equals("success")){
-                                Toast.makeText(AssessmentPage.this, message, Toast.LENGTH_SHORT).show();
-                                Intent i = new Intent(AssessmentPage.this, Completion.class);
-                                i.putExtra("category", arr_questionCategory.get(0));
-                                i.putExtra("categoryId", selectedId);
+
+                                myDB.deleteRow(category_id);
+
+                                Toast.makeText(AssessmentPage2.this, message, Toast.LENGTH_SHORT).show();
+                                Intent i = new Intent(AssessmentPage2.this, Completion.class);
+                                i.putExtra("category", category_name);
+                                i.putExtra("categoryId", category_id);
                                 startActivity(i);
                             }else {
-                                Toast.makeText(AssessmentPage.this, message, Toast.LENGTH_SHORT).show();
+                                Toast.makeText(AssessmentPage2.this, message, Toast.LENGTH_SHORT).show();
                             }
 
 
                         }catch(Exception e) {
-                            Toast.makeText(AssessmentPage.this, R.string.failed_to_save, Toast.LENGTH_SHORT).show();
+                            Toast.makeText(AssessmentPage2.this, "Failed to save", Toast.LENGTH_SHORT).show();
                         }
 
                     }
@@ -777,34 +711,34 @@ public class AssessmentPage extends AppCompatActivity {
                         }
                         Log.e(TAG, volleyError.toString());
                         System.out.println("Network Error "+volleyError.getMessage());
-                        Toast.makeText(AssessmentPage.this, R.string.network_error, Toast.LENGTH_SHORT).show();
+                        Toast.makeText(AssessmentPage2.this, "Network Error!", Toast.LENGTH_SHORT).show();
                     }
                 }){
             @Override
             protected Map<String, String> getParams(){
                 Map<String, String> params = new HashMap<>();
                 params.put("user_id", got_user_id);
-                params.put("q1", String.valueOf(arr_finalPoint.get(0)));
-                params.put("q2", String.valueOf(arr_finalPoint.get(1)));
-                params.put("q3", String.valueOf(arr_finalPoint.get(2)));
-                params.put("q4", String.valueOf(arr_finalPoint.get(3)));
-                params.put("q5", String.valueOf(arr_finalPoint.get(4)));
-                params.put("q6", String.valueOf(arr_finalPoint.get(5)));
-                params.put("q7", String.valueOf(arr_finalPoint.get(6)));
-                params.put("q8", String.valueOf(arr_finalPoint.get(7)));
-                params.put("q9", String.valueOf(arr_finalPoint.get(8)));
-                params.put("q10", String.valueOf(arr_finalPoint.get(9)));
-                params.put("q11", String.valueOf(arr_finalPoint.get(10)));
-                params.put("q12", String.valueOf(arr_finalPoint.get(11)));
-                params.put("q13", String.valueOf(arr_finalPoint.get(12)));
-                params.put("q14", String.valueOf(arr_finalPoint.get(13)));
-                params.put("q15", String.valueOf(arr_finalPoint.get(14)));
-                params.put("q16", String.valueOf(arr_finalPoint.get(15)));
-                params.put("q17", String.valueOf(arr_finalPoint.get(16)));
-                params.put("q18", String.valueOf(arr_finalPoint.get(17)));
-                params.put("q19", String.valueOf(arr_finalPoint.get(18)));
-                params.put("q20", String.valueOf(arr_finalPoint.get(19)));
-                params.put("q21", String.valueOf(arr_finalPoint.get(20)));
+                params.put("q1", String.valueOf(answered_question.get(0)));
+                params.put("q2", String.valueOf(answered_question.get(1)));
+                params.put("q3", String.valueOf(answered_question.get(2)));
+                params.put("q4", String.valueOf(answered_question.get(3)));
+                params.put("q5", String.valueOf(answered_question.get(4)));
+                params.put("q6", String.valueOf(answered_question.get(5)));
+                params.put("q7", String.valueOf(answered_question.get(6)));
+                params.put("q8", String.valueOf(answered_question.get(7)));
+                params.put("q9", String.valueOf(answered_question.get(8)));
+                params.put("q10", String.valueOf(answered_question.get(9)));
+                params.put("q11", String.valueOf(answered_question.get(10)));
+                params.put("q12", String.valueOf(answered_question.get(11)));
+                params.put("q13", String.valueOf(answered_question.get(12)));
+                params.put("q14", String.valueOf(answered_question.get(13)));
+                params.put("q15", String.valueOf(answered_question.get(14)));
+                params.put("q16", String.valueOf(answered_question.get(15)));
+                params.put("q17", String.valueOf(answered_question.get(16)));
+                params.put("q18", String.valueOf(answered_question.get(17)));
+                params.put("q19", String.valueOf(answered_question.get(18)));
+                params.put("q20", String.valueOf(answered_question.get(19)));
+                params.put("q21", String.valueOf(answered_question.get(20)));
                 params.put("que_status", "completed");
                 return params;
             }
@@ -828,10 +762,10 @@ public class AssessmentPage extends AppCompatActivity {
         SharedPreferences sharedPreferences = getSharedPreferences("Login Pref", Context.MODE_PRIVATE);
         String got_user_id = sharedPreferences.getString("id", null);
 
-        Dialog myDialog = new Dialog(AssessmentPage.this);
+        Dialog myDialog = new Dialog(AssessmentPage2.this);
         myDialog.setContentView(R.layout.custom_popup_loading);
         TextView text = myDialog.findViewById(R.id.text);
-        text.setText(R.string.saving_your_responses);
+        text.setText("Saving your responses");
         myDialog.getWindow().setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));
         myDialog.setCanceledOnTouchOutside(false);
         myDialog.show();
@@ -849,18 +783,21 @@ public class AssessmentPage extends AppCompatActivity {
                             String message = json.getString("message");
 
                             if (status.equals("success")){
-                                Toast.makeText(AssessmentPage.this, message, Toast.LENGTH_SHORT).show();
-                                Intent i = new Intent(AssessmentPage.this, Completion.class);
-                                i.putExtra("category", arr_questionCategory.get(0));
-                                i.putExtra("categoryId", selectedId);
+
+                                myDB.deleteRow(category_id);
+
+                                Toast.makeText(AssessmentPage2.this, message, Toast.LENGTH_SHORT).show();
+                                Intent i = new Intent(AssessmentPage2.this, Completion.class);
+                                i.putExtra("category", category_name);
+                                i.putExtra("categoryId", category_id);
                                 startActivity(i);
                             }else {
-                                Toast.makeText(AssessmentPage.this, message, Toast.LENGTH_SHORT).show();
+                                Toast.makeText(AssessmentPage2.this, message, Toast.LENGTH_SHORT).show();
                             }
 
 
                         }catch(Exception e) {
-                            Toast.makeText(AssessmentPage.this, R.string.failed_to_save, Toast.LENGTH_SHORT).show();
+                            Toast.makeText(AssessmentPage2.this, "Failed to save", Toast.LENGTH_SHORT).show();
                         }
 
                     }
@@ -874,25 +811,25 @@ public class AssessmentPage extends AppCompatActivity {
                         }
                         Log.e(TAG, volleyError.toString());
                         System.out.println("Network Error "+volleyError.getMessage());
-                        Toast.makeText(AssessmentPage.this, R.string.network_error, Toast.LENGTH_SHORT).show();
+                        Toast.makeText(AssessmentPage2.this, "Network Error!", Toast.LENGTH_SHORT).show();
                     }
                 }){
             @Override
             protected Map<String, String> getParams(){
                 Map<String, String> params = new HashMap<>();
                 params.put("user_id", got_user_id);
-                params.put("q1", String.valueOf(arr_finalPoint.get(0)));
-                params.put("q2", String.valueOf(arr_finalPoint.get(1)));
-                params.put("q3", String.valueOf(arr_finalPoint.get(2)));
-                params.put("q4", String.valueOf(arr_finalPoint.get(3)));
-                params.put("q5", String.valueOf(arr_finalPoint.get(4)));
-                params.put("q6", String.valueOf(arr_finalPoint.get(5)));
-                params.put("q7", String.valueOf(arr_finalPoint.get(6)));
-                params.put("q8", String.valueOf(arr_finalPoint.get(7)));
-                params.put("q9", String.valueOf(arr_finalPoint.get(8)));
-                params.put("q10", String.valueOf(arr_finalPoint.get(9)));
-                params.put("q11", String.valueOf(arr_finalPoint.get(10)));
-                params.put("q12", String.valueOf(arr_finalPoint.get(11)));
+                params.put("q1", String.valueOf(answered_question.get(0)));
+                params.put("q2", String.valueOf(answered_question.get(1)));
+                params.put("q3", String.valueOf(answered_question.get(2)));
+                params.put("q4", String.valueOf(answered_question.get(3)));
+                params.put("q5", String.valueOf(answered_question.get(4)));
+                params.put("q6", String.valueOf(answered_question.get(5)));
+                params.put("q7", String.valueOf(answered_question.get(6)));
+                params.put("q8", String.valueOf(answered_question.get(7)));
+                params.put("q9", String.valueOf(answered_question.get(8)));
+                params.put("q10", String.valueOf(answered_question.get(9)));
+                params.put("q11", String.valueOf(answered_question.get(10)));
+                params.put("q12", String.valueOf(answered_question.get(11)));
                 params.put("que_status", "completed");
                 return params;
             }
@@ -916,7 +853,7 @@ public class AssessmentPage extends AppCompatActivity {
         SharedPreferences sharedPreferences = getSharedPreferences("Login Pref", Context.MODE_PRIVATE);
         String got_user_id = sharedPreferences.getString("id", null);
 
-        Dialog myDialog = new Dialog(AssessmentPage.this);
+        Dialog myDialog = new Dialog(AssessmentPage2.this);
         myDialog.setContentView(R.layout.custom_popup_loading);
         TextView text = myDialog.findViewById(R.id.text);
         text.setText(R.string.saving_your_responses);
@@ -937,18 +874,21 @@ public class AssessmentPage extends AppCompatActivity {
                             String message = json.getString("message");
 
                             if (status.equals("success")){
-                                Toast.makeText(AssessmentPage.this, message, Toast.LENGTH_SHORT).show();
-                                Intent i = new Intent(AssessmentPage.this, Completion.class);
-                                i.putExtra("category", arr_questionCategory.get(0));
-                                i.putExtra("categoryId", selectedId);
+
+                                myDB.deleteRow(category_id);
+
+                                Toast.makeText(AssessmentPage2.this, message, Toast.LENGTH_SHORT).show();
+                                Intent i = new Intent(AssessmentPage2.this, Completion.class);
+                                i.putExtra("category", category_name);
+                                i.putExtra("categoryId", category_id);
                                 startActivity(i);
                             }else {
-                                Toast.makeText(AssessmentPage.this, message, Toast.LENGTH_SHORT).show();
+                                Toast.makeText(AssessmentPage2.this, message, Toast.LENGTH_SHORT).show();
                             }
 
 
                         }catch(Exception e) {
-                            Toast.makeText(AssessmentPage.this, R.string.failed_to_save, Toast.LENGTH_SHORT).show();
+                            Toast.makeText(AssessmentPage2.this, response, Toast.LENGTH_SHORT).show();
                         }
 
                     }
@@ -962,31 +902,31 @@ public class AssessmentPage extends AppCompatActivity {
                         }
                         Log.e(TAG, volleyError.toString());
                         System.out.println("Network Error "+volleyError.getMessage());
-                        Toast.makeText(AssessmentPage.this, R.string.network_error, Toast.LENGTH_SHORT).show();
+                        Toast.makeText(AssessmentPage2.this, "Network Error!", Toast.LENGTH_SHORT).show();
                     }
                 }){
             @Override
             protected Map<String, String> getParams(){
                 Map<String, String> params = new HashMap<>();
                 params.put("user_id", got_user_id);
-                params.put("q1", String.valueOf(arr_finalPoint.get(0)));
-                params.put("q2", String.valueOf(arr_finalPoint.get(1)));
-                params.put("q3", String.valueOf(arr_finalPoint.get(2)));
-                params.put("q4", String.valueOf(arr_finalPoint.get(3)));
-                params.put("q5", String.valueOf(arr_finalPoint.get(4)));
-                params.put("q6", String.valueOf(arr_finalPoint.get(5)));
-                params.put("q7", String.valueOf(arr_finalPoint.get(6)));
-                params.put("q8", String.valueOf(arr_finalPoint.get(7)));
-                params.put("q9", String.valueOf(arr_finalPoint.get(8)));
-                params.put("q10", String.valueOf(arr_finalPoint.get(9)));
-                params.put("q11", String.valueOf(arr_finalPoint.get(10)));
-                params.put("q12", String.valueOf(arr_finalPoint.get(11)));
-                params.put("q13", String.valueOf(arr_finalPoint.get(12)));
-                params.put("q14", String.valueOf(arr_finalPoint.get(13)));
-                params.put("q15", String.valueOf(arr_finalPoint.get(14)));
-                params.put("q16", String.valueOf(arr_finalPoint.get(15)));
-                params.put("q17", String.valueOf(arr_finalPoint.get(16)));
-                params.put("q18", String.valueOf(arr_finalPoint.get(17)));
+                params.put("q1", String.valueOf(answered_question.get(0)));
+                params.put("q2", String.valueOf(answered_question.get(1)));
+                params.put("q3", String.valueOf(answered_question.get(2)));
+                params.put("q4", String.valueOf(answered_question.get(3)));
+                params.put("q5", String.valueOf(answered_question.get(4)));
+                params.put("q6", String.valueOf(answered_question.get(5)));
+                params.put("q7", String.valueOf(answered_question.get(6)));
+                params.put("q8", String.valueOf(answered_question.get(7)));
+                params.put("q9", String.valueOf(answered_question.get(8)));
+                params.put("q10", String.valueOf(answered_question.get(9)));
+                params.put("q11", String.valueOf(answered_question.get(10)));
+                params.put("q12", String.valueOf(answered_question.get(11)));
+                params.put("q13", String.valueOf(answered_question.get(12)));
+                params.put("q14", String.valueOf(answered_question.get(13)));
+                params.put("q15", String.valueOf(answered_question.get(14)));
+                params.put("q16", String.valueOf(answered_question.get(15)));
+                params.put("q17", String.valueOf(answered_question.get(16)));
+                params.put("q18", String.valueOf(answered_question.get(17)));
                 params.put("que_status", "completed");
                 return params;
             }
@@ -1010,10 +950,10 @@ public class AssessmentPage extends AppCompatActivity {
         SharedPreferences sharedPreferences = getSharedPreferences("Login Pref", Context.MODE_PRIVATE);
         String got_user_id = sharedPreferences.getString("id", null);
 
-        Dialog myDialog = new Dialog(AssessmentPage.this);
+        Dialog myDialog = new Dialog(AssessmentPage2.this);
         myDialog.setContentView(R.layout.custom_popup_loading);
         TextView text = myDialog.findViewById(R.id.text);
-        text.setText(R.string.saving_your_responses);
+        text.setText("Saving your responses");
         myDialog.getWindow().setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));
         myDialog.setCanceledOnTouchOutside(false);
         myDialog.show();
@@ -1031,17 +971,20 @@ public class AssessmentPage extends AppCompatActivity {
                             String message = json.getString("message");
 
                             if (status.equals("success")){
-                                Toast.makeText(AssessmentPage.this, message, Toast.LENGTH_SHORT).show();
-                                Intent i = new Intent(AssessmentPage.this, Completion.class);
-                                i.putExtra("category", arr_questionCategory.get(0));
-                                i.putExtra("categoryId", selectedId);
+
+                                myDB.deleteRow(category_id);
+
+                                Toast.makeText(AssessmentPage2.this, message, Toast.LENGTH_SHORT).show();
+                                Intent i = new Intent(AssessmentPage2.this, Completion.class);
+                                i.putExtra("category", category_name);
+                                i.putExtra("categoryId", category_id);
                                 startActivity(i);
                             }else {
-                                Toast.makeText(AssessmentPage.this, message, Toast.LENGTH_SHORT).show();
+                                Toast.makeText(AssessmentPage2.this, message, Toast.LENGTH_SHORT).show();
                             }
 
                         }catch(Exception e) {
-                            Toast.makeText(AssessmentPage.this, R.string.failed_to_save, Toast.LENGTH_SHORT).show();
+                            Toast.makeText(AssessmentPage2.this, "Failed to save", Toast.LENGTH_SHORT).show();
                         }
 
                     }
@@ -1055,34 +998,34 @@ public class AssessmentPage extends AppCompatActivity {
                         }
                         Log.e(TAG, volleyError.toString());
                         System.out.println("Network Error "+volleyError);
-                        Toast.makeText(AssessmentPage.this, R.string.network_error, Toast.LENGTH_SHORT).show();
+                        Toast.makeText(AssessmentPage2.this, "Network Error!", Toast.LENGTH_SHORT).show();
                     }
                 }){
             @Override
             protected Map<String, String> getParams(){
                 Map<String, String> params = new HashMap<>();
                 params.put("user_id", got_user_id);
-                params.put("q1", String.valueOf(arr_finalPoint.get(0)));
-                params.put("q2", String.valueOf(arr_finalPoint.get(1)));
-                params.put("q3", String.valueOf(arr_finalPoint.get(2)));
-                params.put("q4", String.valueOf(arr_finalPoint.get(3)));
-                params.put("q5", String.valueOf(arr_finalPoint.get(4)));
-                params.put("q6", String.valueOf(arr_finalPoint.get(5)));
-                params.put("q7", String.valueOf(arr_finalPoint.get(6)));
-                params.put("q8", String.valueOf(arr_finalPoint.get(7)));
-                params.put("q9", String.valueOf(arr_finalPoint.get(8)));
-                params.put("q10", String.valueOf(arr_finalPoint.get(9)));
-                params.put("q11", String.valueOf(arr_finalPoint.get(10)));
-                params.put("q12", String.valueOf(arr_finalPoint.get(11)));
-                params.put("q13", String.valueOf(arr_finalPoint.get(12)));
-                params.put("q14", String.valueOf(arr_finalPoint.get(13)));
-                params.put("q15", String.valueOf(arr_finalPoint.get(14)));
-                params.put("q16", String.valueOf(arr_finalPoint.get(15)));
-                params.put("q17", String.valueOf(arr_finalPoint.get(16)));
-                params.put("q18", String.valueOf(arr_finalPoint.get(17)));
-                params.put("q19", String.valueOf(arr_finalPoint.get(18)));
-                params.put("q20", String.valueOf(arr_finalPoint.get(19)));
-                params.put("q21", String.valueOf(arr_finalPoint.get(20)));
+                params.put("q1", String.valueOf(answered_question.get(0)));
+                params.put("q2", String.valueOf(answered_question.get(1)));
+                params.put("q3", String.valueOf(answered_question.get(2)));
+                params.put("q4", String.valueOf(answered_question.get(3)));
+                params.put("q5", String.valueOf(answered_question.get(4)));
+                params.put("q6", String.valueOf(answered_question.get(5)));
+                params.put("q7", String.valueOf(answered_question.get(6)));
+                params.put("q8", String.valueOf(answered_question.get(7)));
+                params.put("q9", String.valueOf(answered_question.get(8)));
+                params.put("q10", String.valueOf(answered_question.get(9)));
+                params.put("q11", String.valueOf(answered_question.get(10)));
+                params.put("q12", String.valueOf(answered_question.get(11)));
+                params.put("q13", String.valueOf(answered_question.get(12)));
+                params.put("q14", String.valueOf(answered_question.get(13)));
+                params.put("q15", String.valueOf(answered_question.get(14)));
+                params.put("q16", String.valueOf(answered_question.get(15)));
+                params.put("q17", String.valueOf(answered_question.get(16)));
+                params.put("q18", String.valueOf(answered_question.get(17)));
+                params.put("q19", String.valueOf(answered_question.get(18)));
+                params.put("q20", String.valueOf(answered_question.get(19)));
+                params.put("q21", String.valueOf(answered_question.get(20)));
                 params.put("que_status", "completed");
                 return params;
             }
@@ -1106,10 +1049,10 @@ public class AssessmentPage extends AppCompatActivity {
         SharedPreferences sharedPreferences = getSharedPreferences("Login Pref", Context.MODE_PRIVATE);
         String got_user_id = sharedPreferences.getString("id", null);
 
-        Dialog myDialog = new Dialog(AssessmentPage.this);
+        Dialog myDialog = new Dialog(AssessmentPage2.this);
         myDialog.setContentView(R.layout.custom_popup_loading);
         TextView text = myDialog.findViewById(R.id.text);
-        text.setText(R.string.saving_your_responses);
+        text.setText("Saving your responses");
         myDialog.getWindow().setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));
         myDialog.setCanceledOnTouchOutside(false);
         myDialog.show();
@@ -1127,17 +1070,20 @@ public class AssessmentPage extends AppCompatActivity {
                             String message = json.getString("message");
 
                             if (status.equals("success")){
-                                Toast.makeText(AssessmentPage.this, message, Toast.LENGTH_SHORT).show();
-                                Intent i = new Intent(AssessmentPage.this, Completion.class);
-                                i.putExtra("category", arr_questionCategory.get(0));
-                                i.putExtra("categoryId", selectedId);
+
+                                myDB.deleteRow(category_id);
+
+                                Toast.makeText(AssessmentPage2.this, message, Toast.LENGTH_SHORT).show();
+                                Intent i = new Intent(AssessmentPage2.this, Completion.class);
+                                i.putExtra("category", category_name);
+                                i.putExtra("categoryId", category_id);
                                 startActivity(i);
                             }else {
-                                Toast.makeText(AssessmentPage.this, message, Toast.LENGTH_SHORT).show();
+                                Toast.makeText(AssessmentPage2.this, message, Toast.LENGTH_SHORT).show();
                             }
 
                         }catch(Exception e) {
-                            Toast.makeText(AssessmentPage.this, R.string.failed_to_save, Toast.LENGTH_SHORT).show();
+                            Toast.makeText(AssessmentPage2.this, "Failed to save", Toast.LENGTH_SHORT).show();
                         }
 
                     }
@@ -1151,28 +1097,28 @@ public class AssessmentPage extends AppCompatActivity {
                         }
                         Log.e(TAG, volleyError.toString());
                         System.out.println("Network Error "+volleyError);
-                        Toast.makeText(AssessmentPage.this, R.string.network_error, Toast.LENGTH_SHORT).show();
+                        Toast.makeText(AssessmentPage2.this, "Network Error!", Toast.LENGTH_SHORT).show();
                     }
                 }){
             @Override
             protected Map<String, String> getParams(){
                 Map<String, String> params = new HashMap<>();
                 params.put("user_id", got_user_id);
-                params.put("q1", String.valueOf(arr_finalPoint.get(0)));
-                params.put("q2", String.valueOf(arr_finalPoint.get(1)));
-                params.put("q3", String.valueOf(arr_finalPoint.get(2)));
-                params.put("q4", String.valueOf(arr_finalPoint.get(3)));
-                params.put("q5", String.valueOf(arr_finalPoint.get(4)));
-                params.put("q6", String.valueOf(arr_finalPoint.get(5)));
-                params.put("q7", String.valueOf(arr_finalPoint.get(6)));
-                params.put("q8", String.valueOf(arr_finalPoint.get(7)));
-                params.put("q9", String.valueOf(arr_finalPoint.get(8)));
-                params.put("q10", String.valueOf(arr_finalPoint.get(9)));
-                params.put("q11", String.valueOf(arr_finalPoint.get(10)));
-                params.put("q12", String.valueOf(arr_finalPoint.get(11)));
-                params.put("q13", String.valueOf(arr_finalPoint.get(12)));
-                params.put("q14", String.valueOf(arr_finalPoint.get(13)));
-                params.put("q15", String.valueOf(arr_finalPoint.get(14)));
+                params.put("q1", String.valueOf(answered_question.get(0)));
+                params.put("q2", String.valueOf(answered_question.get(1)));
+                params.put("q3", String.valueOf(answered_question.get(2)));
+                params.put("q4", String.valueOf(answered_question.get(3)));
+                params.put("q5", String.valueOf(answered_question.get(4)));
+                params.put("q6", String.valueOf(answered_question.get(5)));
+                params.put("q7", String.valueOf(answered_question.get(6)));
+                params.put("q8", String.valueOf(answered_question.get(7)));
+                params.put("q9", String.valueOf(answered_question.get(8)));
+                params.put("q10", String.valueOf(answered_question.get(9)));
+                params.put("q11", String.valueOf(answered_question.get(10)));
+                params.put("q12", String.valueOf(answered_question.get(11)));
+                params.put("q13", String.valueOf(answered_question.get(12)));
+                params.put("q14", String.valueOf(answered_question.get(13)));
+                params.put("q15", String.valueOf(answered_question.get(14)));
                 params.put("que_status", "completed");
                 return params;
             }
@@ -1190,11 +1136,9 @@ public class AssessmentPage extends AppCompatActivity {
         });
     }
 
-    @SuppressLint("MissingSuperCall")
     @Override
     public void onBackPressed() {
+        super.onBackPressed();
         //do nothing
     }
-
-
 }

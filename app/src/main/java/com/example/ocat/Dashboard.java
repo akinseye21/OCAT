@@ -2,12 +2,17 @@ package com.example.ocat;
 
 import static android.app.PendingIntent.getActivity;
 
+import android.annotation.SuppressLint;
+import android.app.Dialog;
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.graphics.Color;
+import android.graphics.drawable.ColorDrawable;
 import android.os.Bundle;
 import android.view.View;
 import android.view.WindowManager;
+import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
@@ -46,16 +51,7 @@ public class Dashboard extends AppCompatActivity {
         logout.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                SharedPreferences sharedPreferences = getSharedPreferences("Login Pref", Context.MODE_PRIVATE);
-                SharedPreferences.Editor editor = sharedPreferences.edit();
-                // Clear all data
-                editor.clear();
-                editor.apply(); // or editor.commit();
-                // Optionally, navigate to login screen
-                Intent intent = new Intent(Dashboard.this, Login.class);
-                intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
-                startActivity(intent);
-                finish();
+                onBackPressed();
             }
         });
 
@@ -86,5 +82,53 @@ public class Dashboard extends AppCompatActivity {
                 startActivity(new Intent(Dashboard.this, ViewReports.class));
             }
         });
+        continueassessment.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                startActivity(new Intent(Dashboard.this, ContinueAssessment.class));
+            }
+        });
+        faq.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                startActivity(new Intent(Dashboard.this, FAQ.class));
+            }
+        });
+    }
+
+    @SuppressLint("MissingSuperCall")
+    @Override
+    public void onBackPressed() {
+
+        Dialog myDialog = new Dialog(Dashboard.this);
+        myDialog.setContentView(R.layout.custom_popup_quit2);
+
+        Button yes = myDialog.findViewById(R.id.btn_yes_quit);
+        Button no = myDialog.findViewById(R.id.btn_no_quit);
+        yes.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                SharedPreferences sharedPreferences = getSharedPreferences("Login Pref", Context.MODE_PRIVATE);
+                SharedPreferences.Editor editor = sharedPreferences.edit();
+                // Clear all data
+                editor.clear();
+                editor.apply(); // or editor.commit();
+                // Optionally, navigate to login screen
+                Intent intent = new Intent(Dashboard.this, Login.class);
+                intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
+                startActivity(intent);
+                finish();
+            }
+        });
+        no.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                myDialog.dismiss();
+            }
+        });
+
+        myDialog.getWindow().setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));
+        myDialog.setCanceledOnTouchOutside(false);
+        myDialog.show();
     }
 }

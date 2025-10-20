@@ -1,7 +1,9 @@
 package com.example.ocat;
 
 import android.app.Dialog;
+import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.graphics.Color;
 import android.graphics.drawable.ColorDrawable;
 import android.graphics.pdf.PdfDocument;
@@ -64,7 +66,7 @@ public class GraphPage extends AppCompatActivity {
         System.out.println("The values = "+values);
 
         moduleCategory = findViewById(R.id.moduleCategory);
-        moduleCategory.setText("MODULE : "+category+" - Report and Analysis");
+        moduleCategory.setText(getString(R.string.module)+category+getString(R.string.report_and_analysis));
 
         mainLayout = findViewById(R.id.main);
         score = findViewById(R.id.score);
@@ -89,27 +91,27 @@ public class GraphPage extends AppCompatActivity {
         score.setText(percentagePass+"%");
         if (percentagePass<=25){
             score.setTextColor(getResources().getColor(R.color.red));
-            range.setText("Critical");
+            range.setText(R.string.critical);
             range.setTextColor(getResources().getColor(R.color.red));
-            interpretation.setText("Prone to adverse risks and shocks and unable to sustain operations due to the absence of strong systems and structures");
+            interpretation.setText(R.string.prone_to_adverse);
             interpretation.setTextColor(getResources().getColor(R.color.red));
         } else if (percentagePass > 25 && percentagePass <= 50) {
             score.setTextColor(getResources().getColor(R.color.blue));
-            range.setText("Striving");
+            range.setText(R.string.striving);
             range.setTextColor(getResources().getColor(R.color.blue));
-            interpretation.setText("Presence of basic operational structures to sustain community engagement without being able to ensure long-term sustainability of operations and interventions");
+            interpretation.setText(R.string.presence_of_basic);
             interpretation.setTextColor(getResources().getColor(R.color.blue));
         } else if (percentagePass > 50 && percentagePass <= 75) {
             score.setTextColor(getResources().getColor(R.color.green));
-            range.setText("Thriving");
+            range.setText(R.string.thriving);
             range.setTextColor(getResources().getColor(R.color.green));
-            interpretation.setText("Evidence of organising systems and structures, able to deliver services and satisfactorily engage with members and communities");
+            interpretation.setText(R.string.evidence_of_organising);
             interpretation.setTextColor(getResources().getColor(R.color.green));
         }else{
             score.setTextColor(getResources().getColor(R.color.yellow));
-            range.setText("Viable");
+            range.setText(R.string.viable);
             range.setTextColor(getResources().getColor(R.color.yellow));
-            interpretation.setText("Capacity to withstand shocks and risk, capacity to innovate, nurture community-led initiatives, scale up and effectivley engage with members and communities");
+            interpretation.setText(R.string.capacity_to_withstand);
             interpretation.setTextColor(getResources().getColor(R.color.yellow));
         }
 
@@ -136,7 +138,30 @@ public class GraphPage extends AppCompatActivity {
         btn_download_report.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                createPdfFromLayout(mainLayout);
+                Dialog myDialog = new Dialog(GraphPage.this);
+                myDialog.setContentView(R.layout.custom_popup_quit2);
+
+                TextView text = myDialog.findViewById(R.id.text);
+                text.setText(R.string.do_you_want_to_download_report);
+                Button yes = myDialog.findViewById(R.id.btn_yes_quit);
+                Button no = myDialog.findViewById(R.id.btn_no_quit);
+                yes.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        createPdfFromLayout(mainLayout);
+                        myDialog.dismiss();
+                    }
+                });
+                no.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        myDialog.dismiss();
+                    }
+                });
+
+                myDialog.getWindow().setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));
+                myDialog.setCanceledOnTouchOutside(false);
+                myDialog.show();
             }
         });
         btn_share_report.setOnClickListener(new View.OnClickListener() {
@@ -165,6 +190,17 @@ public class GraphPage extends AppCompatActivity {
         try {
             document.writeTo(new FileOutputStream(file));
             System.out.println("PDF saved at: " + file.getAbsolutePath());
+
+            Dialog myDialog2 = new Dialog(GraphPage.this);
+            myDialog2.setContentView(R.layout.custom_popup_download_successful);
+
+            TextView text2 = myDialog2.findViewById(R.id.text2);
+            text2.setText("Dir: "+file.getAbsolutePath());
+
+            myDialog2.getWindow().setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));
+            myDialog2.setCanceledOnTouchOutside(true);
+            myDialog2.show();
+
         } catch (IOException e) {
             e.printStackTrace();
         }

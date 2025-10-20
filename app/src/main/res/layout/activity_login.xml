@@ -89,20 +89,47 @@
                     android:id="@+id/key"
                     android:layout_marginLeft="10dp"
                     android:layout_marginRight="20dp"/>
-                <EditText
+
+                <com.google.android.material.textfield.TextInputLayout
                     android:layout_width="match_parent"
-                    android:layout_height="match_parent"
+                    android:layout_height="wrap_content"
                     android:layout_toRightOf="@+id/key"
                     android:layout_marginRight="10dp"
-                    android:background="@android:color/transparent"
-                    android:hint="@string/password"
-                    android:textColorHint="@color/grey2"
-                    android:fontFamily="@font/nunitosanssemibold"
-                    android:inputType="textPassword"
-                    android:singleLine="true"
-                    android:textSize="15dp"
-                    android:textColor="@color/black"
-                    android:id="@+id/edt_password"/>
+                    app:passwordToggleEnabled="true"
+                    app:passwordToggleTint="@color/grey2">
+
+                    <com.google.android.material.textfield.TextInputEditText
+                        android:id="@+id/edt_password"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:hint="@string/password"
+                        android:inputType="textPassword"
+                        android:singleLine="true"
+                        android:textSize="15dp"
+                        android:textColor="@color/black"
+                        android:textColorHint="@color/grey2"
+                        android:fontFamily="@font/nunitosanssemibold"
+                        android:background="@android:color/transparent" />
+                </com.google.android.material.textfield.TextInputLayout>
+
+
+
+<!--                <EditText-->
+<!--                    android:layout_width="match_parent"-->
+<!--                    android:layout_height="match_parent"-->
+<!--                    android:layout_toRightOf="@+id/key"-->
+<!--                    android:layout_marginRight="10dp"-->
+<!--                    android:background="@android:color/transparent"-->
+<!--                    android:hint="@string/password"-->
+<!--                    android:textColorHint="@color/grey2"-->
+<!--                    android:fontFamily="@font/nunitosanssemibold"-->
+<!--                    android:inputType="textPassword"-->
+<!--                    android:singleLine="true"-->
+<!--                    android:textSize="15dp"-->
+<!--                    android:textColor="@color/black"-->
+<!--                    android:id="@+id/edt_password"/>-->
+
+
             </RelativeLayout>
 
             <Button

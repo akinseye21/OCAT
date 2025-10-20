@@ -4,6 +4,7 @@ import static android.view.View.GONE;
 import static android.view.View.VISIBLE;
 import static androidx.constraintlayout.helper.widget.MotionEffect.TAG;
 
+import android.annotation.SuppressLint;
 import android.app.Dialog;
 import android.content.Context;
 import android.content.Intent;
@@ -71,7 +72,7 @@ public class ViewReports extends AppCompatActivity {
         back.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                onBackPressed();
+                startActivity(new Intent(ViewReports.this, Dashboard.class));
             }
         });
         gridView = findViewById(R.id.gridview);
@@ -84,7 +85,7 @@ public class ViewReports extends AppCompatActivity {
         for (int i = 0; i < 8; i++) {
             final int index = i;
 
-            StringRequest stringRequest = new StringRequest(Request.Method.POST, "http://10.144.181.184/WACSI_OCAT/get_report.php",
+            StringRequest stringRequest = new StringRequest(Request.Method.POST, "http://10.151.150.39/WACSI_OCAT/get_report.php",
                     new Response.Listener<String>() {
                         @Override
                         public void onResponse(String response) {
@@ -125,7 +126,7 @@ public class ViewReports extends AppCompatActivity {
 //                                System.out.println("Response for index " + index + " → Parent List: " + parentList);
 
                             } catch (Exception e) {
-                                Toast.makeText(ViewReports.this, "Report loading failed", Toast.LENGTH_SHORT).show();
+                                Toast.makeText(ViewReports.this, R.string.report_loading_failed, Toast.LENGTH_SHORT).show();
                             }
                         }
                     },
@@ -160,12 +161,12 @@ public class ViewReports extends AppCompatActivity {
         Dialog myDialog = new Dialog(ViewReports.this);
         myDialog.setContentView(R.layout.custom_popup_loading);
         TextView text = myDialog.findViewById(R.id.text);
-        text.setText("Checking reports available...");
+        text.setText(R.string.checking_reports_available);
         myDialog.getWindow().setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));
         myDialog.setCanceledOnTouchOutside(false);
         myDialog.show();
 
-        StringRequest stringRequest = new StringRequest(Request.Method.GET, "http://10.144.181.184/WACSI_OCAT/categories.php",
+        StringRequest stringRequest = new StringRequest(Request.Method.GET, "http://10.151.150.39/WACSI_OCAT/categories.php",
                 new Response.Listener<String>() {
                     @Override
                     public void onResponse(String response) {
@@ -184,7 +185,7 @@ public class ViewReports extends AppCompatActivity {
                                 String categoryId = jsonObject.getString("id");
                                 String categoryName = jsonObject.getString("category_name");
                                 String categoryImage = jsonObject.getString("image_url");
-                                String newString = categoryImage.replace("localhost", "10.144.181.184");
+                                String newString = categoryImage.replace("localhost", "10.151.150.39");
 
                                 catName.add(categoryName);
                             }
@@ -213,7 +214,7 @@ public class ViewReports extends AppCompatActivity {
                             }
 
                         }catch(Exception e) {
-                            Toast.makeText(ViewReports.this, "Categories loading failed", Toast.LENGTH_SHORT).show();
+                            Toast.makeText(ViewReports.this, R.string.categories_loading_failed, Toast.LENGTH_SHORT).show();
                         }
 
                     }
@@ -227,7 +228,7 @@ public class ViewReports extends AppCompatActivity {
                         }
                         Log.e(TAG, volleyError.toString());
                         System.out.println("Network Error "+volleyError);
-                        Toast.makeText(ViewReports.this, "Network Error!", Toast.LENGTH_SHORT).show();
+                        Toast.makeText(ViewReports.this, R.string.network_error, Toast.LENGTH_SHORT).show();
                     }
                 }){
             @Override
@@ -248,5 +249,11 @@ public class ViewReports extends AppCompatActivity {
             }
         });
 
+    }
+
+    @SuppressLint("MissingSuperCall")
+    @Override
+    public void onBackPressed() {
+        //do nothing
     }
 }

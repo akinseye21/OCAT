@@ -2,6 +2,7 @@ package com.example.ocat;
 
 import static androidx.constraintlayout.helper.widget.MotionEffect.TAG;
 
+import android.annotation.SuppressLint;
 import android.app.Dialog;
 import android.content.Context;
 import android.content.Intent;
@@ -79,12 +80,12 @@ public class Completion extends AppCompatActivity {
                 Dialog myDialog = new Dialog(Completion.this);
                 myDialog.setContentView(R.layout.custom_popup_loading);
                 TextView text = myDialog.findViewById(R.id.text);
-                text.setText("Loading report... Please wait");
+                text.setText(R.string.loading_report_please_wait);
                 myDialog.getWindow().setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));
                 myDialog.setCanceledOnTouchOutside(false);
                 myDialog.show();
 
-                StringRequest stringRequest = new StringRequest(Request.Method.POST, "http://10.144.181.184/WACSI_OCAT/get_report.php",
+                StringRequest stringRequest = new StringRequest(Request.Method.POST, "http://10.151.150.39/WACSI_OCAT/get_report.php",
                         new Response.Listener<String>() {
                             @Override
                             public void onResponse(String response) {
@@ -127,7 +128,7 @@ public class Completion extends AppCompatActivity {
 
 
                                 }catch(Exception e) {
-                                    Toast.makeText(Completion.this, "Report loading failed", Toast.LENGTH_SHORT).show();
+                                    Toast.makeText(Completion.this, R.string.report_loading_failed, Toast.LENGTH_SHORT).show();
                                 }
 
                             }
@@ -141,7 +142,7 @@ public class Completion extends AppCompatActivity {
                                 }
                                 Log.e(TAG, volleyError.toString());
                                 System.out.println("Network Error "+volleyError);
-                                Toast.makeText(Completion.this, "Network Error!", Toast.LENGTH_SHORT).show();
+                                Toast.makeText(Completion.this, R.string.network_error, Toast.LENGTH_SHORT).show();
                             }
                         }){
                     @Override
@@ -166,5 +167,11 @@ public class Completion extends AppCompatActivity {
             }
         });
 
+    }
+
+    @SuppressLint("MissingSuperCall")
+    @Override
+    public void onBackPressed() {
+        //do nothing
     }
 }

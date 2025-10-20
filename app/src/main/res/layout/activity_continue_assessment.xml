@@ -1,0 +1,128 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/main"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/white"
+    android:padding="20dp"
+    tools:context=".ContinueAssessment">
+
+    <ImageView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:src="@drawable/back"
+        android:layout_marginTop="20dp"
+        android:id="@+id/back"/>
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/continue_assessment"
+        android:textColor="@color/black"
+        android:layout_marginTop="20dp"
+        android:layout_below="@+id/back"
+        android:id="@+id/txt"
+        android:layout_marginBottom="10dp"
+        android:fontFamily="@font/nunitosansbold"
+        android:textSize="20dp"/>
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/select_an_assessment"
+        android:textColor="@color/grey"
+        android:layout_below="@+id/txt"
+        android:id="@+id/txt2"
+        android:layout_marginBottom="20dp"
+        android:fontFamily="@font/nunitosansbold"
+        android:textSize="12dp"/>
+
+    <GridView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:numColumns="2"
+        android:visibility="gone"
+        android:scrollbars="none"
+        android:horizontalSpacing="8dp"
+        android:verticalSpacing="8dp"
+        android:layout_below="@+id/txt2"
+        android:id="@+id/gridview"/>
+
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:id="@+id/loader"
+        android:layout_centerInParent="true">
+        <ProgressBar
+            android:layout_width="15dp"
+            android:layout_height="15dp"
+            android:id="@+id/progressBar"
+            android:indeterminateTint="@color/light_green"
+            android:layout_gravity="center"
+            android:layout_marginTop="20dp"/>
+
+        <TextView
+            android:id="@+id/text"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:layout_marginTop="10dp"
+            android:layout_marginBottom="10dp"
+            android:fontFamily="@font/nunitosansregular"
+            android:gravity="center"
+            android:text="Loading..."
+            android:textColor="#000000"
+            android:textSize="12dp" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:id="@+id/norecord"
+        android:visibility="gone"
+        android:gravity="center"
+        android:layout_centerInParent="true">
+
+        <ImageView
+            android:layout_width="100dp"
+            android:layout_height="100dp"
+            android:src="@drawable/ecart"/>
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:gravity="center"
+            android:layout_marginTop="40dp"
+            android:orientation="horizontal">
+            <Button
+                android:layout_width="150dp"
+                android:layout_height="50dp"
+                android:background="@drawable/button_blue"
+                android:text="Start new\nAssessment"
+                android:textAllCaps="false"
+                android:textColor="@color/white"
+                android:fontFamily="@font/nunitosansregular"
+                android:textSize="15dp"/>
+            <Space
+                android:layout_width="10dp"
+                android:layout_height="0dp"/>
+            <Button
+                android:layout_width="166dp"
+                android:layout_height="50dp"
+                android:background="@drawable/button_green"
+                android:text="View Reports"
+                android:textAllCaps="false"
+                android:textColor="@color/white"
+                android:fontFamily="@font/nunitosansregular"
+                android:textSize="15dp"/>
+
+        </LinearLayout>
+
+    </LinearLayout>
+
+</RelativeLayout>

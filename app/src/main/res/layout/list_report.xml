@@ -11,7 +11,6 @@
         android:orientation="vertical"
         android:padding="10dp"
         android:id="@+id/layout"
-        android:layout_gravity="center"
         android:gravity="center"
         android:layout_margin="10dp">
 
@@ -40,7 +39,7 @@
                 android:ellipsize="end"
                 android:textColor="@color/black"
                 android:fontFamily="@font/nunitosansbold"
-                android:textSize="12dp"/>
+                android:textSize="10dp"/>
         </LinearLayout>
 
         <LinearLayout
@@ -54,7 +53,7 @@
                 android:id="@+id/txtDate"
                 android:textColor="@color/black"
                 android:fontFamily="@font/nunitosansextralightitalic"
-                android:textSize="12dp"/>
+                android:textSize="10dp"/>
         </LinearLayout>
 
 

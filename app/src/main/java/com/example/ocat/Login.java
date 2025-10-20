@@ -151,7 +151,7 @@ public class Login extends AppCompatActivity {
         myDialog.setCanceledOnTouchOutside(false);
         myDialog.show();
 
-        StringRequest stringRequest = new StringRequest(Request.Method.POST, "http://10.144.181.184/WACSI_OCAT/login.php",
+        StringRequest stringRequest = new StringRequest(Request.Method.POST, "http://10.151.150.39/WACSI_OCAT/login.php",
                 new Response.Listener<String>() {
                     @Override
                     public void onResponse(String response) {
@@ -190,7 +190,7 @@ public class Login extends AppCompatActivity {
                             }
 
                         }catch(Exception e) {
-                            Toast.makeText(Login.this, "Login failed", Toast.LENGTH_SHORT).show();
+                            Toast.makeText(Login.this, R.string.login_failed, Toast.LENGTH_SHORT).show();
                         }
 
                     }
@@ -204,7 +204,7 @@ public class Login extends AppCompatActivity {
                         }
                         Log.e(TAG, volleyError.toString());
                         System.out.println("Network Error "+volleyError);
-                        Toast.makeText(Login.this, "Network Error!", Toast.LENGTH_SHORT).show();
+                        Toast.makeText(Login.this, R.string.network_error, Toast.LENGTH_SHORT).show();
                     }
                 }){
             @Override

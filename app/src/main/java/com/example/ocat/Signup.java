@@ -100,7 +100,7 @@ public class Signup extends AppCompatActivity {
             @Override
             public void onTextChanged(CharSequence s, int start, int before, int count) {
                 if (edt_fullname.getText().toString().trim().length() < 4){
-                    edt_fullname.setError("Full name is too short");
+                    edt_fullname.setError(getString(R.string.full_name_is_too_short));
                     fullnameBool = false;
                 }else{
                     fullname = edt_fullname.getText().toString().trim();
@@ -127,7 +127,7 @@ public class Signup extends AppCompatActivity {
                     email = edt_email.getText().toString().trim();
                     emailBool = true;
                 }else{
-                    edt_email.setError("Wrong input");
+                    edt_email.setError(getString(R.string.wrong_input));
                     emailBool = false;
                 }
             }
@@ -148,7 +148,7 @@ public class Signup extends AppCompatActivity {
             @Override
             public void onTextChanged(CharSequence s, int start, int before, int count) {
                 if (edt_password.getText().toString().trim().length() < 5) {
-                    edt_password.setError("Password is too short");
+                    edt_password.setError(getString(R.string.password_is_too_short));
                     passwordBool = false;
                 } else {
                     password = edt_password.getText().toString().trim();
@@ -172,7 +172,7 @@ public class Signup extends AppCompatActivity {
             @Override
             public void onTextChanged(CharSequence s, int start, int before, int count) {
                 if (!edt_confirmpassword.getText().toString().trim().equals(edt_password.getText().toString().trim())) {
-                    edt_confirmpassword.setError("Password do not match");
+                    edt_confirmpassword.setError(getString(R.string.password_do_not_match));
                     confirmpasswordBool = false;
                 } else {
                     confirmpassword = edt_confirmpassword.getText().toString().trim();
@@ -207,7 +207,7 @@ public class Signup extends AppCompatActivity {
     protected void onStart() {
         //get policies from DB
         super.onStart();
-        StringRequest stringRequest = new StringRequest(Request.Method.GET, "http://10.144.181.184/WACSI_OCAT/policies.php",
+        StringRequest stringRequest = new StringRequest(Request.Method.GET, "http://10.151.150.39/WACSI_OCAT/policies.php",
                 new Response.Listener<String>() {
                     @Override
                     public void onResponse(String response) {
@@ -230,11 +230,11 @@ public class Signup extends AppCompatActivity {
                                 }
                             }else{
                                 String message = json.getString("message");
-                                Toast.makeText(Signup.this, "Error! "+message, Toast.LENGTH_SHORT).show();
+                                Toast.makeText(Signup.this, getString(R.string.error)+message, Toast.LENGTH_SHORT).show();
                             }
 
                         }catch(Exception e) {
-                            Toast.makeText(Signup.this, "Signup failed", Toast.LENGTH_SHORT).show();
+                            Toast.makeText(Signup.this, R.string.signup_failed, Toast.LENGTH_SHORT).show();
                         }
 
                     }
@@ -247,7 +247,7 @@ public class Signup extends AppCompatActivity {
                         }
                         Log.e(TAG, volleyError.toString());
                         System.out.println("Network Error "+volleyError);
-                        Toast.makeText(Signup.this, "Network Error!", Toast.LENGTH_SHORT).show();
+                        Toast.makeText(Signup.this, R.string.network_error, Toast.LENGTH_SHORT).show();
                     }
                 }){
             @Override
@@ -299,19 +299,19 @@ public class Signup extends AppCompatActivity {
             sendToDb(fullname, email, password);
         }else{
             if (!fullnameBool){
-                edt_fullname.setError("Wrong input");
+                edt_fullname.setError(getString(R.string.wrong_input));
             }
             if (!emailBool){
-                edt_email.setError("Wrong input");
+                edt_email.setError(getString(R.string.wrong_input));
             }
             if (!passwordBool){
-                edt_password.setError("Wrong input");
+                edt_password.setError(getString(R.string.wrong_input));
             }
             if (!confirmpasswordBool) {
-                edt_confirmpassword.setError("Wrong input");
+                edt_confirmpassword.setError(getString(R.string.wrong_input));
             }
             if (!policyBool){
-                Toast.makeText(Signup.this, "Please read and agree to the policy", Toast.LENGTH_LONG).show();
+                Toast.makeText(Signup.this, R.string.please_read_and_agree_to_the_policy, Toast.LENGTH_LONG).show();
             }
         }
     }
@@ -325,7 +325,7 @@ public class Signup extends AppCompatActivity {
         myDialog.setCanceledOnTouchOutside(false);
         myDialog.show();
 
-        StringRequest stringRequest = new StringRequest(Request.Method.POST, "http://10.144.181.184/WACSI_OCAT/register.php",
+        StringRequest stringRequest = new StringRequest(Request.Method.POST, "http://10.151.150.39/WACSI_OCAT/register.php",
                 new Response.Listener<String>() {
                     @Override
                     public void onResponse(String response) {
@@ -361,11 +361,11 @@ public class Signup extends AppCompatActivity {
                                 startActivity(i);
                             }else{
                                 String message = json.getString("message");
-                                Toast.makeText(Signup.this, "Error! "+message, Toast.LENGTH_SHORT).show();
+                                Toast.makeText(Signup.this, R.string.error+message, Toast.LENGTH_SHORT).show();
                             }
 
                         }catch(Exception e) {
-                            Toast.makeText(Signup.this, "Signup failed", Toast.LENGTH_SHORT).show();
+                            Toast.makeText(Signup.this, R.string.signup_failed, Toast.LENGTH_SHORT).show();
                         }
 
                     }
@@ -379,7 +379,7 @@ public class Signup extends AppCompatActivity {
                         }
                         Log.e(TAG, volleyError.toString());
                         System.out.println("Network Error "+volleyError);
-                        Toast.makeText(Signup.this, "Network Error!", Toast.LENGTH_SHORT).show();
+                        Toast.makeText(Signup.this, R.string.network_error, Toast.LENGTH_SHORT).show();
                     }
                 }){
             @Override

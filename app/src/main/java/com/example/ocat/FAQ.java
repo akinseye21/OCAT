@@ -2,15 +2,12 @@ package com.example.ocat;
 
 import static androidx.constraintlayout.helper.widget.MotionEffect.TAG;
 
-import android.annotation.SuppressLint;
 import android.app.Dialog;
-import android.content.Context;
-import android.content.Intent;
-import android.content.SharedPreferences;
 import android.graphics.Color;
 import android.graphics.drawable.ColorDrawable;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.View;
 import android.view.WindowManager;
 import android.widget.ImageView;
 import android.widget.ListView;
@@ -30,7 +27,8 @@ import com.android.volley.Response;
 import com.android.volley.VolleyError;
 import com.android.volley.toolbox.StringRequest;
 import com.android.volley.toolbox.Volley;
-import com.example.ocat.Adapters.CategoryAdapter;
+import com.example.ocat.Adapters.FAQAdapter;
+import com.google.android.material.card.MaterialCardView;
 
 import org.json.JSONArray;
 import org.json.JSONObject;
@@ -39,49 +37,53 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
 
-public class StartAssessment extends AppCompatActivity {
+public class FAQ extends AppCompatActivity {
 
+
+
+    ListView listview;
     ImageView back;
-    ListView listviewCategory;
+
+    ArrayList<String> arr_question = new ArrayList<>();
+    ArrayList<String> arr_answer = new ArrayList<>();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_start_assessment);
+        setContentView(R.layout.activity_faq);
         this.getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN, WindowManager.LayoutParams.FLAG_FULLSCREEN);
         ChooseLanguage.loadLanguage(this);
 
-        listviewCategory = findViewById(R.id.listviewCategory);
-
         back = findViewById(R.id.back);
-        back.setOnClickListener(v -> {
-            startActivity(new Intent(StartAssessment.this, Dashboard.class));
-        });
+        back.setOnClickListener(new View.OnClickListener() {
+                                    @Override
+                                    public void onClick(View v) {
+                                        finish();
+                                    }
+                                });
+        listview = findViewById(R.id.listview);
+        getfaq();
 
+    }
 
-        ArrayList<String> catId = new ArrayList<>();
-        ArrayList<String> catName = new ArrayList<>();
-        ArrayList<String> catImage = new ArrayList<>();
+    public void getfaq() {
 
-        catId.clear();
-        catName.clear();
-        catImage.clear();
+        //get FAQ
 
-        //get all the categories in an array with their pictures
-        Dialog myDialog = new Dialog(StartAssessment.this);
+        Dialog myDialog = new Dialog(FAQ.this);
         myDialog.setContentView(R.layout.custom_popup_loading);
         TextView text = myDialog.findViewById(R.id.text);
-        text.setText(R.string.loading_categories);
+        text.setText(R.string.get_ready);
         myDialog.getWindow().setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));
         myDialog.setCanceledOnTouchOutside(false);
         myDialog.show();
 
-        StringRequest stringRequest = new StringRequest(Request.Method.GET, "http://10.151.150.39/WACSI_OCAT/categories.php",
+        StringRequest stringRequest = new StringRequest(Request.Method.GET, "http://10.151.150.39/WACSI_OCAT/get_faq.php",
                 new Response.Listener<String>() {
                     @Override
                     public void onResponse(String response) {
                         myDialog.dismiss();
-                        System.out.println("Categories response: " + response);
+                        System.out.println("FAQ response: " + response);
 
                         try {
                             JSONObject json = new JSONObject(response);
@@ -92,22 +94,20 @@ public class StartAssessment extends AppCompatActivity {
                             int len = jsonArray.length();
                             for (int i=0; i<len; i++){
                                 JSONObject jsonObject = jsonArray.getJSONObject(i);
-                                String categoryId = jsonObject.getString("id");
-                                String categoryName = jsonObject.getString("category_name");
-                                String categoryImage = jsonObject.getString("image_url");
-                                String newString = categoryImage.replace("localhost", "10.151.150.39");
+                                String id = jsonObject.getString("id");
+                                String faq_question = jsonObject.getString("faq_question");
+                                String faq_answer = jsonObject.getString("faq_answer");
 
-                                catId.add(categoryId);
-                                catName.add(categoryName);
-                                catImage.add(newString);
+                                arr_question.add(faq_question);
+                                arr_answer.add(faq_answer);
 
                             }
 
-                            CategoryAdapter categoryAdapter = new CategoryAdapter(StartAssessment.this, catId, catName, catImage);
-                            listviewCategory.setAdapter(categoryAdapter);
+                            FAQAdapter adapter = new FAQAdapter(FAQ.this, arr_question, arr_answer);
+                            listview.setAdapter(adapter);
 
                         }catch(Exception e) {
-                            Toast.makeText(StartAssessment.this, R.string.categories_loading_failed, Toast.LENGTH_SHORT).show();
+                            Toast.makeText(FAQ.this, R.string.options_loading_failed, Toast.LENGTH_SHORT).show();
                         }
 
                     }
@@ -121,7 +121,7 @@ public class StartAssessment extends AppCompatActivity {
                         }
                         Log.e(TAG, volleyError.toString());
                         System.out.println("Network Error "+volleyError);
-                        Toast.makeText(StartAssessment.this, R.string.network_error, Toast.LENGTH_SHORT).show();
+                        Toast.makeText(FAQ.this, R.string.network_error, Toast.LENGTH_SHORT).show();
                     }
                 }){
             @Override
@@ -141,13 +141,5 @@ public class StartAssessment extends AppCompatActivity {
                 requestQueue.getCache().clear();
             }
         });
-
-
-    }
-
-    @SuppressLint("MissingSuperCall")
-    @Override
-    public void onBackPressed() {
-        //do nothing
     }
 }

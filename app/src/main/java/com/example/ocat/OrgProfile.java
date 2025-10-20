@@ -187,15 +187,15 @@ public class OrgProfile extends AppCompatActivity {
                     selectedThematicArea = spinner_thematic_areas.getSelectedItem().toString();
                     selectedOrgType = spinner_org_type.getSelectedItem().toString();
 
-                    countryBool = !selectedCountry.equals("Select a country");
+                    countryBool = !selectedCountry.equals(getString(R.string.select_a_country));
 
-                    thematicAreaBool = !selectedThematicArea.equals("Select a thematic area");
+                    thematicAreaBool = !selectedThematicArea.equals(getString(R.string.select_a_thematic_area));
 
-                    orgTypeBool = !selectedOrgType.equals("Select an organisation type");
+                    orgTypeBool = !selectedOrgType.equals(getString(R.string.select_an_organisation_type));
 
                     checkSpinners(selectedCountry, selectedThematicArea, selectedOrgType);
                 }else{
-                    edt_orgname.setError("Enter organisation fullname");
+                    edt_orgname.setError(getString(R.string.enter_organisation_fullname));
                 }
             }
         });
@@ -213,7 +213,7 @@ public class OrgProfile extends AppCompatActivity {
             myDialog.setCanceledOnTouchOutside(false);
             myDialog.show();
 
-            StringRequest stringRequest = new StringRequest(Request.Method.POST, "http://10.144.181.184/WACSI_OCAT/add_org.php",
+            StringRequest stringRequest = new StringRequest(Request.Method.POST, "http://10.151.150.39/WACSI_OCAT/add_org.php",
                     new Response.Listener<String>() {
                         @Override
                         public void onResponse(String response) {
@@ -234,7 +234,7 @@ public class OrgProfile extends AppCompatActivity {
                                 }
 
                             }catch(Exception e) {
-                                Toast.makeText(OrgProfile.this, "Update failed. Please try again", Toast.LENGTH_SHORT).show();
+                                Toast.makeText(OrgProfile.this, R.string.update_failed_please_try_again, Toast.LENGTH_SHORT).show();
                             }
 
                         }
@@ -248,7 +248,7 @@ public class OrgProfile extends AppCompatActivity {
                             }
                             Log.e(TAG, volleyError.toString());
                             System.out.println("Network Error "+volleyError);
-                            Toast.makeText(OrgProfile.this, "Network Error!", Toast.LENGTH_SHORT).show();
+                            Toast.makeText(OrgProfile.this, R.string.network_error, Toast.LENGTH_SHORT).show();
                         }
                     }){
                 @Override
