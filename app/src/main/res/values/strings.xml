@@ -97,4 +97,8 @@
     <string name="download_report">Download Report</string>
     <string name="share_report">Share Report</string>
     <string name="you_have_no_report_check_back_after_completing_an_assessment_module">You have no report. Check back after completing an assessment module</string>
+    <string name="next">Next</string>
+    <string name="of"> of </string>
+    <string name="start_new_nassessment">Start new\nAssessment</string>
+    <string name="view_reports">View Reports</string>
 </resources>

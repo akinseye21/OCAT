@@ -103,9 +103,10 @@
                 android:layout_width="150dp"
                 android:layout_height="50dp"
                 android:background="@drawable/button_blue"
-                android:text="Start new\nAssessment"
+                android:text="@string/start_new_nassessment"
                 android:textAllCaps="false"
                 android:textColor="@color/white"
+                android:id="@+id/btn_start_new"
                 android:fontFamily="@font/nunitosansregular"
                 android:textSize="15dp"/>
             <Space
@@ -115,9 +116,10 @@
                 android:layout_width="166dp"
                 android:layout_height="50dp"
                 android:background="@drawable/button_green"
-                android:text="View Reports"
+                android:text="@string/view_reports"
                 android:textAllCaps="false"
                 android:textColor="@color/white"
+                android:id="@+id/btn_view_reports"
                 android:fontFamily="@font/nunitosansregular"
                 android:textSize="15dp"/>
 

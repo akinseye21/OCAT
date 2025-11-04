@@ -2,6 +2,7 @@ package com.example.ocat.Adapters;
 
 import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -58,6 +59,7 @@ public class ContinueAdapter extends BaseAdapter {
         if (convertView == null) {
             convertView = inflaInflater.inflate(R.layout.list_paused_assessment, parent, false);
         }
+
 
         LinearLayout layout = convertView.findViewById(R.id.layout);
         TextView txtFileName = convertView.findViewById(R.id.txtFilename);
