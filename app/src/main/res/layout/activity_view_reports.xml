@@ -19,7 +19,7 @@
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="@string/view_reports"
+        android:text="@string/view_my_reports"
         android:textColor="@color/black"
         android:layout_marginTop="20dp"
         android:layout_below="@+id/back"
@@ -62,7 +62,7 @@
             android:layout_marginBottom="10dp"
             android:fontFamily="@font/nunitosansregular"
             android:gravity="center"
-            android:text="Loading..."
+            android:text="@string/loading_please_wait"
             android:textColor="#000000"
             android:textSize="12dp" />
     </LinearLayout>
@@ -89,7 +89,7 @@
             android:layout_marginBottom="10dp"
             android:fontFamily="@font/nunitosansbold"
             android:gravity="center"
-            android:text="You have no report. Check back after completing an assessment module"
+            android:text="@string/you_have_no_report_check_back_after_completing_an_assessment_module"
             android:textColor="@color/black"
             android:textSize="18dp" />
     </LinearLayout>

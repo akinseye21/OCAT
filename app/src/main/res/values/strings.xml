@@ -30,7 +30,7 @@
     <string name="registering_your_organisation">Registering your organisation</string>
     <string name="loading_categories">Loading categories...</string>
     <string name="getting_questions">Getting questions</string>
-    <string name="view_reports">View Reports</string>
+    <string name="view_my_reports">View Reports</string>
     <string name="email_address">Email address</string>
     <string name="password">Password</string>
     <string name="login_successful">Login successful</string>
@@ -76,4 +76,25 @@
     <string name="submit">Submit</string>
     <string name="frequently_asked_questions">Frequently asked questions</string>
     <string name="your_comprehensive_guide">Your comprehensive guide to understanding and using the OCAT mobile</string>
+    <string name="user_saved_response">User has already saved a response for this category</string>
+    <string name="download_successful">Download successful</string>
+    <string name="loading_please_wait">Loading. Please wait...</string>
+    <string name="terms_of_service">Terms of Service</string>
+    <string name="privacy_policy">Privacy Policy</string>
+    <string name="do_you_want_to_save_your_progress">Do you want to save your progress?</string>
+    <string name="yes">Yes</string>
+    <string name="no">No</string>
+    <string name="do_you_want_to_quit">Do you want to quit?</string>
+    <string name="file_not_found">File not Found!</string>
+    <string name="kindly_download_the_file_first_before_sharing_click_the_download_report_button_first">Kindly download the file first before sharing. Click the \'Download Report\' button first</string>
+    <string name="full_name">Full name</string>
+    <string name="by_signing_up_you_agree_to_our">By signing up, you agree to our</string>
+    <string name="and">and</string>
+    <string name="summary_and_score">Summary and Score</string>
+    <string name="score">Score:</string>
+    <string name="score_range">Score Range:</string>
+    <string name="interpretation">Interpretation:</string>
+    <string name="download_report">Download Report</string>
+    <string name="share_report">Share Report</string>
+    <string name="you_have_no_report_check_back_after_completing_an_assessment_module">You have no report. Check back after completing an assessment module</string>
 </resources>

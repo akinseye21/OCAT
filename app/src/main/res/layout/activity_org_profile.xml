@@ -51,7 +51,6 @@
                     android:layout_height="50dp"
                     android:textColor="@color/black"
                     android:textSize="15dp"
-                    android:text="hvhb"
                     android:inputType="textCapSentences"
                     android:paddingLeft="10dp"
                     android:paddingRight="20dp"

@@ -25,13 +25,13 @@
         android:layout_marginBottom="10dp"
         android:fontFamily="@font/nunitosansregular"
         android:gravity="center"
-        android:text="File not Found!"
+        android:text="@string/file_not_found"
         android:textColor="#000000"
         android:textSize="15dp" />
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Kindly download the file first before sharing. Click the 'Download Report' button first"
+        android:text="@string/kindly_download_the_file_first_before_sharing_click_the_download_report_button_first"
         android:layout_gravity="center"
         android:layout_marginBottom="10dp"
         android:fontFamily="@font/nunitosansbold"

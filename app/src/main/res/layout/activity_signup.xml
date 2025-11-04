@@ -53,7 +53,7 @@
                     android:layout_toRightOf="@+id/user"
                     android:layout_marginRight="10dp"
                     android:background="@android:color/transparent"
-                    android:hint="Full name"
+                    android:hint="@string/full_name"
                     android:textColorHint="@color/grey2"
                     android:fontFamily="@font/nunitosanssemibold"
                     android:inputType="textCapWords"
@@ -82,7 +82,7 @@
                     android:layout_toRightOf="@+id/sms"
                     android:layout_marginRight="10dp"
                     android:background="@android:color/transparent"
-                    android:hint="Email address"
+                    android:hint="@string/email_address"
                     android:textColorHint="@color/grey2"
                     android:fontFamily="@font/nunitosanssemibold"
                     android:inputType="textEmailAddress"
@@ -232,14 +232,14 @@
                         <TextView
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:text="By signing up, you agree to our "
+                            android:text="@string/by_signing_up_you_agree_to_our"
                             android:textColor="@color/black"
                             android:textSize="12dp"
                             android:fontFamily="@font/nunitosanssemibold"/>
                         <TextView
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:text="Terms of Service"
+                            android:text="@string/terms_of_service"
                             android:textColor="@color/blue"
                             android:textSize="12dp"
                             android:fontFamily="@font/nunitosansbold"/>
@@ -252,14 +252,14 @@
                         <TextView
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:text="and "
+                            android:text="@string/and"
                             android:textColor="@color/black"
                             android:textSize="12dp"
                             android:fontFamily="@font/nunitosanssemibold"/>
                         <TextView
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:text="Privacy Policy"
+                            android:text="@string/privacy_policy"
                             android:textColor="@color/blue"
                             android:textSize="12dp"
                             android:fontFamily="@font/nunitosansbold"/>

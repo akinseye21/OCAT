@@ -20,7 +20,7 @@
         android:fontFamily="@font/nunitosansregular"
         android:gravity="center"
         android:paddingBottom="10dp"
-        android:text="Do you want to quit?"
+        android:text="@string/do_you_want_to_quit"
         android:textColor="#000000"
         android:textSize="15dp" />
 
@@ -34,7 +34,7 @@
             android:layout_width="100dp"
             android:layout_height="40dp"
             android:background="@drawable/button_blue"
-            android:text="Yes"
+            android:text="@string/yes"
             android:textAllCaps="false"
             android:textSize="15dp"
             android:id="@+id/btn_yes_quit"
@@ -47,7 +47,7 @@
             android:layout_width="100dp"
             android:layout_height="40dp"
             android:background="@drawable/button_grey"
-            android:text="No"
+            android:text="@string/no"
             android:textAllCaps="false"
             android:textSize="15dp"
             android:id="@+id/btn_no_quit"

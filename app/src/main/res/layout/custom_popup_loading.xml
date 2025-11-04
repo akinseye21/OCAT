@@ -25,7 +25,7 @@
         android:layout_marginBottom="10dp"
         android:fontFamily="@font/nunitosansregular"
         android:gravity="center"
-        android:text="Loading. Please wait..."
+        android:text="@string/loading_please_wait"
         android:textColor="#000000"
         android:textSize="15dp" />
 

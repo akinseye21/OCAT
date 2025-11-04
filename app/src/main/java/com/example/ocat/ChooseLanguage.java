@@ -56,11 +56,6 @@ public class ChooseLanguage extends AppCompatActivity {
         Configuration config = new Configuration();
         config.setLocale(locale);
         context.getResources().updateConfiguration(config, context.getResources().getDisplayMetrics());
-
-        // restart activity to apply language change
-//        Intent intent = new Intent(context, ChooseLanguage.class);
-//        intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_NEW_TASK);
-//        context.startActivity(intent);
     }
 
     private void saveLanguage(String lang) {
