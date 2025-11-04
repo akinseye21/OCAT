@@ -1,5 +1,6 @@
 package com.example.ocat.Adapters;
 
+import static android.content.Context.MODE_PRIVATE;
 import static androidx.constraintlayout.helper.widget.MotionEffect.TAG;
 
 import android.app.Dialog;
@@ -33,6 +34,8 @@ import com.example.ocat.Dashboard;
 import com.example.ocat.GraphPage;
 import com.example.ocat.Login;
 import com.example.ocat.R;
+import com.example.ocat.StartAssessment;
+import com.example.ocat.ViewReports;
 
 import org.json.JSONArray;
 import org.json.JSONObject;
@@ -82,7 +85,7 @@ public class CategoryAdapter extends BaseAdapter {
         }
 
         //get the user id from shared preference
-        SharedPreferences sharedPreferences = context.getSharedPreferences("Login Pref", Context.MODE_PRIVATE);
+        SharedPreferences sharedPreferences = context.getSharedPreferences("Login Pref", MODE_PRIVATE);
         String got_user_id = sharedPreferences.getString("id", null);
 
         RelativeLayout lin_module = convertView.findViewById(R.id.module);
@@ -91,6 +94,8 @@ public class CategoryAdapter extends BaseAdapter {
         ImageView img_checkmark = convertView.findViewById(R.id.checkmark);
 
         txt_categoryName.setText(categoryName.get(position));
+
+
         Glide.with(context)
                 .load(categoryImage.get(position))
                 .into(img_categoryImage);
@@ -118,7 +123,7 @@ public class CategoryAdapter extends BaseAdapter {
         myDialog.setCanceledOnTouchOutside(false);
         myDialog.show();
 
-        StringRequest stringRequest = new StringRequest(Request.Method.POST, "http://10.151.150.39/WACSI_OCAT/get_report.php",
+        StringRequest stringRequest = new StringRequest(Request.Method.POST, "https://kwamea19.sg-host.com/WACSI_OCAT/get_report.php",
                 new Response.Listener<String>() {
                     @Override
                     public void onResponse(String response) {
@@ -134,7 +139,7 @@ public class CategoryAdapter extends BaseAdapter {
                             int len = jsonArray.length();
                             if (len>0){
                                 //there is already a record instance saved
-                                Toast.makeText(context, "User has already saved a response for this category", Toast.LENGTH_LONG).show();
+                                Toast.makeText(context, R.string.user_saved_response, Toast.LENGTH_LONG).show();
                             }else{
                                 //no record instance saved
                                 //send to the question DB
@@ -184,6 +189,9 @@ public class CategoryAdapter extends BaseAdapter {
 
     private void getQuestions(String selectedId, String selectedCategory) {
 
+        SharedPreferences prefs = context.getSharedPreferences("Settings", MODE_PRIVATE);
+        String language = prefs.getString("My_Lang", "en");
+
         ArrayList<String> arr_questionId = new ArrayList<>();
         ArrayList<String> arr_questionCategory = new ArrayList<>();
         ArrayList<String> arr_questionText = new ArrayList<>();
@@ -200,7 +208,7 @@ public class CategoryAdapter extends BaseAdapter {
         myDialog.setCanceledOnTouchOutside(false);
         myDialog.show();
 
-        StringRequest stringRequest = new StringRequest(Request.Method.POST, "http://10.151.150.39/WACSI_OCAT/cat_questions.php",
+        StringRequest stringRequest = new StringRequest(Request.Method.POST, "https://kwamea19.sg-host.com/WACSI_OCAT/cat_questions.php",
                 new Response.Listener<String>() {
                     @Override
                     public void onResponse(String response) {
@@ -256,6 +264,7 @@ public class CategoryAdapter extends BaseAdapter {
             protected Map<String, String> getParams(){
                 Map<String, String> params = new HashMap<>();
                 params.put("id", selectedId);
+                params.put("language", language);
                 return params;
             }
         };

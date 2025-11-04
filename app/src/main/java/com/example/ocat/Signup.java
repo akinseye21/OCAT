@@ -207,7 +207,7 @@ public class Signup extends AppCompatActivity {
     protected void onStart() {
         //get policies from DB
         super.onStart();
-        StringRequest stringRequest = new StringRequest(Request.Method.GET, "http://10.151.150.39/WACSI_OCAT/policies.php",
+        StringRequest stringRequest = new StringRequest(Request.Method.GET, "https://kwamea19.sg-host.com/WACSI_OCAT/policies.php",
                 new Response.Listener<String>() {
                     @Override
                     public void onResponse(String response) {
@@ -325,7 +325,7 @@ public class Signup extends AppCompatActivity {
         myDialog.setCanceledOnTouchOutside(false);
         myDialog.show();
 
-        StringRequest stringRequest = new StringRequest(Request.Method.POST, "http://10.151.150.39/WACSI_OCAT/register.php",
+        StringRequest stringRequest = new StringRequest(Request.Method.POST, "https://kwamea19.sg-host.com/WACSI_OCAT/register.php",
                 new Response.Listener<String>() {
                     @Override
                     public void onResponse(String response) {

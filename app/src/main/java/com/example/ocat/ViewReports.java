@@ -85,7 +85,7 @@ public class ViewReports extends AppCompatActivity {
         for (int i = 0; i < 8; i++) {
             final int index = i;
 
-            StringRequest stringRequest = new StringRequest(Request.Method.POST, "http://10.151.150.39/WACSI_OCAT/get_report.php",
+            StringRequest stringRequest = new StringRequest(Request.Method.POST, "https://kwamea19.sg-host.com/WACSI_OCAT/get_report.php",
                     new Response.Listener<String>() {
                         @Override
                         public void onResponse(String response) {
@@ -166,7 +166,7 @@ public class ViewReports extends AppCompatActivity {
         myDialog.setCanceledOnTouchOutside(false);
         myDialog.show();
 
-        StringRequest stringRequest = new StringRequest(Request.Method.GET, "http://10.151.150.39/WACSI_OCAT/categories.php",
+        StringRequest stringRequest = new StringRequest(Request.Method.GET, "https://kwamea19.sg-host.com/WACSI_OCAT/categories.php",
                 new Response.Listener<String>() {
                     @Override
                     public void onResponse(String response) {
@@ -185,7 +185,7 @@ public class ViewReports extends AppCompatActivity {
                                 String categoryId = jsonObject.getString("id");
                                 String categoryName = jsonObject.getString("category_name");
                                 String categoryImage = jsonObject.getString("image_url");
-                                String newString = categoryImage.replace("localhost", "10.151.150.39");
+                                String newString = categoryImage.replace("localhost", "kwamea19.sg-host.com");
 
                                 catName.add(categoryName);
                             }

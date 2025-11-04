@@ -78,7 +78,7 @@ public class FAQ extends AppCompatActivity {
         myDialog.setCanceledOnTouchOutside(false);
         myDialog.show();
 
-        StringRequest stringRequest = new StringRequest(Request.Method.GET, "http://10.151.150.39/WACSI_OCAT/get_faq.php",
+        StringRequest stringRequest = new StringRequest(Request.Method.GET, "https://kwamea19.sg-host.com/WACSI_OCAT/get_faq.php",
                 new Response.Listener<String>() {
                     @Override
                     public void onResponse(String response) {

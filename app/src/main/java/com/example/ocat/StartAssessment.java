@@ -36,13 +36,17 @@ import org.json.JSONArray;
 import org.json.JSONObject;
 
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.HashMap;
+import java.util.Iterator;
 import java.util.Map;
 
 public class StartAssessment extends AppCompatActivity {
 
     ImageView back;
     ListView listviewCategory;
+    ArrayList<ArrayList<String>> parentList;
+    String got_user_id;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -50,6 +54,14 @@ public class StartAssessment extends AppCompatActivity {
         setContentView(R.layout.activity_start_assessment);
         this.getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN, WindowManager.LayoutParams.FLAG_FULLSCREEN);
         ChooseLanguage.loadLanguage(this);
+
+        SharedPreferences prefs = getSharedPreferences("Settings", MODE_PRIVATE);
+        String language = prefs.getString("My_Lang", "en");
+        // Print to log or console
+//        System.out.println("Selected Language: " + language);
+
+        SharedPreferences sharedPreferences = getApplication().getSharedPreferences("Login Pref", Context.MODE_PRIVATE);
+        got_user_id = sharedPreferences.getString("id", null);
 
         listviewCategory = findViewById(R.id.listviewCategory);
 
@@ -76,7 +88,7 @@ public class StartAssessment extends AppCompatActivity {
         myDialog.setCanceledOnTouchOutside(false);
         myDialog.show();
 
-        StringRequest stringRequest = new StringRequest(Request.Method.GET, "http://10.151.150.39/WACSI_OCAT/categories.php",
+        StringRequest stringRequest = new StringRequest(Request.Method.POST, "https://kwamea19.sg-host.com/WACSI_OCAT/categories.php",
                 new Response.Listener<String>() {
                     @Override
                     public void onResponse(String response) {
@@ -95,7 +107,7 @@ public class StartAssessment extends AppCompatActivity {
                                 String categoryId = jsonObject.getString("id");
                                 String categoryName = jsonObject.getString("category_name");
                                 String categoryImage = jsonObject.getString("image_url");
-                                String newString = categoryImage.replace("localhost", "10.151.150.39");
+                                String newString = categoryImage.replace("localhost", "kwamea19.sg-host.com");
 
                                 catId.add(categoryId);
                                 catName.add(categoryName);
@@ -103,6 +115,9 @@ public class StartAssessment extends AppCompatActivity {
 
                             }
 
+                            checker();
+
+//                            System.out.println("Category Id = "+catId);
                             CategoryAdapter categoryAdapter = new CategoryAdapter(StartAssessment.this, catId, catName, catImage);
                             listviewCategory.setAdapter(categoryAdapter);
 
@@ -127,6 +142,7 @@ public class StartAssessment extends AppCompatActivity {
             @Override
             protected Map<String, String> getParams(){
                 Map<String, String> params = new HashMap<>();
+                params.put("language", language);
                 return params;
             }
         };
@@ -142,6 +158,81 @@ public class StartAssessment extends AppCompatActivity {
             }
         });
 
+
+    }
+
+    public void checker(){
+
+        ArrayList<String> checkerList = new ArrayList<>();
+
+        // before the loop
+        parentList = new ArrayList<>(Collections.nCopies(8, null));  // 8 empty slots
+
+        for (int i = 0; i < 8; i++) {
+            final int index = i;
+
+            StringRequest stringRequest = new StringRequest(Request.Method.POST, "https://kwamea19.sg-host.com/WACSI_OCAT/get_report.php",
+                    new Response.Listener<String>() {
+                        @Override
+                        public void onResponse(String response) {
+                            try {
+                                JSONObject json = new JSONObject(response);
+                                String message = json.getString("message");
+
+                                JSONArray jsonArray = new JSONArray(message);
+                                ArrayList<String> slicedValues = new ArrayList<>();
+
+                                if (jsonArray.length() > 0) {
+                                    JSONObject jsonObject = jsonArray.getJSONObject(0);
+
+                                    // extract values
+                                    ArrayList<Object> values = new ArrayList<>();
+                                    Iterator<String> iterator = jsonObject.keys();
+                                    while (iterator.hasNext()) {
+                                        String key = iterator.next();
+                                        values.add(jsonObject.get(key));
+                                    }
+
+                                    for (int j = 2; j <= values.size() - 2; j++) {
+                                        slicedValues.add((String) values.get(j));
+                                    }
+                                } else {
+                                    slicedValues.add("");
+                                }
+
+                                // ✅ Insert into correct index
+                                parentList.set(index, slicedValues);
+
+
+                            } catch (Exception e) {
+                                Toast.makeText(StartAssessment.this, R.string.report_loading_failed, Toast.LENGTH_SHORT).show();
+                            }
+
+
+                            System.out.println("Parent List: " + parentList);
+
+
+                        }
+
+                    },
+                    new Response.ErrorListener() {
+                        @Override
+                        public void onErrorResponse(VolleyError volleyError) {
+                            Log.e(TAG, "Network Error " + volleyError);
+                        }
+                    }) {
+                @Override
+                protected Map<String, String> getParams() {
+                    Map<String, String> params = new HashMap<>();
+                    params.put("category_id", String.valueOf(index + 1));
+                    params.put("user_id", got_user_id);
+                    return params;
+                }
+            };
+
+            Volley.newRequestQueue(getApplicationContext()).add(stringRequest);
+
+        }
 
     }
 

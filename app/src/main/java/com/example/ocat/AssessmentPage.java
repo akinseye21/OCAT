@@ -63,6 +63,7 @@ public class AssessmentPage extends AppCompatActivity {
 
     Drawable selectedDrawable, unselectedDrawable;
     String uID;
+    String language;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -70,6 +71,9 @@ public class AssessmentPage extends AppCompatActivity {
         setContentView(R.layout.activity_assessment_page);
         this.getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN, WindowManager.LayoutParams.FLAG_FULLSCREEN);
         ChooseLanguage.loadLanguage(this);
+
+        SharedPreferences prefs = getSharedPreferences("Settings", MODE_PRIVATE);
+        language = prefs.getString("My_Lang", "en");
 
         Intent i = getIntent();
         que_cat = i.getStringExtra("category");
@@ -372,7 +376,7 @@ public class AssessmentPage extends AppCompatActivity {
         myDialog.setCanceledOnTouchOutside(false);
         myDialog.show();
 
-        StringRequest stringRequest = new StringRequest(Request.Method.GET, "http://10.151.150.39/WACSI_OCAT/options.php",
+        StringRequest stringRequest = new StringRequest(Request.Method.POST, "https://kwamea19.sg-host.com/WACSI_OCAT/options.php",
                 new Response.Listener<String>() {
                     @Override
                     public void onResponse(String response) {
@@ -421,6 +425,7 @@ public class AssessmentPage extends AppCompatActivity {
             @Override
             protected Map<String, String> getParams(){
                 Map<String, String> params = new HashMap<>();
+                params.put("language", language);
                 return params;
             }
         };
@@ -466,7 +471,7 @@ public class AssessmentPage extends AppCompatActivity {
         myDialog.setCanceledOnTouchOutside(false);
         myDialog.show();
 
-        StringRequest stringRequest = new StringRequest(Request.Method.POST, "http://10.151.150.39/WACSI_OCAT/save_governance.php",
+        StringRequest stringRequest = new StringRequest(Request.Method.POST, "https://kwamea19.sg-host.com/WACSI_OCAT/save_governance.php",
                 new Response.Listener<String>() {
                     @Override
                     public void onResponse(String response) {
@@ -563,7 +568,7 @@ public class AssessmentPage extends AppCompatActivity {
         myDialog.setCanceledOnTouchOutside(false);
         myDialog.show();
 
-        StringRequest stringRequest = new StringRequest(Request.Method.POST, "http://10.151.150.39/WACSI_OCAT/save_hr.php",
+        StringRequest stringRequest = new StringRequest(Request.Method.POST, "https://kwamea19.sg-host.com/WACSI_OCAT/save_hr.php",
                 new Response.Listener<String>() {
                     @Override
                     public void onResponse(String response) {
@@ -653,7 +658,7 @@ public class AssessmentPage extends AppCompatActivity {
         myDialog.setCanceledOnTouchOutside(false);
         myDialog.show();
 
-        StringRequest stringRequest = new StringRequest(Request.Method.POST, "http://10.151.150.39/WACSI_OCAT/save_finance.php",
+        StringRequest stringRequest = new StringRequest(Request.Method.POST, "https://kwamea19.sg-host.com/WACSI_OCAT/save_finance.php",
                 new Response.Listener<String>() {
                     @Override
                     public void onResponse(String response) {
@@ -739,7 +744,7 @@ public class AssessmentPage extends AppCompatActivity {
         myDialog.setCanceledOnTouchOutside(false);
         myDialog.show();
 
-        StringRequest stringRequest = new StringRequest(Request.Method.POST, "http://10.151.150.39/WACSI_OCAT/save_working_practice.php",
+        StringRequest stringRequest = new StringRequest(Request.Method.POST, "https://kwamea19.sg-host.com/WACSI_OCAT/save_working_practice.php",
                 new Response.Listener<String>() {
                     @Override
                     public void onResponse(String response) {
@@ -836,7 +841,7 @@ public class AssessmentPage extends AppCompatActivity {
         myDialog.setCanceledOnTouchOutside(false);
         myDialog.show();
 
-        StringRequest stringRequest = new StringRequest(Request.Method.POST, "http://10.151.150.39/WACSI_OCAT/save_community_engagement.php",
+        StringRequest stringRequest = new StringRequest(Request.Method.POST, "https://kwamea19.sg-host.com/WACSI_OCAT/save_community_engagement.php",
                 new Response.Listener<String>() {
                     @Override
                     public void onResponse(String response) {
@@ -924,7 +929,7 @@ public class AssessmentPage extends AppCompatActivity {
         myDialog.setCanceledOnTouchOutside(false);
         myDialog.show();
 
-        StringRequest stringRequest = new StringRequest(Request.Method.POST, "http://10.151.150.39/WACSI_OCAT/save_partnership.php",
+        StringRequest stringRequest = new StringRequest(Request.Method.POST, "https://kwamea19.sg-host.com/WACSI_OCAT/save_partnership.php",
                 new Response.Listener<String>() {
                     @Override
                     public void onResponse(String response) {
@@ -1018,7 +1023,7 @@ public class AssessmentPage extends AppCompatActivity {
         myDialog.setCanceledOnTouchOutside(false);
         myDialog.show();
 
-        StringRequest stringRequest = new StringRequest(Request.Method.POST, "http://10.151.150.39/WACSI_OCAT/save_technology.php",
+        StringRequest stringRequest = new StringRequest(Request.Method.POST, "https://kwamea19.sg-host.com/WACSI_OCAT/save_technology.php",
                 new Response.Listener<String>() {
                     @Override
                     public void onResponse(String response) {
@@ -1114,7 +1119,7 @@ public class AssessmentPage extends AppCompatActivity {
         myDialog.setCanceledOnTouchOutside(false);
         myDialog.show();
 
-        StringRequest stringRequest = new StringRequest(Request.Method.POST, "http://10.151.150.39/WACSI_OCAT/save_sustainability.php",
+        StringRequest stringRequest = new StringRequest(Request.Method.POST, "https://kwamea19.sg-host.com/WACSI_OCAT/save_sustainability.php",
                 new Response.Listener<String>() {
                     @Override
                     public void onResponse(String response) {

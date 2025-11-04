@@ -151,7 +151,7 @@ public class Login extends AppCompatActivity {
         myDialog.setCanceledOnTouchOutside(false);
         myDialog.show();
 
-        StringRequest stringRequest = new StringRequest(Request.Method.POST, "http://10.151.150.39/WACSI_OCAT/login.php",
+        StringRequest stringRequest = new StringRequest(Request.Method.POST, "https://kwamea19.sg-host.com/WACSI_OCAT/login.php",
                 new Response.Listener<String>() {
                     @Override
                     public void onResponse(String response) {

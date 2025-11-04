@@ -85,7 +85,7 @@ public class Completion extends AppCompatActivity {
                 myDialog.setCanceledOnTouchOutside(false);
                 myDialog.show();
 
-                StringRequest stringRequest = new StringRequest(Request.Method.POST, "http://10.151.150.39/WACSI_OCAT/get_report.php",
+                StringRequest stringRequest = new StringRequest(Request.Method.POST, "https://kwamea19.sg-host.com/WACSI_OCAT/get_report.php",
                         new Response.Listener<String>() {
                             @Override
                             public void onResponse(String response) {
