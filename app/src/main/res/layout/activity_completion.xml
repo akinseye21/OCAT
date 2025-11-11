@@ -30,7 +30,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:fontFamily="@font/nunitosansregular"
-                android:text="Well done, you have completed\nassessment on module"
+                android:text="@string/well_done_you_have_completed_nassessment_on_module"
                 android:layout_gravity="center"
                 android:gravity="center"
                 android:lineSpacingExtra="5dp"
@@ -65,7 +65,7 @@
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="View Assessment Report"
+                    android:text="@string/view_assessment_report"
                     android:textColor="@color/white"
                     android:layout_centerInParent="true"
                     android:fontFamily="@font/nunitosanssemibold"
@@ -87,7 +87,7 @@
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="View Recommendations"
+                    android:text="@string/view_recommendations"
                     android:textColor="@color/white"
                     android:layout_centerInParent="true"
                     android:fontFamily="@font/nunitosanssemibold"
@@ -109,7 +109,7 @@
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="Dashoard"
+                    android:text="@string/dashboard"
                     android:textColor="@color/white"
                     android:layout_centerInParent="true"
                     android:fontFamily="@font/nunitosanssemibold"

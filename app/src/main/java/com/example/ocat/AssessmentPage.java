@@ -319,7 +319,7 @@ public class AssessmentPage extends AppCompatActivity {
                     question.setText(arr_questionText.get(currentQuestionText));
                     //change the button next to submit for the final question
                     if (currentquestion.getText().toString().equals(totalquestions.getText().toString())){
-                        btn_next.setText("Submit");
+                        btn_next.setText(R.string.submit);
                         btn_next.setOnClickListener(new View.OnClickListener() {
                             @Override
                             public void onClick(View v) {
@@ -331,21 +331,21 @@ public class AssessmentPage extends AppCompatActivity {
                                 System.out.println("Array final final answer = "+arr_finalAnswer);
 
                                 //check the category of questions
-                                if (arr_questionCategory.get(0).equals("Governance")){
+                                if (arr_questionCategory.get(0).equals("Governance") || arr_questionCategory.get(0).equals("Gouvernance")){
                                     saveGovernance();
-                                }else if (arr_questionCategory.get(0).equals("HR")){
+                                }else if (arr_questionCategory.get(0).equals("HR") || arr_questionCategory.get(0).equals("RH")){
                                     saveHR();
                                 }else if (arr_questionCategory.get(0).equals("Finance")){
                                     saveFinance();
-                                }else if (arr_questionCategory.get(0).equals("Working Practice")){
+                                }else if (arr_questionCategory.get(0).equals("Working Practice")  || arr_questionCategory.get(0).equals("Pratique professionnelle")){
                                     saveWorkingPractice();
-                                }else if (arr_questionCategory.get(0).equals("Community Engagement")){
+                                }else if (arr_questionCategory.get(0).equals("Community Engagement") || arr_questionCategory.get(0).equals("Engagement Communautaire")){
                                     saveCommunityEngagement();
-                                }else if (arr_questionCategory.get(0).equals("Partnership")){
+                                }else if (arr_questionCategory.get(0).equals("Partnership") || arr_questionCategory.get(0).equals("Partenariat")){
                                     savePartnership();
-                                }else if (arr_questionCategory.get(0).equals("Technology")){
+                                }else if (arr_questionCategory.get(0).equals("Technology") || arr_questionCategory.get(0).equals("Technologie")){
                                     saveTechnology();
-                                }else if (arr_questionCategory.get(0).equals("Sustainability")){
+                                }else if (arr_questionCategory.get(0).equals("Sustainability") || arr_questionCategory.get(0).equals("Durabilité")){
                                     saveSustainability();
                                 }
                             }

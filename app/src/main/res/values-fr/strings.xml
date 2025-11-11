@@ -102,4 +102,8 @@
     <string name="of"> de </string>
     <string name="start_new_nassessment">Commencer une\nnouvelle évaluation</string>
     <string name="view_reports">Afficher les rapports</string>
+    <string name="well_done_you_have_completed_nassessment_on_module">Bravo, vous avez terminé l\'évaluation du module</string>
+    <string name="view_assessment_report">Consulter le rapport d\'évaluation</string>
+    <string name="view_recommendations">Voir les recommandations</string>
+    <string name="dashboard">Tableau de bord</string>
 </resources>

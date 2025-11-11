@@ -225,7 +225,7 @@ public class AssessmentPage2 extends AppCompatActivity {
             public void onClick(View v) {
 
                 if (selected_point == 0){
-                    Toast.makeText(AssessmentPage2.this, "Please select an option", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(AssessmentPage2.this, R.string.please_select_an_option, Toast.LENGTH_SHORT).show();
                 }else{
                     // the selected point, add to an array of points
                     answered_question.add(String.valueOf(selected_point));
@@ -259,21 +259,21 @@ public class AssessmentPage2 extends AppCompatActivity {
 //                                System.out.println("Array final final answer = "+arr_finalAnswer);
 
                                 //check the category of questions
-                                if (category_name.equals("Governance and Leadership")){
+                                if (category_name.equals("Governance and Leadership") || category_name.equals("Gouvernance")){
                                     saveGovernance();
-                                }else if (category_name.equals("Human Resources")){
+                                }else if (category_name.equals("Human Resources") || category_name.equals("RH")){
                                     saveHR();
                                 }else if (category_name.equals("Finance")){
                                     saveFinance();
-                                }else if (category_name.equals("Working Practice")){
+                                }else if (category_name.equals("Working Practice") || category_name.equals("Pratique professionnelle")){
                                     saveWorkingPractice();
-                                }else if (category_name.equals("Community Engagement")){
+                                }else if (category_name.equals("Community Engagement") || category_name.equals("Engagement Communautaire")){
                                     saveCommunityEngagement();
-                                }else if (category_name.equals("Partnerships")){
+                                }else if (category_name.equals("Partnerships") || category_name.equals("Partenariat")){
                                     savePartnership();
-                                }else if (category_name.equals("Information Technology")){
+                                }else if (category_name.equals("Information Technology") || category_name.equals("Technologie")){
                                     saveTechnology();
-                                }else if (category_name.equals("Sustainability")){
+                                }else if (category_name.equals("Sustainability") || category_name.equals("Durabilité")){
                                     saveSustainability();
                                 }
                             }
@@ -383,7 +383,7 @@ public class AssessmentPage2 extends AppCompatActivity {
         Dialog myDialog = new Dialog(AssessmentPage2.this);
         myDialog.setContentView(R.layout.custom_popup_loading);
         TextView text = myDialog.findViewById(R.id.text);
-        text.setText("Saving your responses");
+        text.setText(R.string.saving_your_responses);
         myDialog.getWindow().setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));
         myDialog.setCanceledOnTouchOutside(false);
         myDialog.show();
@@ -414,7 +414,7 @@ public class AssessmentPage2 extends AppCompatActivity {
                             }
 
                         }catch(Exception e) {
-                            Toast.makeText(AssessmentPage2.this, "Failed to save", Toast.LENGTH_SHORT).show();
+                            Toast.makeText(AssessmentPage2.this, R.string.failed_to_save, Toast.LENGTH_SHORT).show();
                         }
 
                     }
@@ -428,7 +428,7 @@ public class AssessmentPage2 extends AppCompatActivity {
                         }
                         Log.e(TAG, volleyError.toString());
                         System.out.println("Network Error "+volleyError);
-                        Toast.makeText(AssessmentPage2.this, "Network Error!", Toast.LENGTH_SHORT).show();
+                        Toast.makeText(AssessmentPage2.this, R.string.network_error, Toast.LENGTH_SHORT).show();
                     }
                 }){
             @Override
@@ -483,7 +483,7 @@ public class AssessmentPage2 extends AppCompatActivity {
         Dialog myDialog = new Dialog(AssessmentPage2.this);
         myDialog.setContentView(R.layout.custom_popup_loading);
         TextView text = myDialog.findViewById(R.id.text);
-        text.setText("Saving your responses");
+        text.setText(R.string.saving_your_responses);
         myDialog.getWindow().setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));
         myDialog.setCanceledOnTouchOutside(false);
         myDialog.show();
@@ -515,7 +515,7 @@ public class AssessmentPage2 extends AppCompatActivity {
 
 
                         }catch(Exception e) {
-                            Toast.makeText(AssessmentPage2.this, "Failed to save", Toast.LENGTH_SHORT).show();
+                            Toast.makeText(AssessmentPage2.this, R.string.failed_to_save, Toast.LENGTH_SHORT).show();
                         }
 
                     }
@@ -529,7 +529,7 @@ public class AssessmentPage2 extends AppCompatActivity {
                         }
                         Log.e(TAG, volleyError.toString());
                         System.out.println("Network Error "+volleyError.getMessage());
-                        Toast.makeText(AssessmentPage2.this, "Network Error!", Toast.LENGTH_SHORT).show();
+                        Toast.makeText(AssessmentPage2.this, R.string.network_error, Toast.LENGTH_SHORT).show();
                     }
                 }){
             @Override
@@ -576,7 +576,7 @@ public class AssessmentPage2 extends AppCompatActivity {
         Dialog myDialog = new Dialog(AssessmentPage2.this);
         myDialog.setContentView(R.layout.custom_popup_loading);
         TextView text = myDialog.findViewById(R.id.text);
-        text.setText("Saving your responses");
+        text.setText(R.string.saving_your_responses);
         myDialog.getWindow().setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));
         myDialog.setCanceledOnTouchOutside(false);
         myDialog.show();
@@ -608,7 +608,7 @@ public class AssessmentPage2 extends AppCompatActivity {
 
 
                         }catch(Exception e) {
-                            Toast.makeText(AssessmentPage2.this, "Failed to save", Toast.LENGTH_SHORT).show();
+                            Toast.makeText(AssessmentPage2.this, R.string.failed_to_save, Toast.LENGTH_SHORT).show();
                         }
 
                     }
@@ -622,7 +622,7 @@ public class AssessmentPage2 extends AppCompatActivity {
                         }
                         Log.e(TAG, volleyError.toString());
                         System.out.println("Network Error "+volleyError.getMessage());
-                        Toast.makeText(AssessmentPage2.this, "Network Error!", Toast.LENGTH_SHORT).show();
+                        Toast.makeText(AssessmentPage2.this, R.string.network_error, Toast.LENGTH_SHORT).show();
                     }
                 }){
             @Override
@@ -665,7 +665,7 @@ public class AssessmentPage2 extends AppCompatActivity {
         Dialog myDialog = new Dialog(AssessmentPage2.this);
         myDialog.setContentView(R.layout.custom_popup_loading);
         TextView text = myDialog.findViewById(R.id.text);
-        text.setText("Saving your responses");
+        text.setText(R.string.saving_your_responses);
         myDialog.getWindow().setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));
         myDialog.setCanceledOnTouchOutside(false);
         myDialog.show();
@@ -697,7 +697,7 @@ public class AssessmentPage2 extends AppCompatActivity {
 
 
                         }catch(Exception e) {
-                            Toast.makeText(AssessmentPage2.this, "Failed to save", Toast.LENGTH_SHORT).show();
+                            Toast.makeText(AssessmentPage2.this, R.string.failed_to_save, Toast.LENGTH_SHORT).show();
                         }
 
                     }
@@ -711,7 +711,7 @@ public class AssessmentPage2 extends AppCompatActivity {
                         }
                         Log.e(TAG, volleyError.toString());
                         System.out.println("Network Error "+volleyError.getMessage());
-                        Toast.makeText(AssessmentPage2.this, "Network Error!", Toast.LENGTH_SHORT).show();
+                        Toast.makeText(AssessmentPage2.this, R.string.network_error, Toast.LENGTH_SHORT).show();
                     }
                 }){
             @Override
@@ -765,7 +765,7 @@ public class AssessmentPage2 extends AppCompatActivity {
         Dialog myDialog = new Dialog(AssessmentPage2.this);
         myDialog.setContentView(R.layout.custom_popup_loading);
         TextView text = myDialog.findViewById(R.id.text);
-        text.setText("Saving your responses");
+        text.setText(R.string.saving_your_responses);
         myDialog.getWindow().setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));
         myDialog.setCanceledOnTouchOutside(false);
         myDialog.show();
@@ -797,7 +797,7 @@ public class AssessmentPage2 extends AppCompatActivity {
 
 
                         }catch(Exception e) {
-                            Toast.makeText(AssessmentPage2.this, "Failed to save", Toast.LENGTH_SHORT).show();
+                            Toast.makeText(AssessmentPage2.this, R.string.failed_to_save, Toast.LENGTH_SHORT).show();
                         }
 
                     }
@@ -811,7 +811,7 @@ public class AssessmentPage2 extends AppCompatActivity {
                         }
                         Log.e(TAG, volleyError.toString());
                         System.out.println("Network Error "+volleyError.getMessage());
-                        Toast.makeText(AssessmentPage2.this, "Network Error!", Toast.LENGTH_SHORT).show();
+                        Toast.makeText(AssessmentPage2.this, R.string.network_error, Toast.LENGTH_SHORT).show();
                     }
                 }){
             @Override
@@ -902,7 +902,7 @@ public class AssessmentPage2 extends AppCompatActivity {
                         }
                         Log.e(TAG, volleyError.toString());
                         System.out.println("Network Error "+volleyError.getMessage());
-                        Toast.makeText(AssessmentPage2.this, "Network Error!", Toast.LENGTH_SHORT).show();
+                        Toast.makeText(AssessmentPage2.this, R.string.network_error, Toast.LENGTH_SHORT).show();
                     }
                 }){
             @Override
@@ -953,7 +953,7 @@ public class AssessmentPage2 extends AppCompatActivity {
         Dialog myDialog = new Dialog(AssessmentPage2.this);
         myDialog.setContentView(R.layout.custom_popup_loading);
         TextView text = myDialog.findViewById(R.id.text);
-        text.setText("Saving your responses");
+        text.setText(R.string.saving_your_responses);
         myDialog.getWindow().setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));
         myDialog.setCanceledOnTouchOutside(false);
         myDialog.show();
@@ -984,7 +984,7 @@ public class AssessmentPage2 extends AppCompatActivity {
                             }
 
                         }catch(Exception e) {
-                            Toast.makeText(AssessmentPage2.this, "Failed to save", Toast.LENGTH_SHORT).show();
+                            Toast.makeText(AssessmentPage2.this, R.string.failed_to_save, Toast.LENGTH_SHORT).show();
                         }
 
                     }
@@ -998,7 +998,7 @@ public class AssessmentPage2 extends AppCompatActivity {
                         }
                         Log.e(TAG, volleyError.toString());
                         System.out.println("Network Error "+volleyError);
-                        Toast.makeText(AssessmentPage2.this, "Network Error!", Toast.LENGTH_SHORT).show();
+                        Toast.makeText(AssessmentPage2.this, R.string.network_error, Toast.LENGTH_SHORT).show();
                     }
                 }){
             @Override
@@ -1052,7 +1052,7 @@ public class AssessmentPage2 extends AppCompatActivity {
         Dialog myDialog = new Dialog(AssessmentPage2.this);
         myDialog.setContentView(R.layout.custom_popup_loading);
         TextView text = myDialog.findViewById(R.id.text);
-        text.setText("Saving your responses");
+        text.setText(R.string.saving_your_responses);
         myDialog.getWindow().setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));
         myDialog.setCanceledOnTouchOutside(false);
         myDialog.show();
@@ -1083,7 +1083,7 @@ public class AssessmentPage2 extends AppCompatActivity {
                             }
 
                         }catch(Exception e) {
-                            Toast.makeText(AssessmentPage2.this, "Failed to save", Toast.LENGTH_SHORT).show();
+                            Toast.makeText(AssessmentPage2.this, R.string.failed_to_save, Toast.LENGTH_SHORT).show();
                         }
 
                     }
@@ -1097,7 +1097,7 @@ public class AssessmentPage2 extends AppCompatActivity {
                         }
                         Log.e(TAG, volleyError.toString());
                         System.out.println("Network Error "+volleyError);
-                        Toast.makeText(AssessmentPage2.this, "Network Error!", Toast.LENGTH_SHORT).show();
+                        Toast.makeText(AssessmentPage2.this, R.string.network_error, Toast.LENGTH_SHORT).show();
                     }
                 }){
             @Override
